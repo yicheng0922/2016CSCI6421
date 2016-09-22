@@ -34,6 +34,7 @@ public class UI extends JFrame {
 	private JPanel contentPane;
 	private final Action action = new SwingAction();
 	private JTextField textField;
+	private JTextField textField_1;
 
 	/**
 	 * Launch the application.
@@ -56,7 +57,7 @@ public class UI extends JFrame {
 	 */
 	public UI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1125, 650);
+		setBounds(100, 100, 1125, 829);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -870,13 +871,13 @@ public class UI extends JFrame {
 		
 		JButton btnRun = new JButton("Run");
 		btnRun.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnRun.setBounds(222, 456, 97, 25);
+		btnRun.setBounds(222, 551, 97, 25);
 		contentPane.add(btnRun);
 		btnRun.addActionListener(new RunListener());
 		
 		JButton button = new JButton("SS");
 		button.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		button.setBounds(367, 456, 97, 25);
+		button.setBounds(367, 551, 97, 25);
 		contentPane.add(button);
 		button.addActionListener(new SSListener());
 		
@@ -897,7 +898,7 @@ public class UI extends JFrame {
 		contentPane.add(lblX_2);
 		
 		textField = new JTextField();
-		textField.setBounds(663, 546, 348, 22);
+		textField.setBounds(783, 553, 286, 22);
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
@@ -909,8 +910,91 @@ public class UI extends JFrame {
 		
 		JButton button_1 = new JButton("Load");
 		button_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		button_1.setBounds(77, 456, 97, 25);
+		button_1.setBounds(77, 551, 97, 25);
 		contentPane.add(button_1);
+		
+		JRadioButton radioButton = new JRadioButton("");
+		radioButton.setBounds(609, 426, 25, 25);
+		contentPane.add(radioButton);
+		
+		JRadioButton radioButton_1 = new JRadioButton("");
+		radioButton_1.setBounds(638, 426, 25, 25);
+		contentPane.add(radioButton_1);
+		
+		JRadioButton radioButton_2 = new JRadioButton("");
+		radioButton_2.setBounds(667, 426, 25, 25);
+		contentPane.add(radioButton_2);
+		
+		JRadioButton radioButton_3 = new JRadioButton("");
+		radioButton_3.setBounds(696, 426, 25, 25);
+		contentPane.add(radioButton_3);
+		
+		JRadioButton radioButton_4 = new JRadioButton("");
+		radioButton_4.setBounds(725, 426, 25, 25);
+		contentPane.add(radioButton_4);
+		
+		JRadioButton radioButton_5 = new JRadioButton("");
+		radioButton_5.setBounds(754, 426, 25, 25);
+		contentPane.add(radioButton_5);
+		
+		JRadioButton radioButton_6 = new JRadioButton("");
+		radioButton_6.setBounds(783, 426, 25, 25);
+		contentPane.add(radioButton_6);
+		
+		JRadioButton radioButton_7 = new JRadioButton("");
+		radioButton_7.setBounds(812, 426, 25, 25);
+		contentPane.add(radioButton_7);
+		
+		JRadioButton radioButton_8 = new JRadioButton("");
+		radioButton_8.setBounds(841, 426, 25, 25);
+		contentPane.add(radioButton_8);
+		
+		JRadioButton radioButton_9 = new JRadioButton("");
+		radioButton_9.setBounds(870, 426, 25, 25);
+		contentPane.add(radioButton_9);
+		
+		JRadioButton radioButton_10 = new JRadioButton("");
+		radioButton_10.setBounds(899, 426, 25, 25);
+		contentPane.add(radioButton_10);
+		
+		JRadioButton radioButton_11 = new JRadioButton("");
+		radioButton_11.setBounds(928, 426, 25, 25);
+		contentPane.add(radioButton_11);
+		
+		JRadioButton radioButton_12 = new JRadioButton("");
+		radioButton_12.setBounds(957, 426, 25, 25);
+		contentPane.add(radioButton_12);
+		
+		JRadioButton radioButton_13 = new JRadioButton("");
+		radioButton_13.setBounds(986, 426, 25, 25);
+		contentPane.add(radioButton_13);
+		
+		JRadioButton radioButton_14 = new JRadioButton("");
+		radioButton_14.setBounds(1015, 426, 25, 25);
+		contentPane.add(radioButton_14);
+		
+		JRadioButton radioButton_15 = new JRadioButton("");
+		radioButton_15.setBounds(1044, 426, 25, 25);
+		contentPane.add(radioButton_15);
+		
+		JSeparator separator_8 = new JSeparator();
+		separator_8.setBounds(23, 501, 1057, 2);
+		contentPane.add(separator_8);
+		
+		JButton button_2 = new JButton("Enter data");
+		button_2.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		button_2.setBounds(619, 551, 152, 25);
+		contentPane.add(button_2);
+		
+		JButton button_3 = new JButton("Enter instruction");
+		button_3.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		button_3.setBounds(619, 609, 152, 25);
+		contentPane.add(button_3);
+		
+		textField_1 = new JTextField();
+		textField_1.setColumns(10);
+		textField_1.setBounds(783, 611, 286, 22);
+		contentPane.add(textField_1);
 		button_1.addActionListener(new LoadListener());
 	}
 	private class SwingAction extends AbstractAction {
