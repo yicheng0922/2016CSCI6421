@@ -21,6 +21,7 @@ import javax.swing.JTextPane;
 import javax.swing.JEditorPane;
 import javax.swing.AbstractAction;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.Action;
 import java.awt.Font;
 import javax.swing.SwingConstants;
@@ -61,70 +62,70 @@ public class UI extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JRadioButton radioButton_1 = new JRadioButton("");
-		radioButton_1.setAction(action);
-		radioButton_1.setBounds(483, 137, 25, 25);
-		contentPane.add(radioButton_1);
+		JRadioButton R1_16 = new JRadioButton("");
+		R1_16.setAction(action);
+		R1_16.setBounds(483, 137, 25, 25);
+		contentPane.add(R1_16);
 		
-		JRadioButton radioButton = new JRadioButton("");
-		radioButton.setBounds(48, 137, 25, 25);
-		contentPane.add(radioButton);
+		JRadioButton R1_1 = new JRadioButton("");
+		R1_1.setBounds(48, 137, 25, 25);
+		contentPane.add(R1_1);
 		
-		JRadioButton radioButton_2 = new JRadioButton("");
-		radioButton_2.setBounds(77, 137, 25, 25);
-		contentPane.add(radioButton_2);
+		JRadioButton R1_2 = new JRadioButton("");
+		R1_2.setBounds(77, 137, 25, 25);
+		contentPane.add(R1_2);
 		
-		JRadioButton radioButton_3 = new JRadioButton("");
-		radioButton_3.setBounds(106, 137, 25, 25);
-		contentPane.add(radioButton_3);
+		JRadioButton R1_3 = new JRadioButton("");
+		R1_3.setBounds(106, 137, 25, 25);
+		contentPane.add(R1_3);
 		
-		JRadioButton radioButton_4 = new JRadioButton("");
-		radioButton_4.setBounds(135, 137, 25, 25);
-		contentPane.add(radioButton_4);
+		JRadioButton R1_4 = new JRadioButton("");
+		R1_4.setBounds(135, 137, 25, 25);
+		contentPane.add(R1_4);
 		
-		JRadioButton radioButton_5 = new JRadioButton("");
-		radioButton_5.setBounds(164, 137, 25, 25);
-		contentPane.add(radioButton_5);
+		JRadioButton R1_5 = new JRadioButton("");
+		R1_5.setBounds(164, 137, 25, 25);
+		contentPane.add(R1_5);
 		
-		JRadioButton radioButton_6 = new JRadioButton("");
-		radioButton_6.setBounds(193, 137, 25, 25);
-		contentPane.add(radioButton_6);
+		JRadioButton R1_6 = new JRadioButton("");
+		R1_6.setBounds(193, 137, 25, 25);
+		contentPane.add(R1_6);
 		
-		JRadioButton radioButton_7 = new JRadioButton("");
-		radioButton_7.setBounds(222, 137, 25, 25);
-		contentPane.add(radioButton_7);
+		JRadioButton R1_7 = new JRadioButton("");
+		R1_7.setBounds(222, 137, 25, 25);
+		contentPane.add(R1_7);
 		
-		JRadioButton radioButton_8 = new JRadioButton("");
-		radioButton_8.setBounds(251, 137, 25, 25);
-		contentPane.add(radioButton_8);
+		JRadioButton R1_8 = new JRadioButton("");
+		R1_8.setBounds(251, 137, 25, 25);
+		contentPane.add(R1_8);
 		
-		JRadioButton radioButton_9 = new JRadioButton("");
-		radioButton_9.setBounds(280, 137, 25, 25);
-		contentPane.add(radioButton_9);
+		JRadioButton R1_9 = new JRadioButton("");
+		R1_9.setBounds(280, 137, 25, 25);
+		contentPane.add(R1_9);
 		
-		JRadioButton radioButton_10 = new JRadioButton("");
-		radioButton_10.setBounds(309, 137, 25, 25);
-		contentPane.add(radioButton_10);
+		JRadioButton R1_10 = new JRadioButton("");
+		R1_10.setBounds(309, 137, 25, 25);
+		contentPane.add(R1_10);
 		
-		JRadioButton radioButton_11 = new JRadioButton("");
-		radioButton_11.setBounds(338, 137, 25, 25);
-		contentPane.add(radioButton_11);
+		JRadioButton R1_11 = new JRadioButton("");
+		R1_11.setBounds(338, 137, 25, 25);
+		contentPane.add(R1_11);
 		
-		JRadioButton radioButton_12 = new JRadioButton("");
-		radioButton_12.setBounds(367, 137, 25, 25);
-		contentPane.add(radioButton_12);
+		JRadioButton R1_12 = new JRadioButton("");
+		R1_12.setBounds(367, 137, 25, 25);
+		contentPane.add(R1_12);
 		
-		JRadioButton radioButton_13 = new JRadioButton("");
-		radioButton_13.setBounds(396, 137, 25, 25);
-		contentPane.add(radioButton_13);
+		JRadioButton R1_13 = new JRadioButton("");
+		R1_13.setBounds(396, 137, 25, 25);
+		contentPane.add(R1_13);
 		
-		JRadioButton radioButton_14 = new JRadioButton("");
-		radioButton_14.setBounds(425, 137, 25, 25);
-		contentPane.add(radioButton_14);
+		JRadioButton R1_14 = new JRadioButton("");
+		R1_14.setBounds(425, 137, 25, 25);
+		contentPane.add(R1_14);
 		
-		JRadioButton radioButton_15 = new JRadioButton("");
-		radioButton_15.setBounds(454, 137, 25, 25);
-		contentPane.add(radioButton_15);
+		JRadioButton R1_15 = new JRadioButton("");
+		R1_15.setBounds(454, 137, 25, 25);
+		contentPane.add(R1_15);
 		
 		JLabel label = new JLabel("1");
 		label.setBounds(12, 141, 56, 16);
@@ -134,197 +135,197 @@ public class UI extends JFrame {
 		label_1.setBounds(12, 170, 25, 16);
 		contentPane.add(label_1);
 		
-		JRadioButton radioButton_16 = new JRadioButton("");
-		radioButton_16.setBounds(48, 167, 25, 25);
-		contentPane.add(radioButton_16);
+		JRadioButton R2_1 = new JRadioButton("");
+		R2_1.setBounds(48, 167, 25, 25);
+		contentPane.add(R2_1);
 		
-		JRadioButton radioButton_17 = new JRadioButton("");
-		radioButton_17.setBounds(483, 167, 25, 25);
-		contentPane.add(radioButton_17);
+		JRadioButton R2_16 = new JRadioButton("");
+		R2_16.setBounds(483, 167, 25, 25);
+		contentPane.add(R2_16);
 		
-		JRadioButton radioButton_18 = new JRadioButton("");
-		radioButton_18.setBounds(77, 167, 25, 25);
-		contentPane.add(radioButton_18);
+		JRadioButton R2_2 = new JRadioButton("");
+		R2_2.setBounds(77, 167, 25, 25);
+		contentPane.add(R2_2);
 		
-		JRadioButton radioButton_19 = new JRadioButton("");
-		radioButton_19.setBounds(106, 167, 25, 25);
-		contentPane.add(radioButton_19);
+		JRadioButton R2_3 = new JRadioButton("");
+		R2_3.setBounds(106, 167, 25, 25);
+		contentPane.add(R2_3);
 		
-		JRadioButton radioButton_20 = new JRadioButton("");
-		radioButton_20.setBounds(135, 167, 25, 25);
-		contentPane.add(radioButton_20);
+		JRadioButton R2_4 = new JRadioButton("");
+		R2_4.setBounds(135, 167, 25, 25);
+		contentPane.add(R2_4);
 		
-		JRadioButton radioButton_21 = new JRadioButton("");
-		radioButton_21.setBounds(164, 167, 25, 25);
-		contentPane.add(radioButton_21);
+		JRadioButton R2_5 = new JRadioButton("");
+		R2_5.setBounds(164, 167, 25, 25);
+		contentPane.add(R2_5);
 		
-		JRadioButton radioButton_22 = new JRadioButton("");
-		radioButton_22.setBounds(193, 167, 25, 25);
-		contentPane.add(radioButton_22);
+		JRadioButton R2_6 = new JRadioButton("");
+		R2_6.setBounds(193, 167, 25, 25);
+		contentPane.add(R2_6);
 		
-		JRadioButton radioButton_23 = new JRadioButton("");
-		radioButton_23.setBounds(222, 167, 25, 25);
-		contentPane.add(radioButton_23);
+		JRadioButton R2_7 = new JRadioButton("");
+		R2_7.setBounds(222, 167, 25, 25);
+		contentPane.add(R2_7);
 		
-		JRadioButton radioButton_24 = new JRadioButton("");
-		radioButton_24.setBounds(251, 167, 25, 25);
-		contentPane.add(radioButton_24);
+		JRadioButton R2_8 = new JRadioButton("");
+		R2_8.setBounds(251, 167, 25, 25);
+		contentPane.add(R2_8);
 		
-		JRadioButton radioButton_25 = new JRadioButton("");
-		radioButton_25.setBounds(280, 167, 25, 25);
-		contentPane.add(radioButton_25);
+		JRadioButton R2_9 = new JRadioButton("");
+		R2_9.setBounds(280, 167, 25, 25);
+		contentPane.add(R2_9);
 		
-		JRadioButton radioButton_26 = new JRadioButton("");
-		radioButton_26.setBounds(309, 167, 25, 25);
-		contentPane.add(radioButton_26);
+		JRadioButton R2_10 = new JRadioButton("");
+		R2_10.setBounds(309, 167, 25, 25);
+		contentPane.add(R2_10);
 		
-		JRadioButton radioButton_27 = new JRadioButton("");
-		radioButton_27.setBounds(338, 167, 25, 25);
-		contentPane.add(radioButton_27);
+		JRadioButton R2_11 = new JRadioButton("");
+		R2_11.setBounds(338, 167, 25, 25);
+		contentPane.add(R2_11);
 		
-		JRadioButton radioButton_28 = new JRadioButton("");
-		radioButton_28.setBounds(367, 167, 25, 25);
-		contentPane.add(radioButton_28);
+		JRadioButton R2_12 = new JRadioButton("");
+		R2_12.setBounds(367, 167, 25, 25);
+		contentPane.add(R2_12);
 		
-		JRadioButton radioButton_29 = new JRadioButton("");
-		radioButton_29.setBounds(396, 167, 25, 25);
-		contentPane.add(radioButton_29);
+		JRadioButton R2_13 = new JRadioButton("");
+		R2_13.setBounds(396, 167, 25, 25);
+		contentPane.add(R2_13);
 		
-		JRadioButton radioButton_30 = new JRadioButton("");
-		radioButton_30.setBounds(425, 167, 25, 25);
-		contentPane.add(radioButton_30);
+		JRadioButton R2_14 = new JRadioButton("");
+		R2_14.setBounds(425, 167, 25, 25);
+		contentPane.add(R2_14);
 		
-		JRadioButton radioButton_31 = new JRadioButton("");
-		radioButton_31.setBounds(454, 167, 25, 25);
-		contentPane.add(radioButton_31);
+		JRadioButton R2_15 = new JRadioButton("");
+		R2_15.setBounds(454, 167, 25, 25);
+		contentPane.add(R2_15);
 		
-		JRadioButton radioButton_32 = new JRadioButton("");
-		radioButton_32.setBounds(48, 196, 25, 25);
-		contentPane.add(radioButton_32);
+		JRadioButton R3_1 = new JRadioButton("");
+		R3_1.setBounds(48, 196, 25, 25);
+		contentPane.add(R3_1);
 		
-		JRadioButton radioButton_33 = new JRadioButton("");
-		radioButton_33.setBounds(483, 196, 25, 25);
-		contentPane.add(radioButton_33);
+		JRadioButton R3_16 = new JRadioButton("");
+		R3_16.setBounds(483, 196, 25, 25);
+		contentPane.add(R3_16);
 		
-		JRadioButton radioButton_34 = new JRadioButton("");
-		radioButton_34.setBounds(77, 196, 25, 25);
-		contentPane.add(radioButton_34);
+		JRadioButton R3_2 = new JRadioButton("");
+		R3_2.setBounds(77, 196, 25, 25);
+		contentPane.add(R3_2);
 		
-		JRadioButton radioButton_35 = new JRadioButton("");
-		radioButton_35.setBounds(106, 196, 25, 25);
-		contentPane.add(radioButton_35);
+		JRadioButton R3_3 = new JRadioButton("");
+		R3_3.setBounds(106, 196, 25, 25);
+		contentPane.add(R3_3);
 		
-		JRadioButton radioButton_36 = new JRadioButton("");
-		radioButton_36.setBounds(135, 196, 25, 25);
-		contentPane.add(radioButton_36);
+		JRadioButton R3_4 = new JRadioButton("");
+		R3_4.setBounds(135, 196, 25, 25);
+		contentPane.add(R3_4);
 		
-		JRadioButton radioButton_37 = new JRadioButton("");
-		radioButton_37.setBounds(164, 196, 25, 25);
-		contentPane.add(radioButton_37);
+		JRadioButton R3_5 = new JRadioButton("");
+		R3_5.setBounds(164, 196, 25, 25);
+		contentPane.add(R3_5);
 		
-		JRadioButton radioButton_38 = new JRadioButton("");
-		radioButton_38.setBounds(193, 196, 25, 25);
-		contentPane.add(radioButton_38);
+		JRadioButton R3_6 = new JRadioButton("");
+		R3_6.setBounds(193, 196, 25, 25);
+		contentPane.add(R3_6);
 		
-		JRadioButton radioButton_39 = new JRadioButton("");
-		radioButton_39.setBounds(222, 196, 25, 25);
-		contentPane.add(radioButton_39);
+		JRadioButton R3_7 = new JRadioButton("");
+		R3_7.setBounds(222, 196, 25, 25);
+		contentPane.add(R3_7);
 		
-		JRadioButton radioButton_40 = new JRadioButton("");
-		radioButton_40.setBounds(251, 196, 25, 25);
-		contentPane.add(radioButton_40);
+		JRadioButton R3_8 = new JRadioButton("");
+		R3_8.setBounds(251, 196, 25, 25);
+		contentPane.add(R3_8);
 		
 		JRadioButton radioButton_41 = new JRadioButton("");
 		radioButton_41.setBounds(251, 137, 25, 25);
 		contentPane.add(radioButton_41);
 		
-		JRadioButton radioButton_42 = new JRadioButton("");
-		radioButton_42.setBounds(309, 196, 25, 25);
-		contentPane.add(radioButton_42);
+		JRadioButton R3_10 = new JRadioButton("");
+		R3_10.setBounds(309, 196, 25, 25);
+		contentPane.add(R3_10);
 		
-		JRadioButton radioButton_43 = new JRadioButton("");
-		radioButton_43.setBounds(338, 196, 25, 25);
-		contentPane.add(radioButton_43);
+		JRadioButton R3_11 = new JRadioButton("");
+		R3_11.setBounds(338, 196, 25, 25);
+		contentPane.add(R3_11);
 		
-		JRadioButton radioButton_44 = new JRadioButton("");
-		radioButton_44.setBounds(367, 196, 25, 25);
-		contentPane.add(radioButton_44);
+		JRadioButton R3_12 = new JRadioButton("");
+		R3_12.setBounds(367, 196, 25, 25);
+		contentPane.add(R3_12);
 		
-		JRadioButton radioButton_45 = new JRadioButton("");
-		radioButton_45.setBounds(396, 196, 25, 25);
-		contentPane.add(radioButton_45);
+		JRadioButton R3_13 = new JRadioButton("");
+		R3_13.setBounds(396, 196, 25, 25);
+		contentPane.add(R3_13);
 		
-		JRadioButton radioButton_46 = new JRadioButton("");
-		radioButton_46.setBounds(425, 196, 25, 25);
-		contentPane.add(radioButton_46);
+		JRadioButton R3_14 = new JRadioButton("");
+		R3_14.setBounds(425, 196, 25, 25);
+		contentPane.add(R3_14);
 		
-		JRadioButton radioButton_47 = new JRadioButton("");
-		radioButton_47.setBounds(454, 196, 25, 25);
-		contentPane.add(radioButton_47);
+		JRadioButton R3_15 = new JRadioButton("");
+		R3_15.setBounds(454, 196, 25, 25);
+		contentPane.add(R3_15);
 		
-		JRadioButton radioButton_48 = new JRadioButton("");
-		radioButton_48.setBounds(48, 107, 25, 25);
-		contentPane.add(radioButton_48);
+		JRadioButton R0_1 = new JRadioButton("");
+		R0_1.setBounds(48, 107, 25, 25);
+		contentPane.add(R0_1);
 		
-		JRadioButton radioButton_49 = new JRadioButton("");
-		radioButton_49.setBounds(483, 107, 25, 25);
-		contentPane.add(radioButton_49);
+		JRadioButton R0_16 = new JRadioButton("");
+		R0_16.setBounds(483, 107, 25, 25);
+		contentPane.add(R0_16);
 		
-		JRadioButton radioButton_50 = new JRadioButton("");
-		radioButton_50.setBounds(77, 107, 25, 25);
-		contentPane.add(radioButton_50);
+		JRadioButton R0_2 = new JRadioButton("");
+		R0_2.setBounds(77, 107, 25, 25);
+		contentPane.add(R0_2);
 		
-		JRadioButton radioButton_51 = new JRadioButton("");
-		radioButton_51.setBounds(106, 107, 25, 25);
-		contentPane.add(radioButton_51);
+		JRadioButton R0_3 = new JRadioButton("");
+		R0_3.setBounds(106, 107, 25, 25);
+		contentPane.add(R0_3);
 		
-		JRadioButton radioButton_52 = new JRadioButton("");
-		radioButton_52.setBounds(135, 107, 25, 25);
-		contentPane.add(radioButton_52);
+		JRadioButton R0_4 = new JRadioButton("");
+		R0_4.setBounds(135, 107, 25, 25);
+		contentPane.add(R0_4);
 		
-		JRadioButton radioButton_53 = new JRadioButton("");
-		radioButton_53.setBounds(164, 107, 25, 25);
-		contentPane.add(radioButton_53);
+		JRadioButton R0_5 = new JRadioButton("");
+		R0_5.setBounds(164, 107, 25, 25);
+		contentPane.add(R0_5);
 		
-		JRadioButton radioButton_54 = new JRadioButton("");
-		radioButton_54.setBounds(193, 107, 25, 25);
-		contentPane.add(radioButton_54);
+		JRadioButton R0_6 = new JRadioButton("");
+		R0_6.setBounds(193, 107, 25, 25);
+		contentPane.add(R0_6);
 		
-		JRadioButton radioButton_55 = new JRadioButton("");
-		radioButton_55.setBounds(222, 107, 25, 25);
-		contentPane.add(radioButton_55);
+		JRadioButton R0_7 = new JRadioButton("");
+		R0_7.setBounds(222, 107, 25, 25);
+		contentPane.add(R0_7);
 		
-		JRadioButton radioButton_56 = new JRadioButton("");
-		radioButton_56.setBounds(251, 107, 25, 25);
-		contentPane.add(radioButton_56);
+		JRadioButton R0_8 = new JRadioButton("");
+		R0_8.setBounds(251, 107, 25, 25);
+		contentPane.add(R0_8);
 		
-		JRadioButton radioButton_57 = new JRadioButton("");
-		radioButton_57.setBounds(280, 107, 25, 25);
-		contentPane.add(radioButton_57);
+		JRadioButton R0_9 = new JRadioButton("");
+		R0_9.setBounds(280, 107, 25, 25);
+		contentPane.add(R0_9);
 		
-		JRadioButton radioButton_58 = new JRadioButton("");
-		radioButton_58.setBounds(309, 107, 25, 25);
-		contentPane.add(radioButton_58);
+		JRadioButton R0_10 = new JRadioButton("");
+		R0_10.setBounds(309, 107, 25, 25);
+		contentPane.add(R0_10);
 		
-		JRadioButton radioButton_59 = new JRadioButton("");
-		radioButton_59.setBounds(338, 107, 25, 25);
-		contentPane.add(radioButton_59);
+		JRadioButton R0_11 = new JRadioButton("");
+		R0_11.setBounds(338, 107, 25, 25);
+		contentPane.add(R0_11);
 		
-		JRadioButton radioButton_60 = new JRadioButton("");
-		radioButton_60.setBounds(367, 107, 25, 25);
-		contentPane.add(radioButton_60);
+		JRadioButton R0_12 = new JRadioButton("");
+		R0_12.setBounds(367, 107, 25, 25);
+		contentPane.add(R0_12);
 		
-		JRadioButton radioButton_61 = new JRadioButton("");
-		radioButton_61.setBounds(396, 107, 25, 25);
-		contentPane.add(radioButton_61);
+		JRadioButton R0_13 = new JRadioButton("");
+		R0_13.setBounds(396, 107, 25, 25);
+		contentPane.add(R0_13);
 		
-		JRadioButton radioButton_62 = new JRadioButton("");
-		radioButton_62.setBounds(425, 107, 25, 25);
-		contentPane.add(radioButton_62);
+		JRadioButton R0_14 = new JRadioButton("");
+		R0_14.setBounds(425, 107, 25, 25);
+		contentPane.add(R0_14);
 		
-		JRadioButton radioButton_63 = new JRadioButton("");
-		radioButton_63.setBounds(454, 107, 25, 25);
-		contentPane.add(radioButton_63);
+		JRadioButton R0_15 = new JRadioButton("");
+		R0_15.setBounds(454, 107, 25, 25);
+		contentPane.add(R0_15);
 		
 		JLabel label_2 = new JLabel("0");
 		label_2.setBounds(12, 112, 56, 16);
@@ -871,15 +872,17 @@ public class UI extends JFrame {
 		btnRun.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnRun.setBounds(222, 456, 97, 25);
 		contentPane.add(btnRun);
+		btnRun.addActionListener(new RunListener());
 		
 		JButton button = new JButton("SS");
 		button.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		button.setBounds(367, 456, 97, 25);
 		contentPane.add(button);
+		button.addActionListener(new SSListener());
 		
-		JRadioButton radioButton_178 = new JRadioButton("");
-		radioButton_178.setBounds(280, 197, 25, 25);
-		contentPane.add(radioButton_178);
+		JRadioButton R3_9 = new JRadioButton("");
+		R3_9.setBounds(280, 197, 25, 25);
+		contentPane.add(R3_9);
 		
 		JLabel lblX = new JLabel("X1");
 		lblX.setBounds(12, 312, 56, 16);
@@ -908,6 +911,7 @@ public class UI extends JFrame {
 		button_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		button_1.setBounds(77, 456, 97, 25);
 		contentPane.add(button_1);
+		button_1.addActionListener(new LoadListener());
 	}
 	private class SwingAction extends AbstractAction {
 		public SwingAction() {
@@ -916,5 +920,23 @@ public class UI extends JFrame {
 		}
 		public void actionPerformed(ActionEvent e) {
 		}
+	}
+	
+	public class LoadListener implements ActionListener{
+		public void actionPerformed(ActionEvent e){		
+		
+		}	
+	}
+	
+	public class SSListener implements ActionListener{
+		public void actionPerformed(ActionEvent e){		
+		
+		}	
+	}
+	
+	public class RunListener implements ActionListener{
+		public void actionPerformed(ActionEvent e){		
+		
+		}	
 	}
 }
