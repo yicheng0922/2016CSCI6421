@@ -131,7 +131,7 @@ public class CPU {
 				break;
 				
 		}
-		
+		pc++;
 		
 	}
 	
@@ -192,7 +192,7 @@ public class CPU {
 
 
 	public short getR0() {
-		return r0;
+		return r[0];
 	}
 
 
@@ -200,7 +200,7 @@ public class CPU {
 
 
 	public void setR0(short r0) {
-		this.r0 = r0;
+		this.r[0] = r0;
 	}
 
 
@@ -208,7 +208,7 @@ public class CPU {
 
 
 	public short getR1() {
-		return r1;
+		return r[1];
 	}
 
 
@@ -216,7 +216,7 @@ public class CPU {
 
 
 	public void setR1(short r1) {
-		this.r1 = r1;
+		this.r[1] = r1;
 	}
 
 
@@ -224,7 +224,7 @@ public class CPU {
 
 
 	public short getR2() {
-		return r2;
+		return r[2];
 	}
 
 
@@ -232,7 +232,7 @@ public class CPU {
 
 
 	public void setR2(short r2) {
-		this.r2 = r2;
+		this.r[2] = r2;
 	}
 
 
@@ -240,7 +240,7 @@ public class CPU {
 
 
 	public short getR3() {
-		return r3;
+		return r[3];
 	}
 
 
@@ -248,7 +248,7 @@ public class CPU {
 
 
 	public void setR3(short r3) {
-		this.r3 = r3;
+		this.r[3] = r3;
 	}
 
 
@@ -272,7 +272,7 @@ public class CPU {
 
 
 	public short getX1() {
-		return x1;
+		return x[1];
 	}
 
 
@@ -280,7 +280,7 @@ public class CPU {
 
 
 	public short getX2() {
-		return x2;
+		return x[2];
 	}
 
 
@@ -288,7 +288,7 @@ public class CPU {
 
 
 	public short getX3() {
-		return x3;
+		return x[3];
 	}
 
 
