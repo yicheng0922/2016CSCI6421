@@ -56,7 +56,7 @@ public class CPU {
 		}
 	}
 	
-	private void executeNext()
+	public void executeNext()
 	{
 		mar = pc;
 		mbr = fetchFromMemory(mar);
@@ -138,7 +138,10 @@ public class CPU {
 	private short calcEA(short x,short address,short i)
 	{
 		short result=-1;
-		
+		if(i == 0)
+		{
+			
+		}
 		
 		return result;
 	}
