@@ -65,8 +65,11 @@ public class UI extends JFrame {
 	private JRadioButton PC[] = new JRadioButton[12];
 	private JRadioButton Mem[] = new JRadioButton[16];
 	private final ButtonGroup buttonGroup = new ButtonGroup();
-	
-	
+	private JRadioButton Data_R0;
+	private JRadioButton Data_R1;
+	private JRadioButton Data_R2;
+	private JRadioButton Data_R3;
+	private JRadioButton Data_Mem;
 
 	/**
 	 * Launch the application.
@@ -1104,11 +1107,11 @@ public class UI extends JFrame {
 		contentPane.add(Data_txt);
 		Data_txt.setColumns(10);
 		
-		JLabel label_8 = new JLabel("Memory");
-		label_8.setHorizontalAlignment(SwingConstants.CENTER);
-		label_8.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		label_8.setBounds(708, 401, 259, 16);
-		contentPane.add(label_8);
+//		JLabel label_8 = new JLabel("Memory");
+//		label_8.setHorizontalAlignment(SwingConstants.CENTER);
+//		label_8.setFont(new Font("Tahoma", Font.PLAIN, 16));
+//		label_8.setBounds(708, 401, 259, 16);
+//		contentPane.add(label_8);
 		
 		JButton Load = new JButton("Load");
 		Load.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -1116,85 +1119,85 @@ public class UI extends JFrame {
 		contentPane.add(Load);
 		Load.addActionListener(new LoadListener());
 		
-		Mem[0] = new JRadioButton("MEM");
-		Mem[0].setEnabled(false);
-		Mem[0].setBounds(609, 426, 25, 25);
-		contentPane.add(Mem[0]);
-		
-		Mem[1] = new JRadioButton("MEM");
-		Mem[1].setEnabled(false);
-		Mem[1].setBounds(638, 426, 25, 25);
-		contentPane.add(Mem[1]);
-		
-		Mem[2] = new JRadioButton("MEM");
-		Mem[2].setEnabled(false);
-		Mem[2].setBounds(667, 426, 25, 25);
-		contentPane.add(Mem[2]);
-		
-		Mem[3] = new JRadioButton("MEM");
-		Mem[3].setEnabled(false);
-		Mem[3].setBounds(696, 426, 25, 25);
-		contentPane.add(Mem[3]);
-		
-		Mem[4] = new JRadioButton("MEM");
-		Mem[4].setEnabled(false);
-		Mem[4].setBounds(725, 426, 25, 25);
-		contentPane.add(Mem[4]);
-		
-		Mem[5] = new JRadioButton("MEM");
-		Mem[5].setEnabled(false);
-		Mem[5].setBounds(754, 426, 25, 25);
-		contentPane.add(Mem[5]);
-		
-		Mem[6] = new JRadioButton("MEM");
-		Mem[6].setEnabled(false);
-		Mem[6].setBounds(783, 426, 25, 25);
-		contentPane.add(Mem[6]);
-		
-		Mem[7] = new JRadioButton("MEM");
-		Mem[7].setEnabled(false);
-		Mem[7].setBounds(812, 426, 25, 25);
-		contentPane.add(Mem[7]);
-		
-		Mem[8] = new JRadioButton("MEM");
-		Mem[8].setEnabled(false);
-		Mem[8].setBounds(841, 426, 25, 25);
-		contentPane.add(Mem[8]);
-		
-		Mem[9] = new JRadioButton("MEM");
-		Mem[9].setEnabled(false);
-		Mem[9].setBounds(870, 426, 25, 25);
-		contentPane.add(Mem[9]);
-		
-		Mem[10] = new JRadioButton("MEM");
-		Mem[10].setEnabled(false);
-		Mem[10].setBounds(899, 426, 25, 25);
-		contentPane.add(Mem[10]);
-		
-		Mem[11] = new JRadioButton("MEM");
-		Mem[11].setEnabled(false);
-		Mem[11].setBounds(928, 426, 25, 25);
-		contentPane.add(Mem[11]);
-		
-		Mem[12] = new JRadioButton("MEM");
-		Mem[12].setEnabled(false);
-		Mem[12].setBounds(957, 426, 25, 25);
-		contentPane.add(Mem[12]);
-		
-		Mem[13] = new JRadioButton("MEM");
-		Mem[13].setEnabled(false);
-		Mem[13].setBounds(986, 426, 25, 25);
-		contentPane.add(Mem[13]);
-		
-		Mem[14] = new JRadioButton("MEM");
-		Mem[14].setEnabled(false);
-		Mem[14].setBounds(1015, 426, 25, 25);
-		contentPane.add(Mem[14]);
-		
-		Mem[15] = new JRadioButton("MEM");
-		Mem[15].setEnabled(false);
-		Mem[15].setBounds(1044, 426, 25, 25);
-		contentPane.add(Mem[15]);
+//		Mem[0] = new JRadioButton("MEM");
+//		Mem[0].setEnabled(false);
+//		Mem[0].setBounds(609, 426, 25, 25);
+//		contentPane.add(Mem[0]);
+//		
+//		Mem[1] = new JRadioButton("MEM");
+//		Mem[1].setEnabled(false);
+//		Mem[1].setBounds(638, 426, 25, 25);
+//		contentPane.add(Mem[1]);
+//		
+//		Mem[2] = new JRadioButton("MEM");
+//		Mem[2].setEnabled(false);
+//		Mem[2].setBounds(667, 426, 25, 25);
+//		contentPane.add(Mem[2]);
+//		
+//		Mem[3] = new JRadioButton("MEM");
+//		Mem[3].setEnabled(false);
+//		Mem[3].setBounds(696, 426, 25, 25);
+//		contentPane.add(Mem[3]);
+//		
+//		Mem[4] = new JRadioButton("MEM");
+//		Mem[4].setEnabled(false);
+//		Mem[4].setBounds(725, 426, 25, 25);
+//		contentPane.add(Mem[4]);
+//		
+//		Mem[5] = new JRadioButton("MEM");
+//		Mem[5].setEnabled(false);
+//		Mem[5].setBounds(754, 426, 25, 25);
+//		contentPane.add(Mem[5]);
+//		
+//		Mem[6] = new JRadioButton("MEM");
+//		Mem[6].setEnabled(false);
+//		Mem[6].setBounds(783, 426, 25, 25);
+//		contentPane.add(Mem[6]);
+//		
+//		Mem[7] = new JRadioButton("MEM");
+//		Mem[7].setEnabled(false);
+//		Mem[7].setBounds(812, 426, 25, 25);
+//		contentPane.add(Mem[7]);
+//		
+//		Mem[8] = new JRadioButton("MEM");
+//		Mem[8].setEnabled(false);
+//		Mem[8].setBounds(841, 426, 25, 25);
+//		contentPane.add(Mem[8]);
+//		
+//		Mem[9] = new JRadioButton("MEM");
+//		Mem[9].setEnabled(false);
+//		Mem[9].setBounds(870, 426, 25, 25);
+//		contentPane.add(Mem[9]);
+//		
+//		Mem[10] = new JRadioButton("MEM");
+//		Mem[10].setEnabled(false);
+//		Mem[10].setBounds(899, 426, 25, 25);
+//		contentPane.add(Mem[10]);
+//		
+//		Mem[11] = new JRadioButton("MEM");
+//		Mem[11].setEnabled(false);
+//		Mem[11].setBounds(928, 426, 25, 25);
+//		contentPane.add(Mem[11]);
+//		
+//		Mem[12] = new JRadioButton("MEM");
+//		Mem[12].setEnabled(false);
+//		Mem[12].setBounds(957, 426, 25, 25);
+//		contentPane.add(Mem[12]);
+//		
+//		Mem[13] = new JRadioButton("MEM");
+//		Mem[13].setEnabled(false);
+//		Mem[13].setBounds(986, 426, 25, 25);
+//		contentPane.add(Mem[13]);
+//		
+//		Mem[14] = new JRadioButton("MEM");
+//		Mem[14].setEnabled(false);
+//		Mem[14].setBounds(1015, 426, 25, 25);
+//		contentPane.add(Mem[14]);
+//		
+//		Mem[15] = new JRadioButton("MEM");
+//		Mem[15].setEnabled(false);
+//		Mem[15].setBounds(1044, 426, 25, 25);
+//		contentPane.add(Mem[15]);
 		
 		JSeparator separator_8 = new JSeparator();
 		separator_8.setBounds(23, 501, 1057, 2);
@@ -1217,36 +1220,42 @@ public class UI extends JFrame {
 		lblEnterIndex.setBounds(548, 674, 216, 19);
 		contentPane.add(lblEnterIndex);
 		
-		JButton Excute = new JButton("Excute");
-		Excute.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		Excute.setBounds(783, 725, 93, 32);
-		contentPane.add(Excute);
-		Excute.addActionListener(new ExcuteListener());
+		JButton Save = new JButton("Save");
+		Save.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		Save.setBounds(783, 725, 93, 32);
+		contentPane.add(Save);
+		Save.addActionListener(new SaveListener());
 		
-		JRadioButton Data_R0 = new JRadioButton("R0");
+		Data_R0 = new JRadioButton("R0");
 		buttonGroup.add(Data_R0);
 		Data_R0.setBounds(783, 582, 121, 23);
 		contentPane.add(Data_R0);
 		
-		JRadioButton Data_R1 = new JRadioButton("R1");
+		Data_R1 = new JRadioButton("R1");
 		buttonGroup.add(Data_R1);
 		Data_R1.setBounds(783, 607, 121, 23);
 		contentPane.add(Data_R1);
 		
-		JRadioButton Data_R2 = new JRadioButton("R2");
+		Data_R2 = new JRadioButton("R2");
 		buttonGroup.add(Data_R2);
 		Data_R2.setBounds(928, 582, 121, 23);
 		contentPane.add(Data_R2);
 		
-		JRadioButton Data_R3 = new JRadioButton("R3");
+		Data_R3 = new JRadioButton("R3");
 		buttonGroup.add(Data_R3);
 		Data_R3.setBounds(928, 607, 121, 23);
 		contentPane.add(Data_R3);
 		
-		JRadioButton Data_Mem = new JRadioButton("Memory");
+		Data_Mem = new JRadioButton("Memory");
 		buttonGroup.add(Data_Mem);
 		Data_Mem.setBounds(783, 631, 121, 23);
 		contentPane.add(Data_Mem);
+		
+		JButton Clean = new JButton("Clean");
+		Clean.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		Clean.setBounds(928, 725, 93, 32);
+		contentPane.add(Clean);
+		Clean.addActionListener(new CleanListener());
 	}
 	private class SwingAction extends AbstractAction {
 		public SwingAction() {
@@ -1289,6 +1298,7 @@ public class UI extends JFrame {
 					}
 				}
 			}
+			System.out.println("The PC value is: ");
 			System.out.println(cpu.getPc());
 			ShowData();
 		}
@@ -1392,20 +1402,20 @@ public class UI extends JFrame {
 					h++;
 				}
 					
-				Short SMem = cpu.getMfr();
-				String strMem = Integer.toBinaryString(SMem.intValue());
-				int n = 0;
-				while(n < strMem.length()) {
-					char[] charn = strMem.toCharArray();
-					if (charn[n] == 1) {
-						Mem[n].setSelected(true);
-					} else {
-						Mem[n].setSelected(false);
-					}
-					n++;
-				}
-				count++;	
-				break;
+//				Short SMem = cpu.getMfr();
+//				String strMem = Integer.toBinaryString(SMem.intValue());
+//				int n = 0;
+//				while(n < strMem.length()) {
+//					char[] charn = strMem.toCharArray();
+//					if (charn[n] == 1) {
+//						Mem[n].setSelected(true);
+//					} else {
+//						Mem[n].setSelected(false);
+//					}
+//					n++;
+//				}
+//				count++;	
+//				break;
 			}
 			case 1: {
 			Short SMAR = cpu.getMar();
@@ -1483,9 +1493,40 @@ public class UI extends JFrame {
 		}	
 	}
 	
-	public class ExcuteListener implements ActionListener{
+	public class SaveListener implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
-			
+			CleanScr();
+			String Data = Data_txt.getText();
+			Short SData = Integer.valueOf(Data,2).shortValue();
+			if (Data_R0.isSelected()) {
+				CleanScr();
+				cpu.setR0(SData);
+				ShowData();
+			} else if (Data_R1.isSelected()) {
+				CleanScr();
+				cpu.setR1(SData);
+				ShowData();
+			} else if (Data_R2.isSelected()) {
+				CleanScr();
+				cpu.setR2(SData);
+				ShowData();
+			} else if (Data_R3.isSelected()) {
+				CleanScr();
+				cpu.setR3(SData);
+				ShowData();
+			} else if (Data_Mem.isSelected()) {
+				CleanScr();
+				String Index = Ins_txt.getText();
+				int IIndex = Integer.parseInt(Index);
+				cpu.setMem(SData, IIndex);
+				ShowData();
+			}
+		}
+	}
+	
+	public class CleanListener implements ActionListener{
+		public void actionPerformed(ActionEvent e) {
+			CleanScr();
 		}
 	}
 	
@@ -1502,11 +1543,11 @@ public class UI extends JFrame {
 			MAR[a].setSelected(false);
 			MBR[a].setSelected(false);
 			IR[a].setSelected(false);
-			Mem[a].setSelected(false);
+//			Mem[a].setSelected(false);
 			a++;
 		}
 		int b = 0;
-		while (b < 10) {
+		while (b < 12) {
 			PC[b].setSelected(false);
 			b++;
 		}
@@ -1515,7 +1556,10 @@ public class UI extends JFrame {
 	public void ShowData() {	
 			
 			Short SR0= cpu.getR0();
-			String strR0 = String.format("%16s",Integer.toBinaryString(SR0.intValue())).replace(' ', '0');		
+			String strR0 = String.format("%16s",Integer.toBinaryString(SR0.intValue())).replace(' ', '0');
+			if(strR0.length()>16){
+				strR0=strR0.substring(strR0.length()-16,strR0.length());
+			}
 			int a = 0;
 			while(a < strR0.length()) {
 				char[] chara = strR0.toCharArray();
@@ -1529,6 +1573,9 @@ public class UI extends JFrame {
 
 			Short SR1 = cpu.getR1();
 			String strR1 = String.format("%16s",Integer.toBinaryString(SR1.intValue())).replace(' ', '0');
+			if(strR1.length()>16){
+				strR1=strR1.substring(strR1.length()-16,strR1.length());
+			}
 			int b = 0;
 			while(b < strR1.length()) {
 				char[] charb = strR1.toCharArray();
@@ -1542,6 +1589,9 @@ public class UI extends JFrame {
 			
 			Short SR2 = cpu.getR2();
 			String strR2 = String.format("%16s",Integer.toBinaryString(SR2.intValue())).replace(' ', '0');
+			if(strR2.length()>16){
+				strR2=strR2.substring(strR2.length()-16,strR2.length());
+			}
 			int c = 0;
 			while(c < strR2.length()) {
 				char[] charc = strR2.toCharArray();
@@ -1555,6 +1605,9 @@ public class UI extends JFrame {
 			
 			Short SR3 = cpu.getR3();
 			String strR3 = String.format("%16s",Integer.toBinaryString(SR3.intValue())).replace(' ', '0');
+			if(strR3.length()>16){
+				strR3=strR3.substring(strR3.length()-16,strR3.length());
+			}
 			int d = 0;
 			while(d < strR3.length()) {
 				char[] chard = strR3.toCharArray();
@@ -1568,6 +1621,9 @@ public class UI extends JFrame {
 			
 			Short SX1 = cpu.getX1();
 			String strX1 = String.format("%16s",Integer.toBinaryString(SX1.intValue())).replace(' ', '0');
+			if(strX1.length()>16){
+				strX1=strX1.substring(strX1.length()-16,strX1.length());
+			}
 			int f = 0;
 			while(f < strX1.length()) {
 				char[] charf = strX1.toCharArray();
@@ -1581,6 +1637,9 @@ public class UI extends JFrame {
 			
 			Short SX2 = cpu.getX2();
 			String strX2 = String.format("%16s",Integer.toBinaryString(SX2.intValue())).replace(' ', '0');
+			if(strX2.length()>16){
+				strX2=strX2.substring(strX2.length()-16,strX2.length());
+			}
 			int g = 0;
 			while(g < strX2.length()) {
 				char[] charg = strX2.toCharArray();
@@ -1594,6 +1653,9 @@ public class UI extends JFrame {
 			
 			Short SX3 = cpu.getX3();
 			String strX3 = String.format("%16s",Integer.toBinaryString(SX3.intValue())).replace(' ', '0');
+			if(strX3.length()>16){
+				strX3=strX3.substring(strX3.length()-16,strX3.length());
+			}
 			int h = 0;
 			while(h < strX3.length()) {
 				char[] charh = strX3.toCharArray();
