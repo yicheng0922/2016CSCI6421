@@ -1228,6 +1228,7 @@ public class UI extends JFrame {
 	public class LoadListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
 			File f = new File("src/LoadTXT.txt");
+			boolean isFirst = true;
 			BufferedReader reader = null;
 			try {
 				reader = new BufferedReader(new FileReader(f));
@@ -1236,7 +1237,11 @@ public class UI extends JFrame {
 				while ((Ins = reader.readLine()) != null) {
 					String[] str = Ins.split(",");
 					int index = Integer.parseInt(str[0]);					
-					Short con = Short.parseShort(str[1],2);						
+					Short con = Short.parseShort(str[1],2);
+					if(isFirst){
+						cpu.setPc((short) index);
+						isFirst=false;
+					}
 					cpu.setMem(con, index);					
 					line++;
 				}
@@ -1252,6 +1257,8 @@ public class UI extends JFrame {
 					}
 				}
 			}
+			System.out.println(cpu.getPc());
+			ShowData();
 		}
 	}
 	
@@ -1439,6 +1446,7 @@ public class UI extends JFrame {
 	public class RunListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
 			CleanScr();
+			cpu.executeNext();
 			ShowData();
 		}	
 	}
@@ -1483,14 +1491,14 @@ public class UI extends JFrame {
 	}
 	
 	public void ShowData() {
-		cpu.executeNext();
+		
 			
 			Short SR0= cpu.getR0();
-			String strR0 = Integer.toBinaryString(SR0.intValue());		
+			String strR0 = String.format("%16s",Integer.toBinaryString(SR0.intValue())).replace(' ', '0');		
 			int a = 0;
 			while(a < strR0.length()) {
 				char[] chara = strR0.toCharArray();
-				if (chara[a] == 1) {
+				if (chara[a] == '1') {
 					R0[a].setSelected(true);
 				} else {
 					R0[a].setSelected(false);
@@ -1499,11 +1507,11 @@ public class UI extends JFrame {
 			}
 
 			Short SR1 = cpu.getR1();
-			String strR1 = Integer.toBinaryString(SR1.intValue());
+			String strR1 = String.format("%16s",Integer.toBinaryString(SR1.intValue())).replace(' ', '0');
 			int b = 0;
 			while(b < strR1.length()) {
 				char[] charb = strR1.toCharArray();
-				if (charb[b] == 1) {
+				if (charb[b] == '1') {
 					R1[b].setSelected(true);
 				} else {
 					R1[b].setSelected(false);
@@ -1512,11 +1520,11 @@ public class UI extends JFrame {
 			}
 			
 			Short SR2 = cpu.getR2();
-			String strR2 = Integer.toBinaryString(SR2.intValue());
+			String strR2 = String.format("%16s",Integer.toBinaryString(SR2.intValue())).replace(' ', '0');
 			int c = 0;
 			while(c < strR2.length()) {
 				char[] charc = strR2.toCharArray();
-				if (charc[c] == 1) {
+				if (charc[c] == '1') {
 					R2[c].setSelected(true);
 				} else {
 					R2[c].setSelected(false);
@@ -1525,11 +1533,11 @@ public class UI extends JFrame {
 			}
 			
 			Short SR3 = cpu.getR3();
-			String strR3 = Integer.toBinaryString(SR3.intValue());
+			String strR3 = String.format("%16s",Integer.toBinaryString(SR3.intValue())).replace(' ', '0');
 			int d = 0;
 			while(d < strR3.length()) {
 				char[] chard = strR3.toCharArray();
-				if (chard[d] == 1) {
+				if (chard[d] == '1') {
 					R3[d].setSelected(true);
 				} else {
 					R3[d].setSelected(false);
@@ -1538,11 +1546,11 @@ public class UI extends JFrame {
 			}
 			
 			Short SX1 = cpu.getX1();
-			String strX1 = Integer.toBinaryString(SX1.intValue());
+			String strX1 = String.format("%16s",Integer.toBinaryString(SX1.intValue())).replace(' ', '0');
 			int f = 0;
 			while(f < strX1.length()) {
 				char[] charf = strX1.toCharArray();
-				if (charf[f] == 1) {
+				if (charf[f] == '1') {
 					X1[f].setSelected(true);
 				} else {
 					X1[f].setSelected(false);
@@ -1551,11 +1559,11 @@ public class UI extends JFrame {
 			}
 			
 			Short SX2 = cpu.getX2();
-			String strX2 = Integer.toBinaryString(SX2.intValue());
+			String strX2 = String.format("%16s",Integer.toBinaryString(SX2.intValue())).replace(' ', '0');
 			int g = 0;
 			while(g < strX2.length()) {
 				char[] charg = strX2.toCharArray();
-				if (charg[g] == 1) {
+				if (charg[g] == '1') {
 					X2[g].setSelected(true);
 				} else {
 					X2[g].setSelected(false);
@@ -1564,11 +1572,11 @@ public class UI extends JFrame {
 			}
 			
 			Short SX3 = cpu.getX3();
-			String strX3 = Integer.toBinaryString(SX3.intValue());
+			String strX3 = String.format("%16s",Integer.toBinaryString(SX3.intValue())).replace(' ', '0');
 			int h = 0;
 			while(h < strX3.length()) {
 				char[] charh = strX3.toCharArray();
-				if (charh[h] == 1) {
+				if (charh[h] == '1') {
 					X3[h].setSelected(true);
 				} else {
 					X3[h].setSelected(false);
@@ -1577,11 +1585,11 @@ public class UI extends JFrame {
 			}
 			
 			Short SMAR = cpu.getMar();
-			String strMAR = Integer.toBinaryString(SMAR.intValue());
+			String strMAR = String.format("%16s",Integer.toBinaryString(SMAR.intValue())).replace(' ', '0');
 			int j = 0;
 			while(j < strMAR.length()) {
 				char[] charj = strMAR.toCharArray();
-				if (charj[j] == 1) {
+				if (charj[j] == '1') {
 					MAR[j].setSelected(true);
 				} else {
 					MAR[j].setSelected(false);
@@ -1590,11 +1598,11 @@ public class UI extends JFrame {
 			}
 			
 			Short SMBR = cpu.getMbr();
-			String strMBR = Integer.toBinaryString(SMBR.intValue());
+			String strMBR = String.format("%16s",Integer.toBinaryString(SMBR.intValue())).replace(' ', '0');
 			int k = 0;
 			while(k < strMBR.length()) {
 				char[] chark = strMBR.toCharArray();
-				if (chark[k] == 1) {
+				if (chark[k] == '1') {
 					MBR[k].setSelected(true);
 				} else {
 					MBR[k].setSelected(false);
@@ -1603,11 +1611,11 @@ public class UI extends JFrame {
 			}
 			
 			Short SIR = cpu.getIr();
-			String strIR = Integer.toBinaryString(SIR.intValue());
+			String strIR = String.format("%16s",Integer.toBinaryString(SIR.intValue())).replace(' ', '0');
 			int l = 0;
 			while(l < strIR.length()) {
 				char[] charl = strIR.toCharArray();
-				if (charl[l] == 1) {
+				if (charl[l] == '1') {
 					IR[l].setSelected(true);
 				} else {
 					IR[l].setSelected(false);
@@ -1616,11 +1624,11 @@ public class UI extends JFrame {
 			}			
 			
 			Short SPC = cpu.getPc();
-			String strPC = Integer.toBinaryString(SPC.intValue());
+			String strPC = String.format("%12s",Integer.toBinaryString(SPC.intValue())).replace(' ', '0');
 			int m = 0;
 			while(m < strPC.length()) {
 				char[] charm = strPC.toCharArray();
-				if (charm[m] == 1) {
+				if (charm[m] == '1') {
 					PC[m].setSelected(true);
 				} else {
 					PC[m].setSelected(false);
@@ -1628,17 +1636,5 @@ public class UI extends JFrame {
 				m++;
 			}			
 			
-			Short SMem = cpu.getMfr();
-			String strMem = Integer.toBinaryString(SMem.intValue());
-			int n = 0;
-			while(n < strMem.length()) {
-				char[] charn = strMem.toCharArray();
-				if (charn[n] == 1) {
-					Mem[n].setSelected(true);
-				} else {
-					Mem[n].setSelected(false);
-				}
-				n++;
-			}
 	}
 }

@@ -6,11 +6,11 @@ public class CPU {
 	private boolean[] cc;
 	private short[] r,x;
 	private short ir;
-	private static short pc;
+	private short pc;
 	private short mar;
 	private short mbr;
 	private short msr;
-	private static short mfr;
+	private short mfr;
 	
 	//memory
 	private short mem[];
@@ -78,7 +78,7 @@ public class CPU {
 		}
 		
 		ir = mbr;
-		String instruction = String.format("%16d", Integer.toBinaryString(ir));
+		String instruction = String.format("%16s", Integer.toBinaryString(ir)).replace(' ', '0');
 		short optcode = Short.parseShort(instruction.substring(0, 6),2);
 		short r,x,i,address;
 		switch (optcode)
