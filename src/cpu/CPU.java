@@ -4,10 +4,15 @@ public class CPU {
 	
 	//registers, limit will be put on for register that are smaller than 16 bits. 
 	private short[] r,x;
-	private short ir,pc,mar,mbr,msr,mfr;
+	private short ir;
+	private static short pc;
+	private short mar;
+	private short mbr;
+	private short msr;
+	private static short mfr;
 	
 	//memory
-	private short mem[];
+	private static short mem[];
 	
 	public CPU()
 	{
@@ -29,7 +34,7 @@ public class CPU {
 		}
 	}
 	
-	public void setMem(short content, int index)
+	public static void setMem(short content, int index)
 	{
 		if(index < 6||index>2048)
 		{
