@@ -1098,7 +1098,7 @@ public class UI extends JFrame {
 		contentPane.add(lblX_2);
 		
 		Data_txt = new JTextField();
-		Data_txt.setBounds(783, 553, 286, 22);
+		Data_txt.setBounds(783, 554, 286, 22);
 		contentPane.add(Data_txt);
 		Data_txt.setColumns(10);
 		
@@ -1198,23 +1198,48 @@ public class UI extends JFrame {
 		separator_8.setBounds(23, 501, 1057, 2);
 		contentPane.add(separator_8);
 		
-		
-		JButton Data_run = new JButton("Enter data");
-		Data_run.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		Data_run.setBounds(619, 551, 152, 25);
-		contentPane.add(Data_run);
-		Data_run.addActionListener(new RunDataListener());
-		
-		JButton Ins_run = new JButton("Enter instruction");
-		Ins_run.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		Ins_run.setBounds(619, 609, 152, 25);
-		contentPane.add(Ins_run);
-		Ins_run.addActionListener(new RunInsListener());
-		
 		Ins_txt = new JTextField();
 		Ins_txt.setColumns(10);
-		Ins_txt.setBounds(783, 611, 286, 22);
+		Ins_txt.setBounds(783, 674, 286, 22);
 		contentPane.add(Ins_txt);
+		
+		JLabel lblEnterData = new JLabel("Enter Data");
+		lblEnterData.setHorizontalAlignment(SwingConstants.CENTER);
+		lblEnterData.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblEnterData.setBounds(628, 554, 145, 19);
+		contentPane.add(lblEnterData);
+		
+		JLabel lblEnterIndex = new JLabel("Enter Memory Address");
+		lblEnterIndex.setHorizontalAlignment(SwingConstants.CENTER);
+		lblEnterIndex.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblEnterIndex.setBounds(548, 674, 216, 19);
+		contentPane.add(lblEnterIndex);
+		
+		JButton Excute = new JButton("Excute");
+		Excute.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		Excute.setBounds(783, 725, 93, 32);
+		contentPane.add(Excute);
+		
+		JRadioButton Data_R0 = new JRadioButton("R0");
+		Data_R0.setBounds(783, 582, 121, 23);
+		contentPane.add(Data_R0);
+		
+		JRadioButton Data_R1 = new JRadioButton("R1");
+		Data_R1.setBounds(783, 607, 121, 23);
+		contentPane.add(Data_R1);
+		
+		JRadioButton Data_R2 = new JRadioButton("R2");
+		Data_R2.setBounds(928, 582, 121, 23);
+		contentPane.add(Data_R2);
+		
+		JRadioButton Data_R3 = new JRadioButton("R3");
+		Data_R3.setBounds(928, 607, 121, 23);
+		contentPane.add(Data_R3);
+		
+		JRadioButton Data_Mem = new JRadioButton("Memory");
+		Data_Mem.setBounds(783, 631, 121, 23);
+		contentPane.add(Data_Mem);
+		Excute.addActionListener(new ExcuteListener());
 	}
 	private class SwingAction extends AbstractAction {
 		public SwingAction() {
@@ -1451,20 +1476,10 @@ public class UI extends JFrame {
 		}	
 	}
 	
-	public class RunDataListener implements ActionListener{
-		public void actionPerformed(ActionEvent e){	
-			String data = Data_txt.getText();
-			String[] str = data.split(",");
-			int index = Integer.parseInt(str[0]);					
-			Short con = Short.parseShort(str[1],2);	
-			cpu.setMem(con, index);
-		}	
-	}
-	
-	public class RunInsListener implements ActionListener{
-		public void actionPerformed(ActionEvent e){	
-			String Ins = Ins_txt.getText();
-		}	
+	public class ExcuteListener implements ActionListener{
+		public void actionPerformed(ActionEvent e) {
+			
+		}
 	}
 	
 	public void CleanScr() {
@@ -1490,8 +1505,7 @@ public class UI extends JFrame {
 		}
 	}
 	
-	public void ShowData() {
-		
+	public void ShowData() {	
 			
 			Short SR0= cpu.getR0();
 			String strR0 = String.format("%16s",Integer.toBinaryString(SR0.intValue())).replace(' ', '0');		
