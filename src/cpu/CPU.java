@@ -342,7 +342,7 @@ public class CPU {
 
 
 	public short getX1() {
-		return x[1];
+		return x[0];
 	}
 
 
@@ -350,7 +350,7 @@ public class CPU {
 
 
 	public short getX2() {
-		return x[2];
+		return x[1];
 	}
 
 
@@ -358,7 +358,7 @@ public class CPU {
 
 
 	public short getX3() {
-		return x[3];
+		return x[2];
 	}
 
 
