@@ -42,6 +42,7 @@ import java.io.Reader;
 import java.io.IOException;
 
 import cpu.CPU;
+import javax.swing.ButtonGroup;
 
 public class UI extends JFrame {
 	
@@ -63,6 +64,7 @@ public class UI extends JFrame {
 	private JRadioButton IR[] = new JRadioButton[16];
 	private JRadioButton PC[] = new JRadioButton[12];
 	private JRadioButton Mem[] = new JRadioButton[16];
+	private final ButtonGroup buttonGroup = new ButtonGroup();
 	
 	
 
@@ -1219,27 +1221,32 @@ public class UI extends JFrame {
 		Excute.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		Excute.setBounds(783, 725, 93, 32);
 		contentPane.add(Excute);
+		Excute.addActionListener(new ExcuteListener());
 		
 		JRadioButton Data_R0 = new JRadioButton("R0");
+		buttonGroup.add(Data_R0);
 		Data_R0.setBounds(783, 582, 121, 23);
 		contentPane.add(Data_R0);
 		
 		JRadioButton Data_R1 = new JRadioButton("R1");
+		buttonGroup.add(Data_R1);
 		Data_R1.setBounds(783, 607, 121, 23);
 		contentPane.add(Data_R1);
 		
 		JRadioButton Data_R2 = new JRadioButton("R2");
+		buttonGroup.add(Data_R2);
 		Data_R2.setBounds(928, 582, 121, 23);
 		contentPane.add(Data_R2);
 		
 		JRadioButton Data_R3 = new JRadioButton("R3");
+		buttonGroup.add(Data_R3);
 		Data_R3.setBounds(928, 607, 121, 23);
 		contentPane.add(Data_R3);
 		
 		JRadioButton Data_Mem = new JRadioButton("Memory");
+		buttonGroup.add(Data_Mem);
 		Data_Mem.setBounds(783, 631, 121, 23);
 		contentPane.add(Data_Mem);
-		Excute.addActionListener(new ExcuteListener());
 	}
 	private class SwingAction extends AbstractAction {
 		public SwingAction() {
