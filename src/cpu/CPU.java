@@ -3,6 +3,7 @@ package cpu;
 public class CPU {
 	
 	//registers, limit will be put on for register that are smaller than 16 bits. 
+	private boolean[] cc;
 	private short[] r,x;
 	private short ir;
 	private static short pc;
@@ -17,20 +18,25 @@ public class CPU {
 	public CPU()
 	{
 		ir=pc=mar=mbr=msr=mfr=0;
+		cc = new boolean[4];
 		r = new short[4];
 		x = new short[3];
 		mem=new short[2048];
-		for(short i:r)
+		for (int i=0;i<cc.length;i++)
 		{
-			i=0;
+			cc[i]=false;
 		}
-		for(short i:x)
+		for(int i=0;i<r.length;i++)
 		{
-			i=0;
+			r[i]=0;
 		}
-		for(short i:mem)
+		for(int i=0;i<x.length;i++)
 		{
-			i=0;
+			x[i]=0;
+		}
+		for(int i=0;i<mem.length;i++)
+		{
+			mem[i]=0;
 		}
 	}
 	
@@ -61,14 +67,14 @@ public class CPU {
 		}
 	}
 	
-	public void executeNext()
+	public int executeNext()
 	{
 		mar = pc;
 		mbr = fetchFromMemory(mar);
 		
 		if(mbr == -1)
 		{
-			return;
+			return -1;
 		}
 		
 		ir = mbr;
@@ -77,6 +83,8 @@ public class CPU {
 		short r,x,i,address;
 		switch (optcode)
 		{
+			case 0:
+				return -1;
 			case 1:
 				r = Short.parseShort(instruction.substring(6,8),2);
 				x = Short.parseShort(instruction.substring(8,10),2);
@@ -137,7 +145,7 @@ public class CPU {
 				
 		}
 		pc++;
-		
+		return 0;
 	}
 	
 	private short calcEA(short x,short address,short i)
@@ -145,7 +153,20 @@ public class CPU {
 		short result=-1;
 		if(i == 0)
 		{
-			
+			if (x>0)
+			{
+				
+				result = (short) (this.x[x-1]+address);
+			}
+			else
+			{
+				result = address;
+			}
+				
+		}
+		else
+		{
+			result = mem[calcEA(x,address,(short)0)];
 		}
 		
 		return result;
@@ -153,47 +174,88 @@ public class CPU {
 	
 	private void ldr(short r, short x, short address, short indirect)
 	{
-		
+		short EA = calcEA(x,address,indirect);
+		mar = EA;
+		mbr = fetchFromMemory(mar);
+		this.r[r] = mbr;
 	}
 	
 	private void str(short r, short x, short address, short indirect)
 	{
-		
+		short EA = calcEA(x,address,indirect);
+		mar = EA;
+		mbr = this.r[r];
+		setMem(mbr,mar);
+
 	}
 	
 	private void lda(short r, short x, short address, short indirect)
 	{
-		
+		short EA = calcEA(x,address,indirect);
+		this.r[r] = EA;
 	}
 	
 	private void ldx(short x, short address, short indirect)
 	{
-		
+		short EA = calcEA( (short) 0,address,indirect);
+		this.x[x] = EA;
 	}
 	
 	private void stx(short x, short address, short indirect)
 	{
-		
+		short EA = calcEA( (short) 0,address,indirect);
+		mar = EA;
+		mbr = this.x[x];
+		setMem(mbr,mar);
 	}
 	
 	private void amr(short r, short x, short address, short indirect)
 	{
-		
+		short EA = calcEA(x,address,indirect);
+		mar = EA;
+		mbr = fetchFromMemory(mar);
+		if(this.r[r] + mbr>Short.MAX_VALUE)
+		{
+			
+		}
+		else
+			this.r[r] +=mbr;
 	}
 	
 	private void smr(short r, short x, short address, short indirect)
 	{
-		
+		short EA = calcEA(x,address,indirect);
+		mar = EA;
+		mbr = fetchFromMemory(mar);
+		if(this.r[r] - mbr<Short.MIN_VALUE)
+		{
+			
+		}
+		else
+			this.r[r] -=mbr;
 	}
 	
 	private void air(short r, short immed)
 	{
+		mbr = immed;
+		if(this.r[r] + mbr < Short.MAX_VALUE)
+		{
+			
+		}
+		else
+			this.r[r] +=mbr;
 		
 	}
 	
 	private void sir(short r, short immed)
 	{
-		
+		mbr = immed;
+		if(this.r[r] - mbr < Short.MIN_VALUE)
+		{
+			
+		}
+		else
+			this.r[r] -=mbr;
 	}
 	
 
