@@ -20,6 +20,8 @@ import javax.swing.Box;
 import javax.swing.JTextPane;
 import javax.swing.JEditorPane;
 import javax.swing.AbstractAction;
+import javax.swing.AbstractButton;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.Action;
@@ -42,12 +44,27 @@ import java.io.IOException;
 import cpu.CPU;
 
 public class UI extends JFrame {
-
+	
 	private JPanel contentPane;
 	private final Action action = new SwingAction();
 	private JTextField Data_txt;
 	private JTextField Ins_txt;
 	private CPU cpu;
+	
+	private JRadioButton R0[] = new JRadioButton[16];
+	private JRadioButton R1[] = new JRadioButton[16];
+	private JRadioButton R2[] = new JRadioButton[16];
+	private JRadioButton R3[] = new JRadioButton[16];
+	private JRadioButton X1[] = new JRadioButton[16];
+	private JRadioButton X2[] = new JRadioButton[16];
+	private JRadioButton X3[] = new JRadioButton[16];
+	private JRadioButton MAR[] = new JRadioButton[16];
+	private JRadioButton MBR[] = new JRadioButton[16];
+	private JRadioButton IR[] = new JRadioButton[16];
+	private JRadioButton PC[] = new JRadioButton[12];
+	private JRadioButton Mem[] = new JRadioButton[16];
+	
+	
 
 	/**
 	 * Launch the application.
@@ -75,286 +92,349 @@ public class UI extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(null);
-		
-		JRadioButton R1_16 = new JRadioButton("");
-		R1_16.setAction(action);
-		R1_16.setBounds(483, 137, 25, 25);
-		contentPane.add(R1_16);
-		
-		JRadioButton R1_1 = new JRadioButton("");
-		R1_1.setBounds(48, 137, 25, 25);
-		contentPane.add(R1_1);
-		
-		JRadioButton R1_2 = new JRadioButton("");
-		R1_2.setBounds(77, 137, 25, 25);
-		contentPane.add(R1_2);
-		
-		JRadioButton R1_3 = new JRadioButton("");
-		R1_3.setBounds(106, 137, 25, 25);
-		contentPane.add(R1_3);
-		
-		JRadioButton R1_4 = new JRadioButton("");
-		R1_4.setBounds(135, 137, 25, 25);
-		contentPane.add(R1_4);
-		
-		JRadioButton R1_5 = new JRadioButton("");
-		R1_5.setBounds(164, 137, 25, 25);
-		contentPane.add(R1_5);
-		
-		JRadioButton R1_6 = new JRadioButton("");
-		R1_6.setBounds(193, 137, 25, 25);
-		contentPane.add(R1_6);
-		
-		JRadioButton R1_7 = new JRadioButton("");
-		R1_7.setBounds(222, 137, 25, 25);
-		contentPane.add(R1_7);
-		
-		JRadioButton R1_8 = new JRadioButton("");
-		R1_8.setBounds(251, 137, 25, 25);
-		contentPane.add(R1_8);
-		
-		JRadioButton R1_9 = new JRadioButton("");
-		R1_9.setBounds(280, 137, 25, 25);
-		contentPane.add(R1_9);
-		
-		JRadioButton R1_10 = new JRadioButton("");
-		R1_10.setBounds(309, 137, 25, 25);
-		contentPane.add(R1_10);
-		
-		JRadioButton R1_11 = new JRadioButton("");
-		R1_11.setBounds(338, 137, 25, 25);
-		contentPane.add(R1_11);
-		
-		JRadioButton R1_12 = new JRadioButton("");
-		R1_12.setBounds(367, 137, 25, 25);
-		contentPane.add(R1_12);
-		
-		JRadioButton R1_13 = new JRadioButton("");
-		R1_13.setBounds(396, 137, 25, 25);
-		contentPane.add(R1_13);
-		
-		JRadioButton R1_14 = new JRadioButton("");
-		R1_14.setBounds(425, 137, 25, 25);
-		contentPane.add(R1_14);
-		
-		JRadioButton R1_15 = new JRadioButton("");
-		R1_15.setBounds(454, 137, 25, 25);
-		contentPane.add(R1_15);
-		
-		JLabel label = new JLabel("1");
-		label.setBounds(12, 141, 56, 16);
-		contentPane.add(label);
-		
-		JLabel label_1 = new JLabel("2");
-		label_1.setBounds(12, 170, 25, 16);
-		contentPane.add(label_1);
-		
-		JRadioButton R2_1 = new JRadioButton("");
-		R2_1.setBounds(48, 167, 25, 25);
-		contentPane.add(R2_1);
-		
-		JRadioButton R2_16 = new JRadioButton("");
-		R2_16.setBounds(483, 167, 25, 25);
-		contentPane.add(R2_16);
-		
-		JRadioButton R2_2 = new JRadioButton("");
-		R2_2.setBounds(77, 167, 25, 25);
-		contentPane.add(R2_2);
-		
-		JRadioButton R2_3 = new JRadioButton("");
-		R2_3.setBounds(106, 167, 25, 25);
-		contentPane.add(R2_3);
-		
-		JRadioButton R2_4 = new JRadioButton("");
-		R2_4.setBounds(135, 167, 25, 25);
-		contentPane.add(R2_4);
-		
-		JRadioButton R2_5 = new JRadioButton("");
-		R2_5.setBounds(164, 167, 25, 25);
-		contentPane.add(R2_5);
-		
-		JRadioButton R2_6 = new JRadioButton("");
-		R2_6.setBounds(193, 167, 25, 25);
-		contentPane.add(R2_6);
-		
-		JRadioButton R2_7 = new JRadioButton("");
-		R2_7.setBounds(222, 167, 25, 25);
-		contentPane.add(R2_7);
-		
-		JRadioButton R2_8 = new JRadioButton("");
-		R2_8.setBounds(251, 167, 25, 25);
-		contentPane.add(R2_8);
-		
-		JRadioButton R2_9 = new JRadioButton("");
-		R2_9.setBounds(280, 167, 25, 25);
-		contentPane.add(R2_9);
-		
-		JRadioButton R2_10 = new JRadioButton("");
-		R2_10.setBounds(309, 167, 25, 25);
-		contentPane.add(R2_10);
-		
-		JRadioButton R2_11 = new JRadioButton("");
-		R2_11.setBounds(338, 167, 25, 25);
-		contentPane.add(R2_11);
-		
-		JRadioButton R2_12 = new JRadioButton("");
-		R2_12.setBounds(367, 167, 25, 25);
-		contentPane.add(R2_12);
-		
-		JRadioButton R2_13 = new JRadioButton("");
-		R2_13.setBounds(396, 167, 25, 25);
-		contentPane.add(R2_13);
-		
-		JRadioButton R2_14 = new JRadioButton("");
-		R2_14.setBounds(425, 167, 25, 25);
-		contentPane.add(R2_14);
-		
-		JRadioButton R2_15 = new JRadioButton("");
-		R2_15.setBounds(454, 167, 25, 25);
-		contentPane.add(R2_15);
-		
-		JRadioButton R3_1 = new JRadioButton("");
-		R3_1.setBounds(48, 196, 25, 25);
-		contentPane.add(R3_1);
-		
-		JRadioButton R3_16 = new JRadioButton("");
-		R3_16.setBounds(483, 196, 25, 25);
-		contentPane.add(R3_16);
-		
-		JRadioButton R3_2 = new JRadioButton("");
-		R3_2.setBounds(77, 196, 25, 25);
-		contentPane.add(R3_2);
-		
-		JRadioButton R3_3 = new JRadioButton("");
-		R3_3.setBounds(106, 196, 25, 25);
-		contentPane.add(R3_3);
-		
-		JRadioButton R3_4 = new JRadioButton("");
-		R3_4.setBounds(135, 196, 25, 25);
-		contentPane.add(R3_4);
-		
-		JRadioButton R3_5 = new JRadioButton("");
-		R3_5.setBounds(164, 196, 25, 25);
-		contentPane.add(R3_5);
-		
-		JRadioButton R3_6 = new JRadioButton("");
-		R3_6.setBounds(193, 196, 25, 25);
-		contentPane.add(R3_6);
-		
-		JRadioButton R3_7 = new JRadioButton("");
-		R3_7.setBounds(222, 196, 25, 25);
-		contentPane.add(R3_7);
-		
-		JRadioButton R3_8 = new JRadioButton("");
-		R3_8.setBounds(251, 196, 25, 25);
-		contentPane.add(R3_8);
-		
-		JRadioButton radioButton_41 = new JRadioButton("");
-		radioButton_41.setBounds(251, 137, 25, 25);
-		contentPane.add(radioButton_41);
-		
-		JRadioButton R3_10 = new JRadioButton("");
-		R3_10.setBounds(309, 196, 25, 25);
-		contentPane.add(R3_10);
-		
-		JRadioButton R3_11 = new JRadioButton("");
-		R3_11.setBounds(338, 196, 25, 25);
-		contentPane.add(R3_11);
-		
-		JRadioButton R3_12 = new JRadioButton("");
-		R3_12.setBounds(367, 196, 25, 25);
-		contentPane.add(R3_12);
-		
-		JRadioButton R3_13 = new JRadioButton("");
-		R3_13.setBounds(396, 196, 25, 25);
-		contentPane.add(R3_13);
-		
-		JRadioButton R3_14 = new JRadioButton("");
-		R3_14.setBounds(425, 196, 25, 25);
-		contentPane.add(R3_14);
-		
-		JRadioButton R3_15 = new JRadioButton("");
-		R3_15.setBounds(454, 196, 25, 25);
-		contentPane.add(R3_15);
-		
-		JRadioButton R0_1 = new JRadioButton("");
-		R0_1.setBounds(48, 107, 25, 25);
-		contentPane.add(R0_1);
-		
-		JRadioButton R0_16 = new JRadioButton("");
-		R0_16.setBounds(483, 107, 25, 25);
-		contentPane.add(R0_16);
-		
-		JRadioButton R0_2 = new JRadioButton("");
-		R0_2.setBounds(77, 107, 25, 25);
-		contentPane.add(R0_2);
-		
-		JRadioButton R0_3 = new JRadioButton("");
-		R0_3.setBounds(106, 107, 25, 25);
-		contentPane.add(R0_3);
-		
-		JRadioButton R0_4 = new JRadioButton("");
-		R0_4.setBounds(135, 107, 25, 25);
-		contentPane.add(R0_4);
-		
-		JRadioButton R0_5 = new JRadioButton("");
-		R0_5.setBounds(164, 107, 25, 25);
-		contentPane.add(R0_5);
-		
-		JRadioButton R0_6 = new JRadioButton("");
-		R0_6.setBounds(193, 107, 25, 25);
-		contentPane.add(R0_6);
-		
-		JRadioButton R0_7 = new JRadioButton("");
-		R0_7.setBounds(222, 107, 25, 25);
-		contentPane.add(R0_7);
-		
-		JRadioButton R0_8 = new JRadioButton("");
-		R0_8.setBounds(251, 107, 25, 25);
-		contentPane.add(R0_8);
-		
-		JRadioButton R0_9 = new JRadioButton("");
-		R0_9.setBounds(280, 107, 25, 25);
-		contentPane.add(R0_9);
-		
-		JRadioButton R0_10 = new JRadioButton("");
-		R0_10.setBounds(309, 107, 25, 25);
-		contentPane.add(R0_10);
-		
-		JRadioButton R0_11 = new JRadioButton("");
-		R0_11.setBounds(338, 107, 25, 25);
-		contentPane.add(R0_11);
-		
-		JRadioButton R0_12 = new JRadioButton("");
-		R0_12.setBounds(367, 107, 25, 25);
-		contentPane.add(R0_12);
-		
-		JRadioButton R0_13 = new JRadioButton("");
-		R0_13.setBounds(396, 107, 25, 25);
-		contentPane.add(R0_13);
-		
-		JRadioButton R0_14 = new JRadioButton("");
-		R0_14.setBounds(425, 107, 25, 25);
-		contentPane.add(R0_14);
-		
-		JRadioButton R0_15 = new JRadioButton("");
-		R0_15.setBounds(454, 107, 25, 25);
-		contentPane.add(R0_15);
-		
-		JLabel label_2 = new JLabel("0");
-		label_2.setBounds(12, 112, 56, 16);
-		contentPane.add(label_2);
-		
-		JLabel label_3 = new JLabel("3");
-		label_3.setBounds(12, 200, 56, 16);
-		contentPane.add(label_3);
+		contentPane.setLayout(null);		
 		
 		JLabel lblGeneralPurposeRegisters = new JLabel("General Purpose Registers (GPRs) ");
 		lblGeneralPurposeRegisters.setHorizontalAlignment(SwingConstants.CENTER);
 		lblGeneralPurposeRegisters.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblGeneralPurposeRegisters.setBounds(131, 71, 290, 16);
 		contentPane.add(lblGeneralPurposeRegisters);
+		
+		JLabel label_2 = new JLabel("0");
+		label_2.setBounds(12, 112, 56, 16);
+		contentPane.add(label_2);
+		
+		R0[0] = new JRadioButton("R0");
+		R0[0].setEnabled(false);
+		R0[0].setBounds(48, 107, 25, 25);
+		contentPane.add(R0[0]);
+		
+		R0[1] = new JRadioButton("R0");
+		R0[1].setEnabled(false);
+		R0[1].setBounds(77, 107, 25, 25);
+		contentPane.add(R0[1]);
+		
+		R0[2] = new JRadioButton("R0");
+		R0[2].setEnabled(false);
+		R0[2].setBounds(106, 107, 25, 25);
+		contentPane.add(R0[2]);
+		
+		R0[3] = new JRadioButton("R0");
+		R0[3].setEnabled(false);
+		R0[3].setBounds(135, 107, 25, 25);
+		contentPane.add(R0[3]);
+		
+		R0[4] = new JRadioButton("R0");
+		R0[4].setEnabled(false);
+		R0[4].setBounds(164, 107, 25, 25);
+		contentPane.add(R0[4]);
+		
+		R0[5] = new JRadioButton("R0");
+		R0[5].setEnabled(false);
+		R0[5].setBounds(193, 107, 25, 25);
+		contentPane.add(R0[5]);
+		
+		R0[6] = new JRadioButton("R0");
+		R0[6].setEnabled(false);
+		R0[6].setBounds(222, 107, 25, 25);
+		contentPane.add(R0[6]);
+		
+		R0[7] = new JRadioButton("R0");
+		R0[7].setEnabled(false);
+		R0[7].setBounds(251, 107, 25, 25);
+		contentPane.add(R0[7]);
+		
+		R0[8] = new JRadioButton("R0");
+		R0[8].setEnabled(false);
+		R0[8].setBounds(280, 107, 25, 25);
+		contentPane.add(R0[8]);
+		
+		R0[9] = new JRadioButton("R0");
+		R0[9].setEnabled(false);
+		R0[9].setBounds(309, 107, 25, 25);
+		contentPane.add(R0[9]);
+		
+		R0[10] = new JRadioButton("R0");
+		R0[10].setEnabled(false);
+		R0[10].setBounds(338, 107, 25, 25);
+		contentPane.add(R0[10]);
+		
+		R0[11] = new JRadioButton("R0");
+		R0[11].setEnabled(false);
+		R0[11].setBounds(367, 107, 25, 25);
+		contentPane.add(R0[11]);
+		
+		R0[12] = new JRadioButton("R0");
+		R0[12].setEnabled(false);
+		R0[12].setBounds(396, 107, 25, 25);
+		contentPane.add(R0[12]);
+		
+		R0[13] = new JRadioButton("R0");
+		R0[13].setEnabled(false);
+		R0[13].setBounds(425, 107, 25, 25);
+		contentPane.add(R0[13]);
+		
+		R0[14] = new JRadioButton("R0");
+		R0[14].setEnabled(false);
+		R0[14].setBounds(454, 107, 25, 25);
+		contentPane.add(R0[14]);
+		
+		R0[15] = new JRadioButton("R0");
+		R0[15].setEnabled(false);
+		R0[15].setBounds(483, 107, 25, 25);
+		contentPane.add(R0[15]);
+		
+		JLabel label = new JLabel("1");
+		label.setBounds(12, 141, 56, 16);
+		contentPane.add(label);
+		
+		R1[0] = new JRadioButton("R1");
+		R1[0].setEnabled(false);
+		R1[0].setBounds(48, 137, 25, 25);
+		contentPane.add(R1[0]);
+		
+		R1[1] = new JRadioButton("R1");
+		R1[1].setEnabled(false);
+		R1[1].setBounds(77, 137, 25, 25);
+		contentPane.add(R1[1]);
+		
+		R1[2] = new JRadioButton("R1");
+		R1[2].setEnabled(false);
+		R1[2].setBounds(106, 137, 25, 25);
+		contentPane.add(R1[2]);
+		
+		R1[3] = new JRadioButton("R1");
+		R1[3].setEnabled(false);
+		R1[3].setBounds(135, 137, 25, 25);
+		contentPane.add(R1[3]);
+		
+		R1[4] = new JRadioButton("R1");
+		R1[4].setEnabled(false);
+		R1[4].setBounds(164, 137, 25, 25);
+		contentPane.add(R1[4]);
+		
+		R1[5] = new JRadioButton("R1");
+		R1[5].setEnabled(false);
+		R1[5].setBounds(193, 137, 25, 25);
+		contentPane.add(R1[5]);
+		
+		R1[6] = new JRadioButton("R1");
+		R1[6].setEnabled(false);
+		R1[6].setBounds(222, 137, 25, 25);
+		contentPane.add(R1[6]);
+		
+		R1[7] = new JRadioButton("R1");
+		R1[7].setEnabled(false);
+		R1[7].setBounds(251, 137, 25, 25);
+		contentPane.add(R1[7]);
+		
+		R1[8] = new JRadioButton("R1");
+		R1[8].setEnabled(false);
+		R1[8].setBounds(280, 137, 25, 25);
+		contentPane.add(R1[8]);
+		
+		R1[9] = new JRadioButton("R1");
+		R1[9].setEnabled(false);
+		R1[9].setBounds(309, 137, 25, 25);
+		contentPane.add(R1[9]);
+		
+		R1[10] = new JRadioButton("R1");
+		R1[10].setEnabled(false);
+		R1[10].setBounds(338, 137, 25, 25);
+		contentPane.add(R1[10]);
+		
+		R1[11] = new JRadioButton("R1");
+		R1[11].setEnabled(false);
+		R1[11].setBounds(367, 137, 25, 25);
+		contentPane.add(R1[11]);
+		
+		R1[12] = new JRadioButton("R1");
+		R1[12].setEnabled(false);
+		R1[12].setBounds(396, 137, 25, 25);
+		contentPane.add(R1[12]);
+		
+		R1[13] = new JRadioButton("R1");
+		R1[13].setEnabled(false);
+		R1[13].setBounds(425, 137, 25, 25);
+		contentPane.add(R1[13]);
+		
+		R1[14] = new JRadioButton("R1");
+		R1[14].setEnabled(false);
+		R1[14].setBounds(454, 137, 25, 25);
+		contentPane.add(R1[14]);
+		
+		R1[15] = new JRadioButton("R1");
+		R1[15].setEnabled(false);
+		R1[15].setBounds(483, 137, 25, 25);
+		contentPane.add(R1[15]);
+		
+		JLabel label_1 = new JLabel("2");
+		label_1.setBounds(12, 170, 25, 16);
+		contentPane.add(label_1);
+		
+		R2[0] = new JRadioButton("R2");
+		R2[0].setEnabled(false);
+		R2[0].setBounds(48, 167, 25, 25);
+		contentPane.add(R2[0]);
+		
+		R2[1] = new JRadioButton("R2");
+		R2[1].setEnabled(false);
+		R2[1].setBounds(77, 167, 25, 25);
+		contentPane.add(R2[1]);
+		
+		R2[2] = new JRadioButton("R2");
+		R2[2].setEnabled(false);
+		R2[2].setBounds(106, 167, 25, 25);
+		contentPane.add(R2[2]);
+		
+		R2[3] = new JRadioButton("R2");
+		R2[3].setEnabled(false);
+		R2[3].setBounds(135, 167, 25, 25);
+		contentPane.add(R2[3]);
+		
+		R2[4] = new JRadioButton("R2");
+		R2[4].setEnabled(false);
+		R2[4].setBounds(164, 167, 25, 25);
+		contentPane.add(R2[4]);
+		
+		R2[5] = new JRadioButton("R2");
+		R2[5].setEnabled(false);
+		R2[5].setBounds(193, 167, 25, 25);
+		contentPane.add(R2[5]);
+		
+		R2[6] = new JRadioButton("R2");
+		R2[6].setEnabled(false);
+		R2[6].setBounds(222, 167, 25, 25);
+		contentPane.add(R2[6]);
+		
+		R2[7] = new JRadioButton("R2");
+		R2[7].setEnabled(false);
+		R2[7].setBounds(251, 167, 25, 25);
+		contentPane.add(R2[7]);
+		
+		R2[8] = new JRadioButton("R2");
+		R2[8].setEnabled(false);
+		R2[8].setBounds(280, 167, 25, 25);
+		contentPane.add(R2[8]);
+		
+		R2[9] = new JRadioButton("R2");
+		R2[9].setEnabled(false);
+		R2[9].setBounds(309, 167, 25, 25);
+		contentPane.add(R2[9]);
+		
+		R2[10] = new JRadioButton("R2");
+		R2[10].setEnabled(false);
+		R2[10].setBounds(338, 167, 25, 25);
+		contentPane.add(R2[10]);
+		
+		R2[11] = new JRadioButton("R2");
+		R2[11].setEnabled(false);
+		R2[11].setBounds(367, 167, 25, 25);
+		contentPane.add(R2[11]);
+		
+		R2[12] = new JRadioButton("R2");
+		R2[12].setEnabled(false);
+		R2[12].setBounds(396, 167, 25, 25);
+		contentPane.add(R2[12]);
+		
+		R2[13] = new JRadioButton("R2");
+		R2[13].setEnabled(false);
+		R2[13].setBounds(425, 167, 25, 25);
+		contentPane.add(R2[13]);
+		
+		R2[14] = new JRadioButton("R2");
+		R2[14].setEnabled(false);
+		R2[14].setBounds(454, 167, 25, 25);
+		contentPane.add(R2[14]);		
+		
+		R2[15] = new JRadioButton("R2");
+		R2[15].setEnabled(false);
+		R2[15].setBounds(483, 167, 25, 25);
+		contentPane.add(R2[15]);
+		
+		JLabel label_3 = new JLabel("3");
+		label_3.setBounds(12, 200, 56, 16);
+		contentPane.add(label_3);
+		
+		R3[0] = new JRadioButton("R3");
+		R3[0].setEnabled(false);
+		R3[0].setBounds(48, 196, 25, 25);
+		contentPane.add(R3[0]);
+		
+		R3[1] = new JRadioButton("R3");
+		R3[1].setEnabled(false);
+		R3[1].setBounds(77, 196, 25, 25);
+		contentPane.add(R3[1]);
+		
+		R3[2] = new JRadioButton("R3");
+		R3[2].setEnabled(false);
+		R3[2].setBounds(106, 196, 25, 25);
+		contentPane.add(R3[2]);
+		
+		R3[3] = new JRadioButton("R3");
+		R3[3].setEnabled(false);
+		R3[3].setBounds(135, 196, 25, 25);
+		contentPane.add(R3[3]);
+		
+		R3[4] = new JRadioButton("R3");
+		R3[4].setEnabled(false);
+		R3[4].setBounds(164, 196, 25, 25);
+		contentPane.add(R3[4]);
+		
+		R3[5] = new JRadioButton("R3");
+		R3[5].setEnabled(false);
+		R3[5].setBounds(193, 196, 25, 25);
+		contentPane.add(R3[5]);
+		
+		R3[6] = new JRadioButton("R3");
+		R3[6].setEnabled(false);
+		R3[6].setBounds(222, 196, 25, 25);
+		contentPane.add(R3[6]);
+		
+		R3[7] = new JRadioButton("R3");
+		R3[7].setEnabled(false);
+		R3[7].setBounds(251, 196, 25, 25);
+		contentPane.add(R3[7]);
+		
+		R3[8] = new JRadioButton("R3");
+		R3[8].setEnabled(false);
+		R3[8].setBounds(280, 197, 25, 25);
+		contentPane.add(R3[8]);
+
+		R3[9] = new JRadioButton("R3");
+		R3[9].setEnabled(false);
+		R3[9].setBounds(309, 196, 25, 25);
+		contentPane.add(R3[9]);
+		
+		R3[10] = new JRadioButton("R3");
+		R3[10].setEnabled(false);
+		R3[10].setBounds(338, 196, 25, 25);
+		contentPane.add(R3[10]);
+		
+		R3[11] = new JRadioButton("R3");
+		R3[11].setEnabled(false);
+		R3[11].setBounds(367, 196, 25, 25);
+		contentPane.add(R3[11]);
+		
+		R3[12] = new JRadioButton("R3");
+		R3[12].setEnabled(false);
+		R3[12].setBounds(396, 196, 25, 25);
+		contentPane.add(R3[12]);
+		
+		R3[13] = new JRadioButton("R3");
+		R3[13].setEnabled(false);
+		R3[13].setBounds(425, 196, 25, 25);
+		contentPane.add(R3[13]);
+		
+		R3[14] = new JRadioButton("R3");
+		R3[14].setEnabled(false);
+		R3[14].setBounds(454, 196, 25, 25);
+		contentPane.add(R3[14]);		
+		
+		R3[15] = new JRadioButton("R3");
+		R3[15].setEnabled(false);
+		R3[15].setBounds(483, 196, 25, 25);
+		contentPane.add(R3[15]);
 		
 		JLabel label_4 = new JLabel("1-8");
 		label_4.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -369,141 +449,175 @@ public class UI extends JFrame {
 		contentPane.add(label_5);
 		
 		JRadioButton radioButton_64 = new JRadioButton("1");
+		radioButton_64.setEnabled(false);
 		radioButton_64.setSelected(true);
 		radioButton_64.setBounds(4, 9, 35, 25);
 		contentPane.add(radioButton_64);
 		
 		JRadioButton radioButton_65 = new JRadioButton("0");
+		radioButton_65.setEnabled(false);
 		radioButton_65.setBounds(48, 9, 35, 25);
 		contentPane.add(radioButton_65);
 		
-		JRadioButton MAR_16 = new JRadioButton("");
-		MAR_16.setBounds(1044, 107, 25, 25);
-		contentPane.add(MAR_16);
+		MAR[15] = new JRadioButton("MAR");
+		MAR[15].setEnabled(false);
+		MAR[15].setBounds(1044, 107, 25, 25);
+		contentPane.add(MAR[15]);
 		
-		JRadioButton MAR_15 = new JRadioButton("");
-		MAR_15.setBounds(1015, 107, 25, 25);
-		contentPane.add(MAR_15);
+		MAR[14] = new JRadioButton("MAR");
+		MAR[14].setEnabled(false);
+		MAR[14].setBounds(1015, 107, 25, 25);
+		contentPane.add(MAR[15]);
 		
-		JRadioButton MAR_14 = new JRadioButton("");
-		MAR_14.setBounds(986, 107, 25, 25);
-		contentPane.add(MAR_14);
+		MAR[13] = new JRadioButton("MAR");
+		MAR[13].setEnabled(false);
+		MAR[13].setBounds(986, 107, 25, 25);
+		contentPane.add(MAR[13]);
 		
-		JRadioButton MAR_13 = new JRadioButton("");
-		MAR_13.setBounds(957, 107, 25, 25);
-		contentPane.add(MAR_13);
+		MAR[12] = new JRadioButton("MAR");
+		MAR[12].setEnabled(false);
+		MAR[12].setBounds(957, 107, 25, 25);
+		contentPane.add(MAR[12]);
 		
-		JRadioButton MAR_12 = new JRadioButton("");
-		MAR_12.setBounds(928, 107, 25, 25);
-		contentPane.add(MAR_12);
+		MAR[11] = new JRadioButton("MAR");
+		MAR[11].setEnabled(false);
+		MAR[11].setBounds(928, 107, 25, 25);
+		contentPane.add(MAR[11]);
 		
-		JRadioButton MAR_11 = new JRadioButton("");
-		MAR_11.setBounds(899, 107, 25, 25);
-		contentPane.add(MAR_11);
+		MAR[10] = new JRadioButton("MAR");
+		MAR[10].setEnabled(false);
+		MAR[10].setBounds(899, 107, 25, 25);
+		contentPane.add(MAR[10]);
 		
-		JRadioButton MAR_10 = new JRadioButton("");
-		MAR_10.setBounds(870, 107, 25, 25);
-		contentPane.add(MAR_10);
+		MAR[9] = new JRadioButton("MAR");
+		MAR[9].setEnabled(false);
+		MAR[9].setBounds(870, 107, 25, 25);
+		contentPane.add(MAR[9]);
 		
-		JRadioButton MAR_9 = new JRadioButton("");
-		MAR_9.setBounds(841, 107, 25, 25);
-		contentPane.add(MAR_9);
+		MAR[8] = new JRadioButton("MAR");
+		MAR[8].setEnabled(false);
+		MAR[8].setBounds(841, 107, 25, 25);
+		contentPane.add(MAR[8]);
 		
-		JRadioButton MAR_8 = new JRadioButton("");
-		MAR_8.setBounds(812, 107, 25, 25);
-		contentPane.add(MAR_8);
+		MAR[7] = new JRadioButton("MAR");
+		MAR[7].setEnabled(false);
+		MAR[7].setBounds(812, 107, 25, 25);
+		contentPane.add(MAR[7]);
 		
-		JRadioButton MAR_7 = new JRadioButton("");
-		MAR_7.setBounds(783, 107, 25, 25);
-		contentPane.add(MAR_7);
+		MAR[6] = new JRadioButton("MAR");
+		MAR[6].setEnabled(false);
+		MAR[6].setBounds(783, 107, 25, 25);
+		contentPane.add(MAR[6]);
 		
-		JRadioButton MAR_6 = new JRadioButton("");
-		MAR_6.setBounds(754, 107, 25, 25);
-		contentPane.add(MAR_6);
+		MAR[5] = new JRadioButton("MAR");
+		MAR[5].setEnabled(false);
+		MAR[5].setBounds(754, 107, 25, 25);
+		contentPane.add(MAR[5]);
 		
-		JRadioButton MAR_5 = new JRadioButton("");
-		MAR_5.setBounds(725, 107, 25, 25);
-		contentPane.add(MAR_5);
+		MAR[4] = new JRadioButton("MAR");
+		MAR[4].setEnabled(false);
+		MAR[4].setBounds(725, 107, 25, 25);
+		contentPane.add(MAR[4]);
 		
-		JRadioButton MAR_4 = new JRadioButton("");
-		MAR_4.setBounds(696, 107, 25, 25);
-		contentPane.add(MAR_4);
+		MAR[3] = new JRadioButton("MAR");
+		MAR[3].setEnabled(false);
+		MAR[3].setBounds(696, 107, 25, 25);
+		contentPane.add(MAR[3]);
 		
-		JRadioButton MAR_3 = new JRadioButton("");
-		MAR_3.setBounds(667, 107, 25, 25);
-		contentPane.add(MAR_3);
+		MAR[2] = new JRadioButton("MAR");
+		MAR[2].setEnabled(false);
+		MAR[2].setBounds(667, 107, 25, 25);
+		contentPane.add(MAR[2]);
 		
-		JRadioButton MAR_2 = new JRadioButton("");
-		MAR_2.setBounds(638, 107, 25, 25);
-		contentPane.add(MAR_2);
+		MAR[1] = new JRadioButton("MAR");
+		MAR[1].setEnabled(false);
+		MAR[1].setBounds(638, 107, 25, 25);
+		contentPane.add(MAR[1]);
 		
-		JRadioButton MAR_1 = new JRadioButton("");
-		MAR_1.setBounds(609, 107, 25, 25);
-		contentPane.add(MAR_1);
+		MAR[0] = new JRadioButton("MAR");
+		MAR[0].setEnabled(false);
+		MAR[0].setBounds(609, 107, 25, 25);
+		contentPane.add(MAR[0]);
 		
-		JRadioButton MBR_16 = new JRadioButton("");
-		MBR_16.setBounds(1044, 167, 25, 25);
-		contentPane.add(MBR_16);
+		MBR[15] = new JRadioButton("MBR");
+		MBR[15].setEnabled(false);
+		MBR[15].setBounds(1044, 167, 25, 25);
+		contentPane.add(MBR[15]);
 		
-		JRadioButton MBR_15 = new JRadioButton("");
-		MBR_15.setBounds(1015, 167, 25, 25);
-		contentPane.add(MBR_15);
+		MBR[14] = new JRadioButton("MBR");
+		MBR[14].setEnabled(false);
+		MBR[14].setBounds(1015, 167, 25, 25);
+		contentPane.add(MBR[14]);
 		
-		JRadioButton MBR_14 = new JRadioButton("");
-		MBR_14.setBounds(986, 167, 25, 25);
-		contentPane.add(MBR_14);
+		MBR[13] = new JRadioButton("MBR");
+		MBR[13].setEnabled(false);
+		MBR[13].setBounds(986, 167, 25, 25);
+		contentPane.add(MBR[13]);
 		
-		JRadioButton MBR_13 = new JRadioButton("");
-		MBR_13.setBounds(957, 167, 25, 25);
-		contentPane.add(MBR_13);
+		MBR[12] = new JRadioButton("MBR");
+		MBR[12].setEnabled(false);
+		MBR[12].setBounds(957, 167, 25, 25);
+		contentPane.add(MBR[12]);
 		
-		JRadioButton MBR_12 = new JRadioButton("");
-		MBR_12.setBounds(928, 167, 25, 25);
-		contentPane.add(MBR_12);
+		MBR[11] = new JRadioButton("MBR");
+		MBR[11].setEnabled(false);
+		MBR[11].setBounds(928, 167, 25, 25);
+		contentPane.add(MBR[11]);
 		
-		JRadioButton MBR_11 = new JRadioButton("");
-		MBR_11.setBounds(899, 167, 25, 25);
-		contentPane.add(MBR_11);
+		MBR[10] = new JRadioButton("MBR");
+		MBR[10].setEnabled(false);
+		MBR[10].setBounds(899, 167, 25, 25);
+		contentPane.add(MBR[10]);
 		
-		JRadioButton MBR_10 = new JRadioButton("");
-		MBR_10.setBounds(870, 167, 25, 25);
-		contentPane.add(MBR_10);
+		MBR[9] = new JRadioButton("MBR");
+		MBR[9].setEnabled(false);
+		MBR[9].setBounds(870, 167, 25, 25);
+		contentPane.add(MBR[9]);
 		
-		JRadioButton MBR_9 = new JRadioButton("");
-		MBR_9.setBounds(841, 167, 25, 25);
-		contentPane.add(MBR_9);
+		MBR[8] = new JRadioButton("MBR");
+		MBR[8].setEnabled(false);
+		MBR[8].setBounds(841, 167, 25, 25);
+		contentPane.add(MBR[8]);
 		
-		JRadioButton MBR_8 = new JRadioButton("");
-		MBR_8.setBounds(812, 167, 25, 25);
-		contentPane.add(MBR_8);
+		MBR[7] = new JRadioButton("MBR");
+		MBR[7].setEnabled(false);
+		MBR[7].setBounds(812, 167, 25, 25);
+		contentPane.add(MBR[7]);
 		
-		JRadioButton MBR_7 = new JRadioButton("");
-		MBR_7.setBounds(783, 167, 25, 25);
-		contentPane.add(MBR_7);
+		MBR[6] = new JRadioButton("MBR");
+		MBR[6].setEnabled(false);
+		MBR[6].setBounds(783, 167, 25, 25);
+		contentPane.add(MBR[6]);
 		
-		JRadioButton MBR_6 = new JRadioButton("");
-		MBR_6.setBounds(754, 167, 25, 25);
-		contentPane.add(MBR_6);
+		MBR[5] = new JRadioButton("MBR");
+		MBR[5].setEnabled(false);
+		MBR[5].setBounds(754, 167, 25, 25);
+		contentPane.add(MBR[5]);
 		
-		JRadioButton MBR_5 = new JRadioButton("");
-		MBR_5.setBounds(725, 167, 25, 25);
-		contentPane.add(MBR_5);
+		MBR[4] = new JRadioButton("MBR");
+		MBR[4].setEnabled(false);
+		MBR[4].setBounds(725, 167, 25, 25);
+		contentPane.add(MBR[4]);
 		
-		JRadioButton MBR_4 = new JRadioButton("");
-		MBR_4.setBounds(696, 167, 25, 25);
-		contentPane.add(MBR_4);
+		MBR[3] = new JRadioButton("");
+		MBR[3].setEnabled(false);
+		MBR[3].setBounds(696, 167, 25, 25);
+		contentPane.add(MBR[3]);
 		
-		JRadioButton MBR_3 = new JRadioButton("");
-		MBR_3.setBounds(667, 167, 25, 25);
-		contentPane.add(MBR_3);
+		MBR[2] = new JRadioButton("MBR");
+		MBR[2].setEnabled(false);
+		MBR[2].setBounds(667, 167, 25, 25);
+		contentPane.add(MBR[2]);
 		
-		JRadioButton MBR_2 = new JRadioButton("");
-		MBR_2.setBounds(638, 167, 25, 25);
-		contentPane.add(MBR_2);
+		MBR[1] = new JRadioButton("MBR");
+		MBR[1].setEnabled(false);
+		MBR[1].setBounds(638, 167, 25, 25);
+		contentPane.add(MBR[1]);
 		
-		JRadioButton MBR_1 = new JRadioButton("");
-		MBR_1.setBounds(609, 167, 25, 25);
-		contentPane.add(MBR_1);
+		MBR[0] = new JRadioButton("MBR");
+		MBR[0].setEnabled(false);
+		MBR[0].setBounds(609, 167, 25, 25);
+		contentPane.add(MBR[0]);
 		
 		JSeparator separator = new JSeparator();
 		separator.setBounds(58, 240, 74, 16);
@@ -560,198 +674,246 @@ public class UI extends JFrame {
 		lblMemoryBufferRegister.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblMemoryBufferRegister.setBounds(706, 140, 259, 16);
 		contentPane.add(lblMemoryBufferRegister);
+				
+		X2[0] = new JRadioButton("X2");
+		X2[0].setEnabled(false);
+		X2[0].setBounds(48, 337, 25, 25);
+		contentPane.add(X2[0]);
 		
-		JRadioButton X2_16 = new JRadioButton("");
-		X2_16.setBounds(483, 337, 25, 25);
-		contentPane.add(X2_16);
+		X2[1] = new JRadioButton("X2");
+		X2[1].setEnabled(false);
+		X2[1].setBounds(77, 337, 25, 25);
+		contentPane.add(X2[1]);
 		
-		JRadioButton X2_1 = new JRadioButton("");
-		X2_1.setBounds(48, 337, 25, 25);
-		contentPane.add(X2_1);
+		X2[2] = new JRadioButton("X2");
+		X2[2].setEnabled(false);
+		X2[2].setBounds(106, 337, 25, 25);
+		contentPane.add(X2[2]);
 		
-		JRadioButton X2_2 = new JRadioButton("");
-		X2_2.setBounds(77, 337, 25, 25);
-		contentPane.add(X2_2);
+		X2[3] = new JRadioButton("X2");
+		X2[3].setEnabled(false);
+		X2[3].setBounds(135, 337, 25, 25);
+		contentPane.add(X2[3]);
 		
-		JRadioButton X2_3 = new JRadioButton("");
-		X2_3.setBounds(106, 337, 25, 25);
-		contentPane.add(X2_3);
+		X2[4] = new JRadioButton("X2");
+		X2[4].setEnabled(false);
+		X2[4].setBounds(164, 337, 25, 25);
+		contentPane.add(X2[4]);
 		
-		JRadioButton X2_4 = new JRadioButton("");
-		X2_4.setBounds(135, 337, 25, 25);
-		contentPane.add(X2_4);
+		X2[5] = new JRadioButton("X2");
+		X2[5].setEnabled(false);
+		X2[5].setBounds(193, 337, 25, 25);
+		contentPane.add(X2[5]);
 		
-		JRadioButton X2_5 = new JRadioButton("");
-		X2_5.setBounds(164, 337, 25, 25);
-		contentPane.add(X2_5);
+		X2[6] = new JRadioButton("X2");
+		X2[6].setEnabled(false);
+		X2[6].setBounds(222, 337, 25, 25);
+		contentPane.add(X2[6]);
 		
-		JRadioButton X2_6 = new JRadioButton("");
-		X2_6.setBounds(193, 337, 25, 25);
-		contentPane.add(X2_6);
+		X2[7] = new JRadioButton("X2");
+		X2[7].setEnabled(false);
+		X2[7].setBounds(251, 337, 25, 25);
+		contentPane.add(X2[7]);
 		
-		JRadioButton X2_7 = new JRadioButton("");
-		X2_7.setBounds(222, 337, 25, 25);
-		contentPane.add(X2_7);
+		X2[8] = new JRadioButton("X2");
+		X2[8].setEnabled(false);
+		X2[8].setBounds(280, 337, 25, 25);
+		contentPane.add(X2[8]);
 		
-		JRadioButton X2_8 = new JRadioButton("");
-		X2_8.setBounds(251, 337, 25, 25);
-		contentPane.add(X2_8);
+		X2[9] = new JRadioButton("X2");
+		X2[9].setEnabled(false);
+		X2[9].setBounds(309, 337, 25, 25);
+		contentPane.add(X2[9]);
 		
-		JRadioButton X2_9 = new JRadioButton("");
-		X2_9.setBounds(280, 337, 25, 25);
-		contentPane.add(X2_9);
+		X2[10] = new JRadioButton("X2");
+		X2[10].setEnabled(false);
+		X2[10].setBounds(338, 337, 25, 25);
+		contentPane.add(X2[10]);
 		
-		JRadioButton X2_10 = new JRadioButton("");
-		X2_10.setBounds(309, 337, 25, 25);
-		contentPane.add(X2_10);
+		X2[11] = new JRadioButton("X2");
+		X2[11].setEnabled(false);
+		X2[11].setBounds(367, 337, 25, 25);
+		contentPane.add(X2[11]);
 		
-		JRadioButton X2_11 = new JRadioButton("");
-		X2_11.setBounds(338, 337, 25, 25);
-		contentPane.add(X2_11);
+		X2[12] = new JRadioButton("X2");
+		X2[12].setEnabled(false);
+		X2[12].setBounds(396, 337, 25, 25);
+		contentPane.add(X2[12]);
 		
-		JRadioButton X2_12 = new JRadioButton("");
-		X2_12.setBounds(367, 337, 25, 25);
-		contentPane.add(X2_12);
+		X2[13] = new JRadioButton("X2");
+		X2[13].setEnabled(false);
+		X2[13].setBounds(425, 337, 25, 25);
+		contentPane.add(X2[13]);
 		
-		JRadioButton X2_13 = new JRadioButton("");
-		X2_13.setBounds(396, 337, 25, 25);
-		contentPane.add(X2_13);
+		X2[14] = new JRadioButton("X2");
+		X2[14].setEnabled(false);
+		X2[14].setBounds(454, 337, 25, 25);
+		contentPane.add(X2[14]);
 		
-		JRadioButton X2_14 = new JRadioButton("");
-		X2_14.setBounds(425, 337, 25, 25);
-		contentPane.add(X2_14);
+		X2[15] = new JRadioButton("X2");
+		X2[15].setEnabled(false);
+		X2[15].setBounds(483, 337, 25, 25);
+		contentPane.add(X2[15]);
 		
-		JRadioButton X2_15 = new JRadioButton("");
-		X2_15.setBounds(454, 337, 25, 25);
-		contentPane.add(X2_15);
+		X3[0] = new JRadioButton("X2");
+		X3[0].setEnabled(false);
+		X3[0].setBounds(48, 367, 25, 25);
+		contentPane.add(X3[0]);
 		
-		JRadioButton X3_1 = new JRadioButton("");
-		X3_1.setBounds(48, 367, 25, 25);
-		contentPane.add(X3_1);
+		X3[1] = new JRadioButton("X2");
+		X3[1].setEnabled(false);
+		X3[1].setBounds(77, 367, 25, 25);
+		contentPane.add(X3[1]);
 		
-		JRadioButton X3_16 = new JRadioButton("");
-		X3_16.setBounds(483, 367, 25, 25);
-		contentPane.add(X3_16);
+		X3[2] = new JRadioButton("X2");
+		X3[2].setEnabled(false);
+		X3[2].setBounds(106, 367, 25, 25);
+		contentPane.add(X3[2]);
 		
-		JRadioButton X3_2 = new JRadioButton("");
-		X3_2.setBounds(77, 367, 25, 25);
-		contentPane.add(X3_2);
+		X3[3] = new JRadioButton("X2");
+		X3[3].setEnabled(false);
+		X3[3].setBounds(135, 367, 25, 25);
+		contentPane.add(X3[3]);
 		
-		JRadioButton X3_3 = new JRadioButton("");
-		X3_3.setBounds(106, 367, 25, 25);
-		contentPane.add(X3_3);
+		X3[4] = new JRadioButton("X2");
+		X3[4].setEnabled(false);
+		X3[4].setBounds(164, 367, 25, 25);
+		contentPane.add(X3[4]);
 		
-		JRadioButton X3_4 = new JRadioButton("");
-		X3_4.setBounds(135, 367, 25, 25);
-		contentPane.add(X3_4);
+		X3[5] = new JRadioButton("X2");
+		X3[5].setEnabled(false);
+		X3[5].setBounds(193, 367, 25, 25);
+		contentPane.add(X3[5]);
 		
-		JRadioButton X3_5 = new JRadioButton("");
-		X3_5.setBounds(164, 367, 25, 25);
-		contentPane.add(X3_5);
+		X3[6] = new JRadioButton("X2");
+		X3[6].setEnabled(false);
+		X3[6].setBounds(222, 367, 25, 25);
+		contentPane.add(X3[6]);
 		
-		JRadioButton X3_6 = new JRadioButton("");
-		X3_6.setBounds(193, 367, 25, 25);
-		contentPane.add(X3_6);
+		X3[7] = new JRadioButton("X2");
+		X3[7].setEnabled(false);
+		X3[7].setBounds(251, 367, 25, 25);
+		contentPane.add(X3[7]);
 		
-		JRadioButton X3_7 = new JRadioButton("");
-		X3_7.setBounds(222, 367, 25, 25);
-		contentPane.add(X3_7);
+		X3[8] = new JRadioButton("X2");
+		X3[8].setEnabled(false);
+		X3[8].setBounds(280, 367, 25, 25);
+		contentPane.add(X3[8]);
 		
-		JRadioButton X3_8 = new JRadioButton("");
-		X3_8.setBounds(251, 367, 25, 25);
-		contentPane.add(X3_8);
+		X3[9] = new JRadioButton("X2");
+		X3[9].setEnabled(false);
+		X3[9].setBounds(309, 367, 25, 25);
+		contentPane.add(X3[9]);
 		
-		JRadioButton X3_9 = new JRadioButton("");
-		X3_9.setBounds(280, 367, 25, 25);
-		contentPane.add(X3_9);
+		X3[10]= new JRadioButton("X2");
+		X3[10].setEnabled(false);
+		X3[10].setBounds(338, 367, 25, 25);
+		contentPane.add(X3[10]);
 		
-		JRadioButton X3_10 = new JRadioButton("");
-		X3_10.setBounds(309, 367, 25, 25);
-		contentPane.add(X3_10);
+		X3[11] = new JRadioButton("X2");
+		X3[11].setEnabled(false);
+		X3[11].setBounds(367, 367, 25, 25);
+		contentPane.add(X3[11]);
 		
-		JRadioButton X3_11 = new JRadioButton("");
-		X3_11.setBounds(338, 367, 25, 25);
-		contentPane.add(X3_11);
+		X3[12] = new JRadioButton("X2");
+		X3[12].setEnabled(false);
+		X3[12].setBounds(396, 367, 25, 25);
+		contentPane.add(X3[12]);
 		
-		JRadioButton X3_12 = new JRadioButton("");
-		X3_12.setBounds(367, 367, 25, 25);
-		contentPane.add(X3_12);
+		X3[13] = new JRadioButton("X2");
+		X3[13].setEnabled(false);
+		X3[13].setBounds(425, 367, 25, 25);
+		contentPane.add(X3[13]);
 		
-		JRadioButton X3_13 = new JRadioButton("");
-		X3_13.setBounds(396, 367, 25, 25);
-		contentPane.add(X3_13);
+		X3[14] = new JRadioButton("X2");
+		X3[14].setEnabled(false);
+		X3[14].setBounds(454, 367, 25, 25);
+		contentPane.add(X3[14]);
 		
-		JRadioButton X3_14 = new JRadioButton("");
-		X3_14.setBounds(425, 367, 25, 25);
-		contentPane.add(X3_14);
+		X3[15] = new JRadioButton("X2");
+		X3[15].setEnabled(false);
+		X3[15].setBounds(483, 367, 25, 25);
+		contentPane.add(X3[15]);
 		
-		JRadioButton X3_15 = new JRadioButton("");
-		X3_15.setBounds(454, 367, 25, 25);
-		contentPane.add(X3_15);
+		X1[0] = new JRadioButton("X1");
+		X1[0].setEnabled(false);
+		X1[0].setBounds(48, 307, 25, 25);
+		contentPane.add(X1[0]);
 		
-		JRadioButton X1_1 = new JRadioButton("");
-		X1_1.setBounds(48, 307, 25, 25);
-		contentPane.add(X1_1);
+		X1[1] = new JRadioButton("X1");
+		X1[1].setEnabled(false);
+		X1[1].setBounds(77, 307, 25, 25);
+		contentPane.add(X1[1]);
 		
-		JRadioButton X1_16 = new JRadioButton("");
-		X1_16.setBounds(483, 307, 25, 25);
-		contentPane.add(X1_16);
+		X1[2] = new JRadioButton("X1");
+		X1[2].setEnabled(false);
+		X1[2].setBounds(106, 307, 25, 25);
+		contentPane.add(X1[2]);
 		
-		JRadioButton X1_2 = new JRadioButton("");
-		X1_2.setBounds(77, 307, 25, 25);
-		contentPane.add(X1_2);
+		X1[3] = new JRadioButton("X1");
+		X1[3].setEnabled(false);
+		X1[3].setBounds(135, 307, 25, 25);
+		contentPane.add(X1[3]);
 		
-		JRadioButton X1_3 = new JRadioButton("");
-		X1_3.setBounds(106, 307, 25, 25);
-		contentPane.add(X1_3);
+		X1[4] = new JRadioButton("X1");
+		X1[4].setEnabled(false);
+		X1[4].setBounds(164, 307, 25, 25);
+		contentPane.add(X1[4]);
 		
-		JRadioButton X1_4 = new JRadioButton("");
-		X1_4.setBounds(135, 307, 25, 25);
-		contentPane.add(X1_4);
+		X1[5] = new JRadioButton("X1");
+		X1[5].setEnabled(false);
+		X1[5].setBounds(193, 307, 25, 25);
+		contentPane.add(X1[5]);
 		
-		JRadioButton X1_5 = new JRadioButton("");
-		X1_5.setBounds(164, 307, 25, 25);
-		contentPane.add(X1_5);
+		X1[6] = new JRadioButton("X1");
+		X1[6].setEnabled(false);
+		X1[6].setBounds(222, 307, 25, 25);
+		contentPane.add(X1[6]);
 		
-		JRadioButton X1_6 = new JRadioButton("");
-		X1_6.setBounds(193, 307, 25, 25);
-		contentPane.add(X1_6);
+		X1[7] = new JRadioButton("X1");
+		X1[7].setEnabled(false);
+		X1[7].setBounds(251, 307, 25, 25);
+		contentPane.add(X1[7]);
 		
-		JRadioButton X1_7 = new JRadioButton("");
-		X1_7.setBounds(222, 307, 25, 25);
-		contentPane.add(X1_7);
+		X1[8] = new JRadioButton("X1");
+		X1[8].setEnabled(false);
+		X1[8].setBounds(280, 307, 25, 25);
+		contentPane.add(X1[8]);
 		
-		JRadioButton X1_8 = new JRadioButton("");
-		X1_8.setBounds(251, 307, 25, 25);
-		contentPane.add(X1_8);
+		X1[9] = new JRadioButton("X1");
+		X1[9].setEnabled(false);
+		X1[9].setBounds(309, 307, 25, 25);
+		contentPane.add(X1[9]);
 		
-		JRadioButton X1_9 = new JRadioButton("");
-		X1_9.setBounds(280, 307, 25, 25);
-		contentPane.add(X1_9);
+		X1[10] = new JRadioButton("X1");
+		X1[10].setEnabled(false);
+		X1[10].setBounds(338, 307, 25, 25);
+		contentPane.add(X1[10]);
 		
-		JRadioButton X1_10 = new JRadioButton("");
-		X1_10.setBounds(309, 307, 25, 25);
-		contentPane.add(X1_10);
+		X1[11] = new JRadioButton("X1");
+		X1[11].setEnabled(false);
+		X1[11].setBounds(367, 307, 25, 25);
+		contentPane.add(X1[11]);
 		
-		JRadioButton X1_11 = new JRadioButton("");
-		X1_11.setBounds(338, 307, 25, 25);
-		contentPane.add(X1_11);
+		X1[12] = new JRadioButton("X1");
+		X1[12].setEnabled(false);
+		X1[12].setBounds(396, 307, 25, 25);
+		contentPane.add(X1[12]);
 		
-		JRadioButton X1_12 = new JRadioButton("");
-		X1_12.setBounds(367, 307, 25, 25);
-		contentPane.add(X1_12);
+		X1[13] = new JRadioButton("X1");
+		X1[13].setEnabled(false);
+		X1[13].setBounds(425, 307, 25, 25);
+		contentPane.add(X1[13]);
 		
-		JRadioButton X1_13 = new JRadioButton("");
-		X1_13.setBounds(396, 307, 25, 25);
-		contentPane.add(X1_13);
+		X1[14] = new JRadioButton("X1");
+		X1[14].setEnabled(false);
+		X1[14].setBounds(454, 307, 25, 25);
+		contentPane.add(X1[14]);
 		
-		JRadioButton X1_14 = new JRadioButton("");
-		X1_14.setBounds(425, 307, 25, 25);
-		contentPane.add(X1_14);
-		
-		JRadioButton X1_15 = new JRadioButton("");
-		X1_15.setBounds(454, 307, 25, 25);
-		contentPane.add(X1_15);
+		X1[15] = new JRadioButton("X1");
+		X1[15].setEnabled(false);
+		X1[15].setBounds(483, 307, 25, 25);
+		contentPane.add(X1[15]);
 		
 		JLabel lblIx = new JLabel("IX");
 		lblIx.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -759,117 +921,145 @@ public class UI extends JFrame {
 		lblIx.setBounds(251, 271, 56, 16);
 		contentPane.add(lblIx);
 		
-		JRadioButton IR_12 = new JRadioButton("");
-		IR_12.setBounds(928, 307, 25, 25);
-		contentPane.add(IR_12);
+		IR[11] = new JRadioButton("IR");
+		IR[11].setEnabled(false);
+		IR[11].setBounds(928, 307, 25, 25);
+		contentPane.add(IR[11]);
 		
-		JRadioButton IR_11 = new JRadioButton("");
-		IR_11.setBounds(899, 307, 25, 25);
-		contentPane.add(IR_11);
+		IR[10] = new JRadioButton("IR");
+		IR[10].setEnabled(false);
+		IR[10].setBounds(899, 307, 25, 25);
+		contentPane.add(IR[10]);
 		
-		JRadioButton IR_10 = new JRadioButton("");
-		IR_10.setBounds(870, 307, 25, 25);
-		contentPane.add(IR_10);
+		IR[9] = new JRadioButton("IR");
+		IR[9].setEnabled(false);
+		IR[9].setBounds(870, 307, 25, 25);
+		contentPane.add(IR[9]);
 		
-		JRadioButton IR_9 = new JRadioButton("");
-		IR_9.setBounds(841, 307, 25, 25);
-		contentPane.add(IR_9);
+		IR[8] = new JRadioButton("IR");
+		IR[8].setEnabled(false);
+		IR[8].setBounds(841, 307, 25, 25);
+		contentPane.add(IR[8]);
 		
-		JRadioButton IR_8 = new JRadioButton("");
-		IR_8.setBounds(812, 307, 25, 25);
-		contentPane.add(IR_8);
+		IR[7] = new JRadioButton("IR");
+		IR[7].setEnabled(false);
+		IR[7].setBounds(812, 307, 25, 25);
+		contentPane.add(IR[7]);
 		
-		JRadioButton IR_7 = new JRadioButton("");
-		IR_7.setBounds(783, 307, 25, 25);
-		contentPane.add(IR_7);
+		IR[6] = new JRadioButton("IR");
+		IR[6].setEnabled(false);
+		IR[6].setBounds(783, 307, 25, 25);
+		contentPane.add(IR[6]);
 		
-		JRadioButton IR_6 = new JRadioButton("");
-		IR_6.setBounds(754, 307, 25, 25);
-		contentPane.add(IR_6);
+		IR[5] = new JRadioButton("IR");
+		IR[5].setEnabled(false);
+		IR[5].setBounds(754, 307, 25, 25);
+		contentPane.add(IR[5]);
 		
-		JRadioButton IR_5 = new JRadioButton("");
-		IR_5.setBounds(725, 307, 25, 25);
-		contentPane.add(IR_5);
+		IR[4] = new JRadioButton("IR");
+		IR[4].setEnabled(false);
+		IR[4].setBounds(725, 307, 25, 25);
+		contentPane.add(IR[4]);
 		
-		JRadioButton IR_4 = new JRadioButton("");
-		IR_4.setBounds(696, 307, 25, 25);
-		contentPane.add(IR_4);
+		IR[3] = new JRadioButton("IR");
+		IR[3].setEnabled(false);
+		IR[3].setBounds(696, 307, 25, 25);
+		contentPane.add(IR[3]);
 		
-		JRadioButton IR_3 = new JRadioButton("");
-		IR_3.setBounds(667, 307, 25, 25);
-		contentPane.add(IR_3);
+		IR[2] = new JRadioButton("IR");
+		IR[2].setEnabled(false);
+		IR[2].setBounds(667, 307, 25, 25);
+		contentPane.add(IR[2]);
 		
-		JRadioButton IR_2 = new JRadioButton("");
-		IR_2.setBounds(638, 307, 25, 25);
-		contentPane.add(IR_2);
+		IR[1] = new JRadioButton("IR");
+		IR[1].setEnabled(false);
+		IR[1].setBounds(638, 307, 25, 25);
+		contentPane.add(IR[1]);
 		
-		JRadioButton IR_1 = new JRadioButton("");
-		IR_1.setBounds(609, 307, 25, 25);
-		contentPane.add(IR_1);
+		IR[0] = new JRadioButton("IR");
+		IR[0].setEnabled(false);
+		IR[0].setBounds(609, 307, 25, 25);
+		contentPane.add(IR[0]);
 		
-		JRadioButton IR_16 = new JRadioButton("");
-		IR_16.setBounds(1044, 307, 25, 25);
-		contentPane.add(IR_16);
+		IR[15] = new JRadioButton("IR");
+		IR[15].setEnabled(false);
+		IR[15].setBounds(1044, 307, 25, 25);
+		contentPane.add(IR[15]);
 		
-		JRadioButton IR_15 = new JRadioButton("");
-		IR_15.setBounds(1015, 307, 25, 25);
-		contentPane.add(IR_15);
+		IR[14] = new JRadioButton("IR");
+		IR[14].setEnabled(false);
+		IR[14].setBounds(1015, 307, 25, 25);
+		contentPane.add(IR[14]);
 		
-		JRadioButton IR_14 = new JRadioButton("");
-		IR_14.setBounds(986, 307, 25, 25);
-		contentPane.add(IR_14);
+		IR[13] = new JRadioButton("IR");
+		IR[13].setEnabled(false);
+		IR[13].setBounds(986, 307, 25, 25);
+		contentPane.add(IR[13]);
 		
-		JRadioButton IR_13 = new JRadioButton("");
-		IR_13.setBounds(957, 307, 25, 25);
-		contentPane.add(IR_13);
+		IR[12] = new JRadioButton("IR");
+		IR[12].setEnabled(false);
+		IR[12].setBounds(957, 307, 25, 25);
+		contentPane.add(IR[12]);
 		
-		JRadioButton PC_12 = new JRadioButton("");
-		PC_12.setBounds(928, 367, 25, 25);
-		contentPane.add(PC_12);
+		PC[11] = new JRadioButton("PC");
+		PC[11].setEnabled(false);
+		PC[11].setBounds(928, 367, 25, 25);
+		contentPane.add(PC[11]);
 		
-		JRadioButton PC_11 = new JRadioButton("");
-		PC_11.setBounds(899, 367, 25, 25);
-		contentPane.add(PC_11);
+		PC[10] = new JRadioButton("PC");
+		PC[10].setEnabled(false);
+		PC[10].setBounds(899, 367, 25, 25);
+		contentPane.add(PC[10]);
 		
-		JRadioButton PC_10 = new JRadioButton("");
-		PC_10.setBounds(870, 367, 25, 25);
-		contentPane.add(PC_10);
+		PC[9] = new JRadioButton("PC");
+		PC[9].setEnabled(false);
+		PC[9].setBounds(870, 367, 25, 25);
+		contentPane.add(PC[9]);
 		
-		JRadioButton PC_9 = new JRadioButton("");
-		PC_9.setBounds(841, 367, 25, 25);
-		contentPane.add(PC_9);
+		PC[8] = new JRadioButton("PC");
+		PC[8].setEnabled(false);
+		PC[8].setBounds(841, 367, 25, 25);
+		contentPane.add(PC[8]);
 		
-		JRadioButton PC_8 = new JRadioButton("");
-		PC_8.setBounds(812, 367, 25, 25);
-		contentPane.add(PC_8);
+		PC[7] = new JRadioButton("PC");
+		PC[7].setEnabled(false);
+		PC[7].setBounds(812, 367, 25, 25);
+		contentPane.add(PC[7]);
 		
-		JRadioButton PC_7 = new JRadioButton("");
-		PC_7.setBounds(783, 367, 25, 25);
-		contentPane.add(PC_7);
+		PC[6] = new JRadioButton("PC");
+		PC[6].setEnabled(false);
+		PC[6].setBounds(783, 367, 25, 25);
+		contentPane.add(PC[6]);
 		
-		JRadioButton PC_6 = new JRadioButton("");
-		PC_6.setBounds(754, 367, 25, 25);
-		contentPane.add(PC_6);
+		PC[5] = new JRadioButton("PC");
+		PC[5].setEnabled(false);
+		PC[5].setBounds(754, 367, 25, 25);
+		contentPane.add(PC[5]);
 		
-		JRadioButton PC_5 = new JRadioButton("");
-		PC_5.setBounds(725, 367, 25, 25);
-		contentPane.add(PC_5);
+		PC[4] = new JRadioButton("PC");
+		PC[4].setEnabled(false);
+		PC[4].setBounds(725, 367, 25, 25);
+		contentPane.add(PC[4]);
 		
-		JRadioButton PC_4 = new JRadioButton("");
-		PC_4.setBounds(696, 367, 25, 25);
-		contentPane.add(PC_4);
+		PC[3] = new JRadioButton("PC");
+		PC[3].setEnabled(false);
+		PC[3].setBounds(696, 367, 25, 25);
+		contentPane.add(PC[3]);
 		
-		JRadioButton PC_3 = new JRadioButton("");
-		PC_3.setBounds(667, 367, 25, 25);
-		contentPane.add(PC_3);
+		PC[2] = new JRadioButton("PC");
+		PC[2].setEnabled(false);
+		PC[2].setBounds(667, 367, 25, 25);
+		contentPane.add(PC[2]);
 		
-		JRadioButton PC_2 = new JRadioButton("");
-		PC_2.setBounds(638, 367, 25, 25);
-		contentPane.add(PC_2);
+		PC[1] = new JRadioButton("PC");
+		PC[1].setEnabled(false);
+		PC[1].setBounds(638, 367, 25, 25);
+		contentPane.add(PC[1]);
 		
-		JRadioButton PC_1 = new JRadioButton("");
-		PC_1.setBounds(609, 367, 25, 25);
-		contentPane.add(PC_1);
+		PC[0] = new JRadioButton("PC");
+		PC[0].setEnabled(false);
+		PC[0].setBounds(609, 367, 25, 25);
+		contentPane.add(PC[0]);
 		
 		JLabel label_11 = new JLabel("Program Counter (PC)");
 		label_11.setHorizontalAlignment(SwingConstants.CENTER);
@@ -894,10 +1084,6 @@ public class UI extends JFrame {
 		SS.setBounds(367, 551, 97, 25);
 		contentPane.add(SS);
 		SS.addActionListener(new SSListener());
-		
-		JRadioButton R3_9 = new JRadioButton("");
-		R3_9.setBounds(280, 197, 25, 25);
-		contentPane.add(R3_9);
 		
 		JLabel lblX = new JLabel("X1");
 		lblX.setBounds(12, 312, 56, 16);
@@ -928,73 +1114,94 @@ public class UI extends JFrame {
 		contentPane.add(Load);
 		Load.addActionListener(new LoadListener());
 		
-		JRadioButton MEM_1 = new JRadioButton("");
-		MEM_1.setBounds(609, 426, 25, 25);
-		contentPane.add(MEM_1);
+		Mem[0] = new JRadioButton("MEM");
+		Mem[0].setEnabled(false);
+		Mem[0].setBounds(609, 426, 25, 25);
+		contentPane.add(Mem[0]);
 		
-		JRadioButton MEM_2 = new JRadioButton("");
-		MEM_2.setBounds(638, 426, 25, 25);
-		contentPane.add(MEM_2);
+		Mem[1] = new JRadioButton("MEM");
+		Mem[1].setEnabled(false);
+		Mem[1].setBounds(638, 426, 25, 25);
+		contentPane.add(Mem[1]);
 		
-		JRadioButton MEM_3 = new JRadioButton("");
-		MEM_3.setBounds(667, 426, 25, 25);
-		contentPane.add(MEM_3);
+		Mem[2] = new JRadioButton("MEM");
+		Mem[2].setEnabled(false);
+		Mem[2].setBounds(667, 426, 25, 25);
+		contentPane.add(Mem[2]);
 		
-		JRadioButton MEM_4 = new JRadioButton("");
-		MEM_4.setBounds(696, 426, 25, 25);
-		contentPane.add(MEM_4);
+		Mem[3] = new JRadioButton("MEM");
+		Mem[3].setEnabled(false);
+		Mem[3].setBounds(696, 426, 25, 25);
+		contentPane.add(Mem[3]);
 		
-		JRadioButton MEM_5 = new JRadioButton("");
-		MEM_5.setBounds(725, 426, 25, 25);
-		contentPane.add(MEM_5);
+		Mem[4] = new JRadioButton("MEM");
+		Mem[4].setEnabled(false);
+		Mem[4].setBounds(725, 426, 25, 25);
+		contentPane.add(Mem[4]);
 		
-		JRadioButton MEM_6 = new JRadioButton("");
-		MEM_6.setBounds(754, 426, 25, 25);
-		contentPane.add(MEM_6);
+		Mem[5] = new JRadioButton("MEM");
+		Mem[5].setEnabled(false);
+		Mem[5].setBounds(754, 426, 25, 25);
+		contentPane.add(Mem[5]);
 		
-		JRadioButton MEM_7 = new JRadioButton("");
-		MEM_7.setBounds(783, 426, 25, 25);
-		contentPane.add(MEM_7);
+		Mem[6] = new JRadioButton("MEM");
+		Mem[6].setEnabled(false);
+		Mem[6].setBounds(783, 426, 25, 25);
+		contentPane.add(Mem[6]);
 		
-		JRadioButton MEM_8 = new JRadioButton("");
-		MEM_8.setBounds(812, 426, 25, 25);
-		contentPane.add(MEM_8);
+		Mem[7] = new JRadioButton("MEM");
+		Mem[7].setEnabled(false);
+		Mem[7].setBounds(812, 426, 25, 25);
+		contentPane.add(Mem[7]);
 		
-		JRadioButton MEM_9 = new JRadioButton("");
-		MEM_9.setBounds(841, 426, 25, 25);
-		contentPane.add(MEM_9);
+		Mem[8] = new JRadioButton("MEM");
+		Mem[8].setEnabled(false);
+		Mem[8].setBounds(841, 426, 25, 25);
+		contentPane.add(Mem[8]);
 		
-		JRadioButton MEM_10 = new JRadioButton("");
-		MEM_10.setBounds(870, 426, 25, 25);
-		contentPane.add(MEM_10);
+		Mem[9] = new JRadioButton("MEM");
+		Mem[9].setEnabled(false);
+		Mem[9].setBounds(870, 426, 25, 25);
+		contentPane.add(Mem[9]);
 		
-		JRadioButton MEM_11 = new JRadioButton("");
-		MEM_11.setBounds(899, 426, 25, 25);
-		contentPane.add(MEM_11);
+		Mem[10] = new JRadioButton("MEM");
+		Mem[10].setEnabled(false);
+		Mem[10].setBounds(899, 426, 25, 25);
+		contentPane.add(Mem[10]);
 		
-		JRadioButton MEM_12 = new JRadioButton("");
-		MEM_12.setBounds(928, 426, 25, 25);
-		contentPane.add(MEM_12);
+		Mem[11] = new JRadioButton("MEM");
+		Mem[11].setEnabled(false);
+		Mem[11].setBounds(928, 426, 25, 25);
+		contentPane.add(Mem[11]);
 		
-		JRadioButton MEM_13 = new JRadioButton("");
-		MEM_13.setBounds(957, 426, 25, 25);
-		contentPane.add(MEM_13);
+		Mem[12] = new JRadioButton("MEM");
+		Mem[12].setEnabled(false);
+		Mem[12].setBounds(957, 426, 25, 25);
+		contentPane.add(Mem[12]);
 		
-		JRadioButton MEM_14 = new JRadioButton("");
-		MEM_14.setBounds(986, 426, 25, 25);
-		contentPane.add(MEM_14);
+		Mem[13] = new JRadioButton("MEM");
+		Mem[13].setEnabled(false);
+		Mem[13].setBounds(986, 426, 25, 25);
+		contentPane.add(Mem[13]);
 		
-		JRadioButton MEM_15 = new JRadioButton("");
-		MEM_15.setBounds(1015, 426, 25, 25);
-		contentPane.add(MEM_15);
+		Mem[14] = new JRadioButton("MEM");
+		Mem[14].setEnabled(false);
+		Mem[14].setBounds(1015, 426, 25, 25);
+		contentPane.add(Mem[14]);
 		
-		JRadioButton MEM_16 = new JRadioButton("");
-		MEM_16.setBounds(1044, 426, 25, 25);
-		contentPane.add(MEM_16);
+		Mem[15] = new JRadioButton("MEM");
+		Mem[15].setEnabled(false);
+		Mem[15].setBounds(1044, 426, 25, 25);
+		contentPane.add(Mem[15]);
 		
 		JSeparator separator_8 = new JSeparator();
 		separator_8.setBounds(23, 501, 1057, 2);
 		contentPane.add(separator_8);
+		
+		JRadioButton radioButton_41 = new JRadioButton("");
+		radioButton_41.setBounds(251, 137, 25, 25);
+		contentPane.add(radioButton_41);
+		
 		
 		JButton Data_run = new JButton("Enter data");
 		Data_run.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -1032,11 +1239,8 @@ public class UI extends JFrame {
 				int line = 1;
 				while ((Ins = reader.readLine()) != null) {
 					String[] str = Ins.split(",");
-					int index = Integer.parseInt(str[0]);
-					
-					Short con = Short.parseShort(str[1],2);
-					System.out.println(con);					
-					
+					int index = Integer.parseInt(str[0]);					
+					Short con = Short.parseShort(str[1],2);						
 					cpu.setMem(con, index);					
 					line++;
 				}
@@ -1062,20 +1266,182 @@ public class UI extends JFrame {
 	}
 	
 	public class RunListener implements ActionListener{
-		public void actionPerformed(ActionEvent e){		
-		
+		public void actionPerformed(ActionEvent e){
+			cpu.executeNext();
+			
+			Short SR0= cpu.getR0();
+			String strR0 = Integer.toBinaryString(SR0.intValue());		
+			int a = 0;
+			while(a < strR0.length()) {
+				char[] chara = strR0.toCharArray();
+				if (chara[a] == 1) {
+					R0[a].setSelected(true);
+				} else {
+					R0[a].setSelected(false);
+				}
+				a++;
+			}
+
+			Short SR1 = cpu.getR1();
+			String strR1 = Integer.toBinaryString(SR1.intValue());
+			int b = 0;
+			while(b < strR1.length()) {
+				char[] charb = strR1.toCharArray();
+				if (charb[b] == 1) {
+					R1[b].setSelected(true);
+				} else {
+					R1[b].setSelected(false);
+				}
+				b++;
+			}
+			
+			Short SR2 = cpu.getR2();
+			String strR2 = Integer.toBinaryString(SR2.intValue());
+			int c = 0;
+			while(c < strR2.length()) {
+				char[] charc = strR2.toCharArray();
+				if (charc[c] == 1) {
+					R2[c].setSelected(true);
+				} else {
+					R2[c].setSelected(false);
+				}
+				c++;
+			}
+			
+			Short SR3 = cpu.getR3();
+			String strR3 = Integer.toBinaryString(SR3.intValue());
+			int d = 0;
+			while(d < strR3.length()) {
+				char[] chard = strR3.toCharArray();
+				if (chard[d] == 1) {
+					R3[d].setSelected(true);
+				} else {
+					R3[d].setSelected(false);
+				}
+				d++;
+			}
+			
+			Short SX1 = cpu.getX1();
+			String strX1 = Integer.toBinaryString(SX1.intValue());
+			int f = 0;
+			while(f < strX1.length()) {
+				char[] charf = strX1.toCharArray();
+				if (charf[f] == 1) {
+					X1[f].setSelected(true);
+				} else {
+					X1[f].setSelected(false);
+				}
+				f++;
+			}
+			
+			Short SX2 = cpu.getX2();
+			String strX2 = Integer.toBinaryString(SX2.intValue());
+			int g = 0;
+			while(g < strX2.length()) {
+				char[] charg = strX2.toCharArray();
+				if (charg[g] == 1) {
+					X2[g].setSelected(true);
+				} else {
+					X2[g].setSelected(false);
+				}
+				g++;
+			}
+			
+			Short SX3 = cpu.getX3();
+			String strX3 = Integer.toBinaryString(SX3.intValue());
+			int h = 0;
+			while(h < strX3.length()) {
+				char[] charh = strX3.toCharArray();
+				if (charh[h] == 1) {
+					X3[h].setSelected(true);
+				} else {
+					X3[h].setSelected(false);
+				}
+				h++;
+			}
+			
+			Short SMAR = cpu.getMar();
+			String strMAR = Integer.toBinaryString(SMAR.intValue());
+			int j = 0;
+			while(j < strMAR.length()) {
+				char[] charj = strMAR.toCharArray();
+				if (charj[j] == 1) {
+					MAR[j].setSelected(true);
+				} else {
+					MAR[j].setSelected(false);
+				}
+				j++;
+			}
+			
+			Short SMBR = cpu.getMbr();
+			String strMBR = Integer.toBinaryString(SMBR.intValue());
+			int k = 0;
+			while(k < strMBR.length()) {
+				char[] chark = strMBR.toCharArray();
+				if (chark[k] == 1) {
+					MBR[k].setSelected(true);
+				} else {
+					MBR[k].setSelected(false);
+				}
+				k++;
+			}
+			
+			Short SIR = cpu.getIr();
+			String strIR = Integer.toBinaryString(SIR.intValue());
+			int l = 0;
+			while(l < strIR.length()) {
+				char[] charl = strIR.toCharArray();
+				if (charl[l] == 1) {
+					IR[l].setSelected(true);
+				} else {
+					IR[l].setSelected(false);
+				}
+				l++;
+			}
+			
+			
+			Short SPC = cpu.getPc();
+			String strPC = Integer.toBinaryString(SPC.intValue());
+			int m = 0;
+			while(m < strPC.length()) {
+				char[] charm = strPC.toCharArray();
+				if (charm[m] == 1) {
+					PC[m].setSelected(true);
+				} else {
+					PC[m].setSelected(false);
+				}
+				m++;
+			}
+			
+			
+			Short SMem = cpu.getMfr();
+			String strMem = Integer.toBinaryString(SMem.intValue());
+			int n = 0;
+			while(n < strMem.length()) {
+				char[] charn = strMem.toCharArray();
+				if (charn[n] == 1) {
+					Mem[n].setSelected(true);
+				} else {
+					Mem[n].setSelected(false);
+				}
+				n++;
+			}
 		}	
 	}
 	
 	public class RunDataListener implements ActionListener{
-		public void actionPerformed(ActionEvent e){		
-		
+		public void actionPerformed(ActionEvent e){	
+			String data = Data_txt.getText();
+			String[] str = data.split(",");
+			int index = Integer.parseInt(str[0]);					
+			Short con = Short.parseShort(str[1],2);	
+			cpu.setMem(con, index);
 		}	
 	}
 	
 	public class RunInsListener implements ActionListener{
-		public void actionPerformed(ActionEvent e){		
-		
+		public void actionPerformed(ActionEvent e){	
+			String Ins = Ins_txt.getText();
 		}	
 	}
 }
