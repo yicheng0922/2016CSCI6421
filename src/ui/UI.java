@@ -47,7 +47,7 @@ public class UI extends JFrame {
 	private final Action action = new SwingAction();
 	private JTextField Data_txt;
 	private JTextField Ins_txt;
-	
+	private CPU cpu;
 
 	/**
 	 * Launch the application.
@@ -69,6 +69,7 @@ public class UI extends JFrame {
 	 * Create the frame.
 	 */
 	public UI() {
+		cpu = new CPU();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1125, 829);
 		contentPane = new JPanel();
@@ -1033,10 +1034,10 @@ public class UI extends JFrame {
 					String[] str = Ins.split(",");
 					int index = Integer.parseInt(str[0]);
 					
-					//Short con = new Short(str[1]);
-					//System.out.println(con);					
+					Short con = Short.parseShort(str[1],2);
+					System.out.println(con);					
 					
-					//CPU.setMem(con, index);					
+					cpu.setMem(con, index);					
 					line++;
 				}
 				reader.close();

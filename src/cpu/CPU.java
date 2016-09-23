@@ -13,7 +13,7 @@ public class CPU {
 	private static short mfr;
 	
 	//memory
-	private static short mem[];
+	private short mem[];
 	
 	public CPU()
 	{
@@ -40,7 +40,7 @@ public class CPU {
 		}
 	}
 	
-	public static void setMem(short content, int index)
+	public void setMem(short content, int index)
 	{
 		if(index < 6||index>2048)
 		{
