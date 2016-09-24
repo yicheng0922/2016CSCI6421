@@ -92,6 +92,7 @@ public class UI extends JFrame {
 	 */
 	public UI() {
 		cpu = new CPU();
+		cpu.setPc((short)6);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1125, 829);
 		contentPane = new JPanel();
@@ -1256,6 +1257,7 @@ public class UI extends JFrame {
 		Clean.setBounds(928, 725, 93, 32);
 		contentPane.add(Clean);
 		Clean.addActionListener(new CleanListener());
+		ShowData();
 	}
 	private class SwingAction extends AbstractAction {
 		public SwingAction() {
@@ -1278,7 +1280,7 @@ public class UI extends JFrame {
 				while ((Ins = reader.readLine()) != null) {
 					String[] str = Ins.split(",");
 					int index = Integer.parseInt(str[0]);					
-					Short con = Short.parseShort(str[1],2);
+					Short con = Integer.valueOf(str[1],2).shortValue();
 					if(isFirst){
 						cpu.setPc((short) index);
 						isFirst=false;
@@ -1306,189 +1308,25 @@ public class UI extends JFrame {
 	
 	public class SSListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){	
-			int count = 0;
+			CleanScr();
 			cpu.executeNext();
-			
-			switch(count) {
-			case 0: {
-				CleanScr();
-				Short SR0= cpu.getR0();
-				String strR0 = Integer.toBinaryString(SR0.intValue());		
-				int a = 0;
-				while(a < strR0.length()) {
-					char[] chara = strR0.toCharArray();
-					if (chara[a] == 1) {
-						R0[a].setSelected(true);
-					} else {
-						R0[a].setSelected(false);
-					}
-					a++;
-				}
-				Short SR1 = cpu.getR1();
-				String strR1 = Integer.toBinaryString(SR1.intValue());
-				int b = 0;
-				while(b < strR1.length()) {
-					char[] charb = strR1.toCharArray();
-					if (charb[b] == 1) {
-						R1[b].setSelected(true);
-					} else {
-						R1[b].setSelected(false);
-					}
-					b++;
-				}
-					
-				Short SR2 = cpu.getR2();
-				String strR2 = Integer.toBinaryString(SR2.intValue());
-				int c = 0;
-				while(c < strR2.length()) {
-					char[] charc = strR2.toCharArray();
-					if (charc[c] == 1) {
-						R2[c].setSelected(true);
-					} else {
-						R2[c].setSelected(false);
-					}
-					c++;
-				}
-					
-				Short SR3 = cpu.getR3();
-				String strR3 = Integer.toBinaryString(SR3.intValue());
-				int d = 0;
-				while(d < strR3.length()) {
-					char[] chard = strR3.toCharArray();
-					if (chard[d] == 1) {
-						R3[d].setSelected(true);
-					} else {
-						R3[d].setSelected(false);
-					}
-					d++;
-				}
-					
-				Short SX1 = cpu.getX1();
-				String strX1 = Integer.toBinaryString(SX1.intValue());
-				int f = 0;
-				while(f < strX1.length()) {
-					char[] charf = strX1.toCharArray();
-					if (charf[f] == 1) {
-						X1[f].setSelected(true);
-					} else {
-						X1[f].setSelected(false);
-					}
-					f++;
-				}
-					
-				Short SX2 = cpu.getX2();
-				String strX2 = Integer.toBinaryString(SX2.intValue());
-				int g = 0;
-				while(g < strX2.length()) {
-					char[] charg = strX2.toCharArray();
-					if (charg[g] == 1) {
-						X2[g].setSelected(true);
-					} else {
-						X2[g].setSelected(false);
-					}
-					g++;
-				}
-					
-				Short SX3 = cpu.getX3();
-				String strX3 = Integer.toBinaryString(SX3.intValue());
-				int h = 0;
-				while(h < strX3.length()) {
-					char[] charh = strX3.toCharArray();
-					if (charh[h] == 1) {
-						X3[h].setSelected(true);
-					} else {
-						X3[h].setSelected(false);
-					}
-					h++;
-				}
-					
-//				Short SMem = cpu.getMfr();
-//				String strMem = Integer.toBinaryString(SMem.intValue());
-//				int n = 0;
-//				while(n < strMem.length()) {
-//					char[] charn = strMem.toCharArray();
-//					if (charn[n] == 1) {
-//						Mem[n].setSelected(true);
-//					} else {
-//						Mem[n].setSelected(false);
-//					}
-//					n++;
-//				}
-//				count++;	
-//				break;
-			}
-			case 1: {
-			Short SMAR = cpu.getMar();
-				String strMAR = Integer.toBinaryString(SMAR.intValue());
-				int j = 0;
-				while(j < strMAR.length()) {
-					char[] charj = strMAR.toCharArray();
-					if (charj[j] == 1) {
-						MAR[j].setSelected(true);
-					} else {
-						MAR[j].setSelected(false);
-					}
-					j++;
-				}
-				count++;
-				break;
-			}
-			case 2: {
-				Short SMBR = cpu.getMbr();
-				String strMBR = Integer.toBinaryString(SMBR.intValue());
-				int k = 0;
-				while(k < strMBR.length()) {
-					char[] chark = strMBR.toCharArray();
-					if (chark[k] == 1) {
-						MBR[k].setSelected(true);
-					} else {
-						MBR[k].setSelected(false);
-					}
-					k++;
-				}
-				count++;
-				break;
-			}
-			case 3: {
-				Short SIR = cpu.getIr();
-				String strIR = Integer.toBinaryString(SIR.intValue());
-				int l = 0;
-				while(l < strIR.length()) {
-					char[] charl = strIR.toCharArray();
-					if (charl[l] == 1) {
-						IR[l].setSelected(true);
-					} else {
-						IR[l].setSelected(false);
-					}
-					l++;
-				}
-				count++;
-				break;
-			}
-			case 4: {
-				Short SPC = cpu.getPc();
-				String strPC = Integer.toBinaryString(SPC.intValue());
-				int m = 0;
-				while(m < strPC.length()) {
-					char[] charm = strPC.toCharArray();
-					if (charm[m] == 1) {
-						PC[m].setSelected(true);
-					} else {
-						PC[m].setSelected(false);
-					}
-					m++;
-				}
-				count = 0;
-				break;
-			}
-			}
-		}	
+			ShowData();
+		}
 	}
 	
 	public class RunListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
 			CleanScr();
-			cpu.executeNext();
+			
+			
+			while(true)
+			{
+				if(cpu.executeNext()==-1)
+				{
+					break;
+				}
+			
+			}
 			ShowData();
 		}	
 	}
@@ -1669,6 +1507,9 @@ public class UI extends JFrame {
 			
 			Short SMAR = cpu.getMar();
 			String strMAR = String.format("%16s",Integer.toBinaryString(SMAR.intValue())).replace(' ', '0');
+			if(strX3.length()>16){
+				strMAR=strMAR.substring(strMAR.length()-16,strMAR.length());
+			}
 			int j = 0;
 			while(j < strMAR.length()) {
 				char[] charj = strMAR.toCharArray();
@@ -1682,6 +1523,9 @@ public class UI extends JFrame {
 			
 			Short SMBR = cpu.getMbr();
 			String strMBR = String.format("%16s",Integer.toBinaryString(SMBR.intValue())).replace(' ', '0');
+			if(strMBR.length()>16){
+				strMBR=strMBR.substring(strMBR.length()-16,strMBR.length());
+			}
 			int k = 0;
 			while(k < strMBR.length()) {
 				char[] chark = strMBR.toCharArray();
@@ -1695,6 +1539,9 @@ public class UI extends JFrame {
 			
 			Short SIR = cpu.getIr();
 			String strIR = String.format("%16s",Integer.toBinaryString(SIR.intValue())).replace(' ', '0');
+			if(strIR.length()>12){
+				strIR=strIR.substring(strIR.length()-16,strIR.length());
+			}
 			int l = 0;
 			while(l < strIR.length()) {
 				char[] charl = strIR.toCharArray();
@@ -1708,6 +1555,9 @@ public class UI extends JFrame {
 			
 			Short SPC = cpu.getPc();
 			String strPC = String.format("%12s",Integer.toBinaryString(SPC.intValue())).replace(' ', '0');
+			if(strPC.length()>12){
+				strPC=strPC.substring(strPC.length()-16,strPC.length());
+			}
 			int m = 0;
 			while(m < strPC.length()) {
 				char[] charm = strPC.toCharArray();

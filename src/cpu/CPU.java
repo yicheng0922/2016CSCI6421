@@ -59,7 +59,7 @@ public class CPU {
 		{
 			mfr=3;
 			mem[4] = pc;
-			return -1;
+			return 0;
 		}
 		else
 		{
@@ -79,6 +79,9 @@ public class CPU {
 		
 		ir = mbr;
 		String instruction = String.format("%16s", Integer.toBinaryString(ir)).replace(' ', '0');
+		if(instruction.length()>16){
+			instruction=instruction.substring(instruction.length()-16,instruction.length());
+		}
 		short optcode = Short.parseShort(instruction.substring(0, 6),2);
 		short r,x,i,address;
 		switch (optcode)
