@@ -1,44 +1,27 @@
 package ui;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import java.awt.GridLayout;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
-import javax.swing.JSlider;
 import javax.swing.JLabel;
-import javax.swing.JComboBox;
 import javax.swing.JButton;
 import javax.swing.JSeparator;
-import javax.swing.JScrollBar;
-import javax.swing.Box;
-import javax.swing.JTextPane;
-import javax.swing.JEditorPane;
 import javax.swing.AbstractAction;
-import javax.swing.AbstractButton;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.Action;
 import java.awt.Font;
 import javax.swing.SwingConstants;
-import javax.swing.JProgressBar;
-import javax.swing.JFormattedTextField;
-import javax.swing.JTextArea;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.Reader;
 import java.io.IOException;
 
 import cpu.CPU;
@@ -47,7 +30,6 @@ import javax.swing.ButtonGroup;
 public class UI extends JFrame {
 	
 	private JPanel contentPane;
-	private final Action action = new SwingAction();
 	private JTextField Data_txt;
 	private JTextField Ins_txt;
 	private CPU cpu;
@@ -63,7 +45,7 @@ public class UI extends JFrame {
 	private JRadioButton MBR[] = new JRadioButton[16];
 	private JRadioButton IR[] = new JRadioButton[16];
 	private JRadioButton PC[] = new JRadioButton[12];
-	private JRadioButton Mem[] = new JRadioButton[16];
+	//private JRadioButton Mem[] = new JRadioButton[16];
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private JRadioButton Data_R0;
 	private JRadioButton Data_R1;
@@ -1259,17 +1241,11 @@ public class UI extends JFrame {
 		Clean.addActionListener(new CleanListener());
 		ShowData();
 	}
-	private class SwingAction extends AbstractAction {
-		public SwingAction() {
-			putValue(NAME, "SwingAction");
-			putValue(SHORT_DESCRIPTION, "Some short description");
-		}
-		public void actionPerformed(ActionEvent e) {
-		}
-	}
-	
+
+	//Add load button Listener
 	public class LoadListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
+			//Read the file "LoadTXT" which include some instruments
 			File f = new File("src/LoadTXT.txt");
 			boolean isFirst = true;
 			BufferedReader reader = null;
@@ -1277,6 +1253,7 @@ public class UI extends JFrame {
 				reader = new BufferedReader(new FileReader(f));
 				String Ins = null;
 				int line = 1;
+				//Read the file line by line and split the line into two parts by symbol ","
 				while ((Ins = reader.readLine()) != null) {
 					String[] str = Ins.split(",");
 					int index = Integer.parseInt(str[0]);					
@@ -1302,23 +1279,30 @@ public class UI extends JFrame {
 			}
 			System.out.println("The PC value is: ");
 			System.out.println(cpu.getPc());
+			//Call the function to show the data on the screen
 			ShowData();
 		}
 	}
 	
+	//Add Step by Step button Listener
 	public class SSListener implements ActionListener{
-		public void actionPerformed(ActionEvent e){	
+		public void actionPerformed(ActionEvent e){
+			//Clean the screen first
 			CleanScr();
+			//Execute the data which function is in CPU
 			cpu.executeNext();
+			//Show the data on screen
 			ShowData();
 		}
 	}
 	
+	//Add Run button Listener
 	public class RunListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
-			CleanScr();
+			//Clean the screen first
+			CleanScr();		
 			
-			
+			//When the data is run out, break the execution
 			while(true)
 			{
 				if(cpu.executeNext()==-1)
@@ -1327,15 +1311,21 @@ public class UI extends JFrame {
 				}
 			
 			}
+			//Show the data on screen
 			ShowData();
 		}	
 	}
 	
+	//Add Save data button Listener
 	public class SaveListener implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
+			//Clean the screen first
 			CleanScr();
+			//Get the data from the textfield
 			String Data = Data_txt.getText();
+			//Change the data type into short
 			Short SData = Integer.valueOf(Data,2).shortValue();
+			//Search for which one is changed and clean the screen then show the data
 			if (Data_R0.isSelected()) {
 				CleanScr();
 				cpu.setR0(SData);
@@ -1362,12 +1352,15 @@ public class UI extends JFrame {
 		}
 	}
 	
+	//Add Clean button Listener
 	public class CleanListener implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
+			//Call for clean the screen function
 			CleanScr();
 		}
 	}
 	
+	//Set all button to false -- Clean the screen
 	public void CleanScr() {
 		int a = 0;
 		while (a < 16) {
@@ -1391,6 +1384,7 @@ public class UI extends JFrame {
 		}
 	}
 	
+	//Browse the data and set button to true or false
 	public void ShowData() {	
 			
 			Short SR0= cpu.getR0();
