@@ -23,6 +23,8 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 import cpu.CPU;
 import javax.swing.ButtonGroup;
@@ -1246,11 +1248,11 @@ public class UI extends JFrame {
 	public class LoadListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
 			//Read the file "LoadTXT" which include some instruments
-			File f = new File("src/LoadTXT.txt");
+			InputStream f = getClass().getResourceAsStream("/LoadTXT.txt");
 			boolean isFirst = true;
 			BufferedReader reader = null;
 			try {
-				reader = new BufferedReader(new FileReader(f));
+				reader = new BufferedReader(new InputStreamReader(f));
 				String Ins = null;
 				int line = 1;
 				//Read the file line by line and split the line into two parts by symbol ","
