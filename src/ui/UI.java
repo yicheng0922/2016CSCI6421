@@ -100,7 +100,7 @@ public class UI extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);		
 		
-		JLabel lblGeneralPurposeRegisters = new JLabel("General Purpose Registers (GPRs) ");
+		JLabel lblGeneralPurposeRegisters = new JLabel("General Purpose Registers (GPRs) "); //GPRs
 		lblGeneralPurposeRegisters.setHorizontalAlignment(SwingConstants.CENTER);
 		lblGeneralPurposeRegisters.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblGeneralPurposeRegisters.setBounds(131, 71, 290, 16);
@@ -110,7 +110,7 @@ public class UI extends JFrame {
 		label_2.setBounds(12, 112, 56, 16);
 		contentPane.add(label_2);
 		
-		R0[0] = new JRadioButton("R0");
+		R0[0] = new JRadioButton("R0"); //R0 [0]-[15] 16 bits
 		R0[0].setEnabled(false);
 		R0[0].setBounds(48, 107, 25, 25);
 		contentPane.add(R0[0]);
@@ -194,7 +194,7 @@ public class UI extends JFrame {
 		label.setBounds(12, 141, 56, 16);
 		contentPane.add(label);
 		
-		R1[0] = new JRadioButton("R1");
+		R1[0] = new JRadioButton("R1");   //R1 [0]-[15] 16 bits
 		R1[0].setEnabled(false);
 		R1[0].setBounds(48, 137, 25, 25);
 		contentPane.add(R1[0]);
@@ -278,7 +278,7 @@ public class UI extends JFrame {
 		label_1.setBounds(12, 170, 25, 16);
 		contentPane.add(label_1);
 		
-		R2[0] = new JRadioButton("R2");
+		R2[0] = new JRadioButton("R2");    //R2 [0] -[15] 16 bits
 		R2[0].setEnabled(false);
 		R2[0].setBounds(48, 167, 25, 25);
 		contentPane.add(R2[0]);
@@ -362,7 +362,7 @@ public class UI extends JFrame {
 		label_3.setBounds(12, 200, 56, 16);
 		contentPane.add(label_3);
 		
-		R3[0] = new JRadioButton("R3");
+		R3[0] = new JRadioButton("R3");  //R3 [0]-[15] 16 bits
 		R3[0].setEnabled(false);
 		R3[0].setBounds(48, 196, 25, 25);
 		contentPane.add(R3[0]);
@@ -454,18 +454,18 @@ public class UI extends JFrame {
 		label_5.setBounds(367, 230, 54, 16);
 		contentPane.add(label_5);
 		
-		JRadioButton radioButton_64 = new JRadioButton("1");
+		JRadioButton radioButton_64 = new JRadioButton("1"); // example of bit "1"
 		radioButton_64.setEnabled(false);
 		radioButton_64.setSelected(true);
 		radioButton_64.setBounds(4, 9, 35, 25);
 		contentPane.add(radioButton_64);
 		
-		JRadioButton radioButton_65 = new JRadioButton("0");
+		JRadioButton radioButton_65 = new JRadioButton("0");  // example of bit "0"
 		radioButton_65.setEnabled(false);
 		radioButton_65.setBounds(48, 9, 35, 25);
 		contentPane.add(radioButton_65);
 		
-		MAR[15] = new JRadioButton("MAR");
+		MAR[15] = new JRadioButton("MAR");   //MAR [0] -[15] 16 bits
 		MAR[15].setEnabled(false);
 		MAR[15].setBounds(1044, 107, 25, 25);
 		contentPane.add(MAR[15]);
@@ -545,7 +545,7 @@ public class UI extends JFrame {
 		MAR[0].setBounds(609, 107, 25, 25);
 		contentPane.add(MAR[0]);
 		
-		MBR[15] = new JRadioButton("MBR");
+		MBR[15] = new JRadioButton("MBR");   //MBR [0]-[15] 16 bits
 		MBR[15].setEnabled(false);
 		MBR[15].setBounds(1044, 167, 25, 25);
 		contentPane.add(MBR[15]);
@@ -641,7 +641,7 @@ public class UI extends JFrame {
 		separator_3.setBounds(434, 240, 74, 16);
 		contentPane.add(separator_3);
 		
-		JLabel lblMemoryAddressRegister = new JLabel("Memory Address Register (MAR)");
+		JLabel lblMemoryAddressRegister = new JLabel("Memory Address Register (MAR)");  //MAR 
 		lblMemoryAddressRegister.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMemoryAddressRegister.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblMemoryAddressRegister.setBounds(708, 71, 259, 16);
@@ -675,13 +675,13 @@ public class UI extends JFrame {
 		separator_7.setBounds(995, 240, 74, 16);
 		contentPane.add(separator_7);
 		
-		JLabel lblMemoryBufferRegister = new JLabel("Memory Buffer Register (MBR)");
+		JLabel lblMemoryBufferRegister = new JLabel("Memory Buffer Register (MBR)"); //MBR
 		lblMemoryBufferRegister.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMemoryBufferRegister.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblMemoryBufferRegister.setBounds(706, 140, 259, 16);
 		contentPane.add(lblMemoryBufferRegister);
 				
-		X2[0] = new JRadioButton("X2");
+		X2[0] = new JRadioButton("X2");   // X2 [0]-[15] 16 bits
 		X2[0].setEnabled(false);
 		X2[0].setBounds(48, 337, 25, 25);
 		contentPane.add(X2[0]);
@@ -761,7 +761,7 @@ public class UI extends JFrame {
 		X2[15].setBounds(483, 337, 25, 25);
 		contentPane.add(X2[15]);
 		
-		X3[0] = new JRadioButton("X2");
+		X3[0] = new JRadioButton("X2");   //X3 [0]-[15] 16 bits
 		X3[0].setEnabled(false);
 		X3[0].setBounds(48, 367, 25, 25);
 		contentPane.add(X3[0]);
@@ -841,7 +841,7 @@ public class UI extends JFrame {
 		X3[15].setBounds(483, 367, 25, 25);
 		contentPane.add(X3[15]);
 		
-		X1[0] = new JRadioButton("X1");
+		X1[0] = new JRadioButton("X1");  //X1 [0]-[15] 16 bits 
 		X1[0].setEnabled(false);
 		X1[0].setBounds(48, 307, 25, 25);
 		contentPane.add(X1[0]);
@@ -921,13 +921,13 @@ public class UI extends JFrame {
 		X1[15].setBounds(483, 307, 25, 25);
 		contentPane.add(X1[15]);
 		
-		JLabel lblIx = new JLabel("IX");
+		JLabel lblIx = new JLabel("IX");                     //Index Register
 		lblIx.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblIx.setHorizontalAlignment(SwingConstants.CENTER);
 		lblIx.setBounds(251, 271, 56, 16);
 		contentPane.add(lblIx);
 		
-		IR[11] = new JRadioButton("IR");
+		IR[11] = new JRadioButton("IR");   //IR [0]-[15] 16 bits
 		IR[11].setEnabled(false);
 		IR[11].setBounds(928, 307, 25, 25);
 		contentPane.add(IR[11]);
@@ -1007,7 +1007,7 @@ public class UI extends JFrame {
 		IR[12].setBounds(957, 307, 25, 25);
 		contentPane.add(IR[12]);
 		
-		PC[11] = new JRadioButton("PC");
+		PC[11] = new JRadioButton("PC");   //PC [0]-[11] 12 bits
 		PC[11].setEnabled(false);
 		PC[11].setBounds(928, 367, 25, 25);
 		contentPane.add(PC[11]);
@@ -1067,25 +1067,25 @@ public class UI extends JFrame {
 		PC[0].setBounds(609, 367, 25, 25);
 		contentPane.add(PC[0]);
 		
-		JLabel label_11 = new JLabel("Program Counter (PC)");
+		JLabel label_11 = new JLabel("Program Counter (PC)");  //PC
 		label_11.setHorizontalAlignment(SwingConstants.CENTER);
 		label_11.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		label_11.setBounds(708, 342, 259, 16);
 		contentPane.add(label_11);
 		
-		JLabel label_12 = new JLabel("Instruction Register (IR)");
+		JLabel label_12 = new JLabel("Instruction Register (IR)"); //IR
 		label_12.setHorizontalAlignment(SwingConstants.CENTER);
 		label_12.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		label_12.setBounds(708, 278, 259, 16);
 		contentPane.add(label_12);
 		
-		JButton Run = new JButton("Run");
+		JButton Run = new JButton("Run");                    //Run button
 		Run.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		Run.setBounds(222, 551, 97, 25);
 		contentPane.add(Run);
 		Run.addActionListener(new RunListener());
 		
-		JButton SS = new JButton("SS");
+		JButton SS = new JButton("SS");                      //Step by Step button
 		SS.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		SS.setBounds(367, 551, 97, 25);
 		contentPane.add(SS);
@@ -1103,7 +1103,7 @@ public class UI extends JFrame {
 		lblX_2.setBounds(12, 369, 56, 16);
 		contentPane.add(lblX_2);
 		
-		Data_txt = new JTextField();
+		Data_txt = new JTextField();                //enter the data
 		Data_txt.setBounds(783, 554, 286, 22);
 		contentPane.add(Data_txt);
 		Data_txt.setColumns(10);
@@ -1114,7 +1114,7 @@ public class UI extends JFrame {
 //		label_8.setBounds(708, 401, 259, 16);
 //		contentPane.add(label_8);
 		
-		JButton Load = new JButton("Load");
+		JButton Load = new JButton("Load");                      //Load button
 		Load.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		Load.setBounds(77, 551, 97, 25);
 		contentPane.add(Load);
@@ -1204,7 +1204,7 @@ public class UI extends JFrame {
 		separator_8.setBounds(23, 501, 1057, 2);
 		contentPane.add(separator_8);
 		
-		Ins_txt = new JTextField();
+		Ins_txt = new JTextField();                  //enter memory address
 		Ins_txt.setColumns(10);
 		Ins_txt.setBounds(783, 674, 286, 22);
 		contentPane.add(Ins_txt);
@@ -1221,38 +1221,38 @@ public class UI extends JFrame {
 		lblEnterIndex.setBounds(548, 674, 216, 19);
 		contentPane.add(lblEnterIndex);
 		
-		JButton Save = new JButton("Save");
+		JButton Save = new JButton("Save");         // save button
 		Save.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		Save.setBounds(783, 725, 93, 32);
 		contentPane.add(Save);
 		Save.addActionListener(new SaveListener());
 		
-		Data_R0 = new JRadioButton("R0");
+		Data_R0 = new JRadioButton("R0");           //enter button - R0
 		buttonGroup.add(Data_R0);
 		Data_R0.setBounds(783, 582, 121, 23);
 		contentPane.add(Data_R0);
 		
-		Data_R1 = new JRadioButton("R1");
+		Data_R1 = new JRadioButton("R1");           //enter button - R1
 		buttonGroup.add(Data_R1);
 		Data_R1.setBounds(783, 607, 121, 23);
 		contentPane.add(Data_R1);
 		
-		Data_R2 = new JRadioButton("R2");
+		Data_R2 = new JRadioButton("R2");           //enter button - R2
 		buttonGroup.add(Data_R2);
 		Data_R2.setBounds(928, 582, 121, 23);
 		contentPane.add(Data_R2);
 		
-		Data_R3 = new JRadioButton("R3");
+		Data_R3 = new JRadioButton("R3");           //enter button - R3
 		buttonGroup.add(Data_R3);
 		Data_R3.setBounds(928, 607, 121, 23);
 		contentPane.add(Data_R3);
 		
-		Data_Mem = new JRadioButton("Memory");
+		Data_Mem = new JRadioButton("Memory");      //enter button - memory
 		buttonGroup.add(Data_Mem);
 		Data_Mem.setBounds(783, 631, 121, 23);
 		contentPane.add(Data_Mem);
 		
-		JButton Clean = new JButton("Clean");
+		JButton Clean = new JButton("Clean");           //clean button
 		Clean.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		Clean.setBounds(928, 725, 93, 32);
 		contentPane.add(Clean);
