@@ -15,6 +15,7 @@ public class CPU {
 	//memory
 	private short mem[];
 	
+	// constructor, the register and memory are initiated here
 	public CPU()
 	{
 		ir=pc=mar=mbr=msr=mfr=0;
@@ -40,6 +41,8 @@ public class CPU {
 		}
 	}
 	
+	// function that is going to be used for setting memory.
+	// will also check for invalid read or write
 	public void setMem(short content, int index)
 	{
 		if(index < 6||index>2048)
@@ -53,6 +56,9 @@ public class CPU {
 		}
 	}
 
+
+	// function that is going to be used for reading memory.
+	// will also check for invalid read or write
 	private short fetchFromMemory(short address)
 	{
 		if(address < 6||address>2048)
@@ -67,8 +73,11 @@ public class CPU {
 		}
 	}
 	
+	// execute the current instruction specified by pc
 	public int executeNext()
 	{
+
+		// fetch instruction
 		mar = pc;
 		mbr = fetchFromMemory(mar);
 		
@@ -84,62 +93,64 @@ public class CPU {
 		}
 		short optcode = Short.parseShort(instruction.substring(0, 6),2);
 		short r,x,i,address;
+
+		//check op code and switch to the function it is corresponding to
 		switch (optcode)
 		{
 			case 0:
 				return -1;
-			case 1:
+			case 1: // ldr
 				r = Short.parseShort(instruction.substring(6,8),2);
 				x = Short.parseShort(instruction.substring(8,10),2);
 				i = Short.parseShort(instruction.substring(10,11),2);
 				address = Short.parseShort(instruction.substring(11,16),2);
 				ldr(r,x,address,i);
 				break;
-			case 2:
+			case 2: // str
 				r = Short.parseShort(instruction.substring(6,8),2);
 				x = Short.parseShort(instruction.substring(8,10),2);
 				i = Short.parseShort(instruction.substring(10,11),2);
 				address = Short.parseShort(instruction.substring(11,16),2);
 				str(r,x,address,i);
 				break;
-			case 3:
+			case 3: // lda
 				r = Short.parseShort(instruction.substring(6,8),2);
 				x = Short.parseShort(instruction.substring(8,10),2);
 				i = Short.parseShort(instruction.substring(10,11),2);
 				address = Short.parseShort(instruction.substring(11,16),2);
 				lda(r,x,address,i);
 				break;
-			case 4:
+			case 4: // amr
 				r = Short.parseShort(instruction.substring(6,8),2);
 				x = Short.parseShort(instruction.substring(8,10),2);
 				i = Short.parseShort(instruction.substring(10,11),2);
 				address = Short.parseShort(instruction.substring(11,16),2);
 				amr(r,x,address,i);
 				break;
-			case 5:
+			case 5: // smr
 				r = Short.parseShort(instruction.substring(6,8),2);
 				x = Short.parseShort(instruction.substring(8,10),2);
 				i = Short.parseShort(instruction.substring(10,11),2);
 				address = Short.parseShort(instruction.substring(11,16),2);
 				smr(r,x,address,i);
 				break;
-			case 6:
+			case 6: //air
 				r = Short.parseShort(instruction.substring(6,8),2);
 				address = Short.parseShort(instruction.substring(11,16),2);
 				air(r,address);
 				break;
-			case 7:
+			case 7: //sir
 				r = Short.parseShort(instruction.substring(6,8),2);
 				address = Short.parseShort(instruction.substring(11,16),2);
 				sir(r,address);
 				break;
-			case 33:
+			case 33: //ldx
 				x = Short.parseShort(instruction.substring(8,10),2);
 				i = Short.parseShort(instruction.substring(10,11),2);
 				address = Short.parseShort(instruction.substring(11,16),2);
 				ldx(x,address,i);
 				break;
-			case 34:
+			case 34: //stx
 				x = Short.parseShort(instruction.substring(8,10),2);
 				i = Short.parseShort(instruction.substring(10,11),2);
 				address = Short.parseShort(instruction.substring(11,16),2);
@@ -147,10 +158,13 @@ public class CPU {
 				break;
 				
 		}
+		//increment pc
 		pc++;
 		return 0;
 	}
 	
+
+	// calculate effective address
 	private short calcEA(short x,short address,short i)
 	{
 		short result=-1;
@@ -175,6 +189,11 @@ public class CPU {
 		return result;
 	}
 	
+	/*
+	* starting from here is the instruction function
+	* it follows what is stated in the project description file
+	*/
+
 	private void ldr(short r, short x, short address, short indirect)
 	{
 		short EA = calcEA(x,address,indirect);
@@ -262,6 +281,9 @@ public class CPU {
 	}
 	
 
+
+
+	// getters and setters
 
 
 	public short getR0() {
