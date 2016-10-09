@@ -5,6 +5,8 @@ public class CPU {
 	//registers, limit will be put on for register that are smaller than 16 bits. 
 	private boolean[] cc;
 	private short[] r,x;
+	private short rx,ry;
+	private short ri,count,lr,al;
 	private short ir;
 	private short pc;
 	private short mar;
@@ -144,6 +146,49 @@ public class CPU {
 				address = Short.parseShort(instruction.substring(11,16),2);
 				sir(r,address);
 				break;
+			case 20: //mlt
+				rx = Short.parseShort(instruction.substring(6,7),2);
+				ry = Short.parseShort(instruction.substring(8,9),2);				
+				mlt(rx,ry);
+				break;
+			case 21: //dvd
+				rx = Short.parseShort(instruction.substring(6,7),2);
+				ry = Short.parseShort(instruction.substring(8,9),2);				
+				dvd(rx,ry);
+				break;
+			case 22: //trr
+				rx = Short.parseShort(instruction.substring(6,7),2);
+				ry = Short.parseShort(instruction.substring(8,9),2);				
+				trr(rx,ry);
+				break;
+			case 23: //and
+				rx = Short.parseShort(instruction.substring(6,7),2);
+				ry = Short.parseShort(instruction.substring(8,9),2);				
+				and(rx,ry);
+				break;
+			case 24: //orr
+				rx = Short.parseShort(instruction.substring(6,7),2);
+				ry = Short.parseShort(instruction.substring(8,9),2);				
+				orr(rx,ry);
+				break;
+			case 25: //not
+				rx = Short.parseShort(instruction.substring(6,7),2);				
+				not(rx);
+				break;
+			case 31: //src
+				ri = Short.parseShort(instruction.substring(6,7),2);
+				count = Short.parseShort(instruction.substring(12,15),2);
+				lr = Short.parseShort(instruction.substring(9),2);
+				al = Short.parseShort(instruction.substring(8),2);
+				src(ri,count,lr,al);
+				break;
+			case 32: //rrc
+				ri = Short.parseShort(instruction.substring(6,7),2);
+				count = Short.parseShort(instruction.substring(12,15),2);
+				lr = Short.parseShort(instruction.substring(9),2);
+				al = Short.parseShort(instruction.substring(8),2);
+				rrc(ri,count,lr,al);
+				break;
 			case 33: //ldx
 				x = Short.parseShort(instruction.substring(8,10),2);
 				i = Short.parseShort(instruction.substring(10,11),2);
@@ -280,9 +325,330 @@ public class CPU {
 			this.r[r] -=mbr;
 	}
 	
+	private void mlt(short rx, short ry) {
+		if(rx == 1 || rx == 3 || ry == 1 || ry == 3) {
+			System.out.println("Rx and Ry must be 0 or 2!");
+		} else {
+			StringBuffer r1 = new StringBuffer(r[rx]);
+			StringBuffer r2 = new StringBuffer(r[ry]);
+			int f1 = 1, f2 = 1;
+			int r1int, r2int, signbit = 1;
+			
+			if (r1.charAt(0) == '1') {
+				f1 = -1;
+				r1.setCharAt(0, '0');
+			}
+			if (r2.charAt(0) == '1') {
+				f2 = -1;
+				r2.setCharAt(0, '0');
+			}
+			signbit = f1 * f2;
+			r1int = Integer.parseInt(r1.toString(),2);
+			r2int = Integer.parseInt(r2.toString(),2);
+			int value = r1int * r2int;
+			String temp = Integer.toBinaryString(value);
+			if(value > Math.pow(2,  32) - 1) {
+				System.out.println("MLT Overflow!");
+				cc[0] = true;
+			}
+			for(int i = temp.length(); i < 31; i++) {
+				temp = '0' + temp;
+			}
+			if(signbit == 1) {
+				temp = '0' + temp;
+			} else if (signbit == -1) {
+				temp = '1' + temp;
+			}
+			if (rx == 0) {
+				setR0(Short.parseShort(temp.substring(0,16)));
+				setR1(Short.parseShort(temp.substring(16)));
+			} else if (rx ==2) {
+				setR2(Short.parseShort(temp.substring(0,16)));
+				setR3(Short.parseShort(temp.substring(0,16)));
+			}			
+		}
+	}
+	
+	private void dvd(short rx, short ry) {
+		if(rx == 1 || rx == 3 || ry == 1 || ry ==3) {
+			System.out.println("Rx and Ry must be 0 or 2!");
+		} else {
+			StringBuffer r1 = new StringBuffer(r[rx]);
+			StringBuffer r2 = new StringBuffer(r[ry]);
+			int f1 = 1; 
+			int f2 = 1;
+			int r1int, r2int;
+			if (r1.charAt(0) == '1') {
+				f1 = -1;
+				r1.setCharAt(0, '0');
+			}
+			if (r2.charAt(0) == '1') {
+				f2 = -1;
+				r2.setCharAt(0, '0');
+			}
+			r1int = Integer.parseInt(r1.toString(),2);
+			r2int = Integer.parseInt(r2.toString(),2);
+			if(r2int == 0) {
+				System.out.println("MLT DIVZERO!");
+				cc[2] = true;
+			}
+			int quotient = (r1int*f1)/(r2int*f2);
+			int reminder = (r1int*f1)%(r2int*f2);
+			String temp1 ="1";
+			String temp2 = "";
+			if (quotient < 0) {
+				temp2 = Integer.toBinaryString((quotient -1)).substring(16);
+				for(int i = 1; i < 16; i++) {
+					if(temp2.charAt(i) == '0') {
+						temp1 = temp1 + '1';
+					} else if (temp2.charAt(i) == '1') {
+						temp1 = temp1 + '0';
+					}
+				}
+			} else if ( quotient >= 0) {
+				temp1 = Integer.toBinaryString(quotient);
+				for (int j = temp1.length(); j < 16; j++) {
+					temp1 = "0" +temp1;
+				}
+			}
+			temp2 = "";
+			String temp3 = "1";
+			if(reminder < 0) {
+				temp2 = Integer.toBinaryString((reminder - 1)).substring(16);
+				for (int k = 1; k < 16; k++) {
+					if(temp2.charAt(k) == '0') {
+						temp3 = temp3 + '1';
+					} else if (temp2.charAt(k) == '1') {
+						temp3 = temp3 + '0';
+					}
+				}
+			} else if (reminder >= 0) {
+				temp3 = Integer.toBinaryString(reminder);
+				for (int l = temp3.length(); l < 16; l++) {
+					temp3 = "0" + temp3;
+				}
+			}
+			if (rx == 0) {
+				setR0(Short.parseShort(temp1));
+				setR1(Short.parseShort(temp3));
+			} else if (rx == 2) {
+				setR2(Short.parseShort(temp1));
+				setR3(Short.parseShort(temp3));
+			}
+		}
+	}
+	
+	private void trr(short rx, short ry) {
+		if (this.r[rx] == this.r[ry]) {
+			cc[3] = true;
+		} else {
+			cc[3] = false;
+		}
+	}
+	
+	private void and(short rx, short ry) {
+		String r1 = Short.toString(r[rx]);
+		String r2 = Short.toString(r[ry]);
+		String temp = "";
+		for (int i = 0; i < 16; i++) {
+			int aleft = Integer.parseInt(Character.toString(r1.charAt(i)));
+			int aright = Integer.parseInt(Character.toString(r2.charAt(i)));
+			if((aleft & aright) == 1) {
+				temp = temp + '1';
+			} else if ((aleft & aright) == 0) {
+				temp = temp + '0';
+			}
+		}
+		setRx(rx,temp);
+	}
+	
+	private void orr(short rx, short ry) {
+		String r1 = Short.toString(r[rx]);
+		String r2 = Short.toString(r[ry]);
+		String temp = "";
+		for (int i = 0; i < 16; i++) {
+			int aleft = Integer.parseInt(Character.toString(r1.charAt(i)));
+			int aright = Integer.parseInt(Character.toString(r2.charAt(i)));
+			if((aleft | aright) == 1) {
+				temp = temp + '1';
+			} else if ((aleft |aright) == 0) {
+				temp = temp + '0';
+			}
+		}
+		setRx(rx,temp);
+	}
+	
+	private void not(short rx) {
+		String r1 = Short.toString(r[rx]);
+		String temp = "";
+		for(int i = 0; i < 16; i++) {
+			if(r1.charAt(i) == '0') {
+				temp = temp + '1';
+			} else if (r1.charAt(i) == '1') {
+				temp = temp + '0';
+			}
+		}
+		setRx(rx,temp);
+	}
+	
+	private void src(short ri, short count, short lr, short al) {
+		String lrtemp = Short.toString(lr);
+		String altemp = Short.toString(al);
+		String rtemp = Short.toString(r[ri]);
+		int []buffer = new int[16];
+		String result = "";
+		for (int t = 0; t < 16; t++) {
+			buffer[t] = Integer.parseInt(Character.toString(rtemp.charAt(t)));
+		}
+		if (altemp.equals("0")) {
+			if(lrtemp.equals("0")) {
+				for (int a = count; a > 0; a--) {
+					if(buffer[15] == 1) {
+						System.out.println("SRC Right Shift Underflow!");
+						cc[1] = true;
+					}
+					for(int b = 15; b > 1; b--) {
+						buffer[b] = buffer[b-1];
+					}
+					buffer[1] = 0;
+				}
+				for (int c = 0; c < buffer.length; c++) {
+					result = result + Integer.toString(buffer[c]);
+				}
+				setRx(ri,result);
+			} else if (lrtemp.equals("1")) {
+				for(int d =count; d > 0; d--) {
+					if(buffer[1] == 1) {
+						System.out.println("SRC Left Shift Overflow!");
+						cc[0] = true;
+					}
+					for (int e = 1; e < 15; e++) {
+						buffer[e] = buffer[e+1];
+					}
+					buffer[15] = 0;
+				}
+				for (int f = 0; f < buffer.length; f++) {
+					result = result + Integer.toString(buffer[f]);
+				}
+				setRx(ri,result);
+			}
+		} else if(altemp.equals("1")) {
+			if(lrtemp.equals("0")) {
+				for (int i = count; i > 0; i--) {
+					if(buffer[15] == 1) {
+						System.out.println("SRC Right Shift Underflow!");
+						cc[1] = true;
+					}
+					for (int j = 15; j > 0; j--) {
+						buffer[j] = buffer[j-1];
+					}
+					buffer[0] = 0;
+				}
+				for (int k = 0; k < buffer.length; k++) {
+					result = result + Integer.toString(buffer[k]);
+				}
+				setRx(ri,result);
+			} else if(lrtemp.equals("1")) {
+				for(int l = count; l > 0; l--) {
+					if(buffer[0] == 1) {
+						System.out.println("SRC Legt Shift Overflow!");
+						cc[0] = true;
+					}
+					for(int m = 0; m < 15; m++) {
+						buffer[m] = buffer[m+1];
+					}
+					buffer[15] = 0;
+				}
+				for (int n = 0; n < buffer.length; n++) {
+					result = result + Integer.toString(buffer[n]);
+				}
+				setRx(ri,result);
+			}
+		}
+	}
+	
+	private void rrc(short ri, short count, short lr, short al) {
+		String lrtemp = Short.toString(lr);
+		String altemp = Short.toString(al);
+		String rtemp = Short.toString(r[ri]);
+		int []buffer = new int[16];
+		String result = "";
+		for (int t = 0; t < 16; t++) {
+			buffer[t] = Integer.parseInt(Character.toString(rtemp.charAt(t)));
+		}
+		if(altemp.equals("0")) {
+			if(lrtemp.equals("0")){
+				for (int a = count; a > 0; a--) {
+					int end = buffer[15];
+					for (int b = 15; b > 1; b--) {
+						buffer[b] = buffer[b-1];
+					}
+					buffer[1] = end;
+				}
+				for (int c = 0; c < buffer.length; c++) {
+					result = result + Integer.toString(buffer[c]);
+				}
+				setRx(ri,result);
+			} else if (lrtemp.equals("1")) {
+				for (int d = count; d > 0; d--) {
+					int start = buffer[1];
+					for (int e = 15; e > 1; e--) {
+						buffer[e] = buffer[e+1];
+					}
+					buffer[15] = start;
+				}
+				for (int f = 0; f < buffer.length; f++) {
+					result = result + Integer.toString(buffer[f]);
+				}
+				setRx(ri,result);
+			}
+		} else if (altemp.equals("1")) {
+			if(lrtemp.equals("0")) {
+				for (int i = count; i > 0; i--) {
+					int end = buffer[15];
+					for (int j = 15; j > 1; j--) {
+						buffer[j] = buffer[j-1];
+					}
+					buffer[0] = end;
+				}
+				for (int k = 0; k < buffer.length; k++) {
+					result = result + Integer.toString(buffer[k]);
+				}
+				setRx(ri,result);
+			} else if (lrtemp.equals("1")) {
+				for (int l = count; l > 0; l--) {
+					int start = buffer[0];
+					for (int m = 15; m > 1; m--) {
+						buffer[m] = buffer[m+1];
+					}
+					buffer[15] = start;
+				}
+				for (int n = 0; n < buffer.length; n++) {
+					result = result + Integer.toString(buffer[n]);
+				}
+				setRx(ri,result);
+			}
+		}
+	}
+	
 
-
-
+	private void setRx(short r, String c) {
+		switch(r) {
+		case 0:
+			setR0(Short.parseShort(c));
+			break;
+		case 1:
+			setR1(Short.parseShort(c));
+			break;
+		case 2:
+			setR2(Short.parseShort(c));
+			break;
+		case 3:
+			setR3(Short.parseShort(c));
+			break;
+		}
+	}
+	
 	// getters and setters
 
 
@@ -297,6 +663,7 @@ public class CPU {
 	public void setR0(short r0) {
 		this.r[0] = r0;
 	}
+
 
 
 
