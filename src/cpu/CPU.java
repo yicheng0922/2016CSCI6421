@@ -146,6 +146,56 @@ public class CPU {
 				address = Short.parseShort(instruction.substring(11,16),2);
 				sir(r,address);
 				break;
+			case 10: //jz
+				r = Short.parseShort(instruction.substring(6,8),2);
+				x = Short.parseShort(instruction.substring(8,10),2);
+				i = Short.parseShort(instruction.substring(10,11),2);
+				address = Short.parseShort(instruction.substring(11,16),2);
+				jz(r,x,address,i);
+				break;
+			case 11: //jne
+				r = Short.parseShort(instruction.substring(6,8),2);
+				x = Short.parseShort(instruction.substring(8,10),2);
+				i = Short.parseShort(instruction.substring(10,11),2);
+				address = Short.parseShort(instruction.substring(11,16),2);
+				jne(r,x,address,i);
+				break;
+			case 12: //jcc
+				x = Short.parseShort(instruction.substring(8,10),2);
+				i = Short.parseShort(instruction.substring(10,11),2);
+				address = Short.parseShort(instruction.substring(11,16),2);
+				jcc(x,address,i);
+				break;
+			case 13: //jma
+				x = Short.parseShort(instruction.substring(8,10),2);
+				i = Short.parseShort(instruction.substring(10,11),2);
+				address = Short.parseShort(instruction.substring(11,16),2);
+				jma(x,address,i);
+				break;
+			case 14: //jsr
+				x = Short.parseShort(instruction.substring(8,10),2);
+				i = Short.parseShort(instruction.substring(10,11),2);
+				address = Short.parseShort(instruction.substring(11,16),2);
+				jsr(x,address,i);
+				break;
+			case 15: //rfs
+				address = Short.parseShort(instruction.substring(11,16),2);
+				rfs(address);
+				break;
+			case 16: //sob
+				r = Short.parseShort(instruction.substring(6,8),2);
+				x = Short.parseShort(instruction.substring(8,10),2);
+				i = Short.parseShort(instruction.substring(10,11),2);
+				address = Short.parseShort(instruction.substring(11,16),2);
+				sob(r,x,address,i);
+				break;
+			case 17: //jge
+				r = Short.parseShort(instruction.substring(6,8),2);
+				x = Short.parseShort(instruction.substring(8,10),2);
+				i = Short.parseShort(instruction.substring(10,11),2);
+				address = Short.parseShort(instruction.substring(11,16),2);
+				jge(r,x,address,i);
+				break;
 			case 20: //mlt
 				rx = Short.parseShort(instruction.substring(6,8),2);
 				ry = Short.parseShort(instruction.substring(8,10),2);				
@@ -253,7 +303,6 @@ public class CPU {
 		mar = EA;
 		mbr = this.r[r];
 		setMem(mbr,mar);
-
 	}
 	
 	private void lda(short r, short x, short address, short indirect)
@@ -649,6 +698,97 @@ public class CPU {
 		}
 	}
 	
+	private void jz(short r, short x, short address, short indirect)
+	{
+		short EA = calcEA(x,address,indirect);
+		if(this.r[r]==0)
+		{
+			pc = EA;
+		}
+		else
+		{
+			pc++;
+		}	
+	}
+
+	private void jne(short r, short x, short address, short indirect)
+	{
+		short EA = calcEA(x,address,indirect);
+		if(this.r[r]!=0)
+		{
+			pc = EA;
+		}
+		else
+		{
+			pc++;
+		}	
+	}
+	
+	private void jcc(short x, short address, short indirect)
+	{
+		short EA = calcEA(x,address,indirect);
+		if(cc[1]==true)
+		{
+			pc = EA;
+		}
+		else
+		{
+			pc++;
+		}
+	}
+	
+	private void jma(short x, short address, short indirect)
+	{
+		short EA = calcEA(x,address,indirect);
+		pc = EA;
+	}
+	
+	private void jsr(short x, short address, short indirect)
+	{
+		short EA = calcEA(x,address,indirect);
+		this.r[3] = (short) (pc+1);
+		pc = EA;
+	}
+	
+	private void rfs(short immed)
+	{
+		this.r[0] = immed;
+		pc = this.r[3];
+	}
+	
+	private void sob(short r, short x, short address, short indirect)
+	{
+		short EA = calcEA(x,address,indirect);
+		this.r[r]=(short) (this.r[r]-1);
+		if(this.r[r]>0)
+		{
+			pc = EA;
+		}
+		else
+		{
+			pc++;
+		}	
+	}
+	
+	private void jge(short r, short x, short address, short indirect)
+	{
+		short EA = calcEA(x,address,indirect);
+		if(this.r[r]>=0)
+		{
+			pc = EA;
+		}
+		else
+		{
+			pc++;
+		}	
+	}
+	
+	
+	
+	
+	
+	
+	// getters and setters
 	// getters and setters
 
 
