@@ -147,46 +147,46 @@ public class CPU {
 				sir(r,address);
 				break;
 			case 20: //mlt
-				rx = Short.parseShort(instruction.substring(6,7),2);
-				ry = Short.parseShort(instruction.substring(8,9),2);				
+				rx = Short.parseShort(instruction.substring(6,8),2);
+				ry = Short.parseShort(instruction.substring(8,10),2);				
 				mlt(rx,ry);
 				break;
 			case 21: //dvd
-				rx = Short.parseShort(instruction.substring(6,7),2);
-				ry = Short.parseShort(instruction.substring(8,9),2);				
+				rx = Short.parseShort(instruction.substring(6,8),2);
+				ry = Short.parseShort(instruction.substring(8,10),2);				
 				dvd(rx,ry);
 				break;
 			case 22: //trr
-				rx = Short.parseShort(instruction.substring(6,7),2);
-				ry = Short.parseShort(instruction.substring(8,9),2);				
+				rx = Short.parseShort(instruction.substring(6,8),2);
+				ry = Short.parseShort(instruction.substring(8,10),2);				
 				trr(rx,ry);
 				break;
 			case 23: //and
-				rx = Short.parseShort(instruction.substring(6,7),2);
-				ry = Short.parseShort(instruction.substring(8,9),2);				
+				rx = Short.parseShort(instruction.substring(6,8),2);
+				ry = Short.parseShort(instruction.substring(8,10),2);				
 				and(rx,ry);
 				break;
 			case 24: //orr
-				rx = Short.parseShort(instruction.substring(6,7),2);
-				ry = Short.parseShort(instruction.substring(8,9),2);				
+				rx = Short.parseShort(instruction.substring(6,8),2);
+				ry = Short.parseShort(instruction.substring(8,10),2);				
 				orr(rx,ry);
 				break;
 			case 25: //not
-				rx = Short.parseShort(instruction.substring(6,7),2);				
+				rx = Short.parseShort(instruction.substring(6,8),2);				
 				not(rx);
 				break;
 			case 31: //src
-				ri = Short.parseShort(instruction.substring(6,7),2);
-				count = Short.parseShort(instruction.substring(12,15),2);
-				lr = Short.parseShort(instruction.substring(9),2);
-				al = Short.parseShort(instruction.substring(8),2);
+				ri = Short.parseShort(instruction.substring(6,8),2);
+				count = Short.parseShort(instruction.substring(12,16),2);
+				lr = Short.parseShort(instruction.substring(9,10),2);
+				al = Short.parseShort(instruction.substring(8,9),2);
 				src(ri,count,lr,al);
 				break;
 			case 32: //rrc
-				ri = Short.parseShort(instruction.substring(6,7),2);
-				count = Short.parseShort(instruction.substring(12,15),2);
-				lr = Short.parseShort(instruction.substring(9),2);
-				al = Short.parseShort(instruction.substring(8),2);
+				ri = Short.parseShort(instruction.substring(6,8),2);
+				count = Short.parseShort(instruction.substring(12,16),2);
+				lr = Short.parseShort(instruction.substring(9,10),2);
+				al = Short.parseShort(instruction.substring(8,9),2);
 				rrc(ri,count,lr,al);
 				break;
 			case 33: //ldx
