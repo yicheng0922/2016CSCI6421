@@ -55,6 +55,8 @@ public class UI extends JFrame {
 	private JRadioButton Data_R2;
 	private JRadioButton Data_R3;
 	private JRadioButton Data_Mem;
+	private JRadioButton Data_PC;
+	private JRadioButton Data_Key;
 
 	/**
 	 * Launch the application.
@@ -1237,6 +1239,16 @@ public class UI extends JFrame {
 		Data_Mem.setBounds(783, 747, 74, 23);
 		contentPane.add(Data_Mem);
 		
+		Data_PC = new JRadioButton("PC");           //enter button - PC
+		buttonGroup.add(Data_PC);
+		Data_PC.setBounds(876, 747, 62, 23);
+		contentPane.add(Data_PC);
+		
+		Data_Key = new JRadioButton("Keyboard Input");   //enter button - keyboard input
+		buttonGroup.add(Data_Key);
+		Data_Key.setBounds(952, 699, 114, 23);
+		contentPane.add(Data_Key);
+		
 		JButton Clean = new JButton("Clean");           //clean button
 		Clean.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		Clean.setBounds(928, 841, 93, 32);
@@ -1246,14 +1258,6 @@ public class UI extends JFrame {
 		textArea.setEnabled(false);
 		textArea.setBounds(162, 432, 325, 158);
 		contentPane.add(textArea);
-		
-		JRadioButton rdbtnPc = new JRadioButton("PC");  // pc button
-		rdbtnPc.setBounds(876, 747, 62, 23);
-		contentPane.add(rdbtnPc);
-		
-		JRadioButton rdbtnKeyboardInput = new JRadioButton("Keyboard Input"); //keyboard input
-		rdbtnKeyboardInput.setBounds(952, 699, 114, 23);
-		contentPane.add(rdbtnKeyboardInput);
 		
 		JLabel lblConso = new JLabel("Consoles Output");  //consoles output text
 		lblConso.setHorizontalAlignment(SwingConstants.CENTER);
@@ -1370,6 +1374,12 @@ public class UI extends JFrame {
 				int IIndex = Integer.parseInt(Index);
 				cpu.setMem(SData, IIndex);
 				ShowData();
+			} else if (Data_PC.isSelected()) {
+				CleanScr();
+				cpu.setPc(SData);
+				ShowData();
+			} else if (Data_Key.isSelected()) {
+				
 			}
 		}
 	}
