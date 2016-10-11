@@ -253,6 +253,12 @@ public class CPU {
 				break;
 				
 		}
+		
+		if(cc[0]||cc[1]||cc[2]){
+			return -1;
+		}
+			
+		
 		//increment pc
 		pc++;
 		return 0;
@@ -332,9 +338,12 @@ public class CPU {
 		mbr = fetchFromMemory(mar);
 		if(this.r[r] + mbr>Short.MAX_VALUE)
 		{
-			
+			cc[0] = true;
 		}
-		else
+		else if(this.r[r] + mbr < Short.MIN_VALUE)
+		{
+			cc[1] = true;
+		}else
 			this.r[r] +=mbr;
 	}
 	
@@ -343,9 +352,13 @@ public class CPU {
 		short EA = calcEA(x,address,indirect);
 		mar = EA;
 		mbr = fetchFromMemory(mar);
-		if(this.r[r] - mbr<Short.MIN_VALUE)
+		if(this.r[r] - mbr>Short.MAX_VALUE)
 		{
-			
+			cc[0] = true;
+		}
+		else if(this.r[r] - mbr < Short.MIN_VALUE)
+		{
+			cc[1] = true;
 		}
 		else
 			this.r[r] -=mbr;
@@ -354,11 +367,14 @@ public class CPU {
 	private void air(short r, short immed)
 	{
 		mbr = immed;
-		if(this.r[r] + mbr < Short.MAX_VALUE)
+		if(this.r[r] + mbr>Short.MAX_VALUE)
 		{
-			
+			cc[0] = true;
 		}
-		else
+		else if(this.r[r] + mbr < Short.MIN_VALUE)
+		{
+			cc[1] = true;
+		}else
 			this.r[r] +=mbr;
 		
 	}
@@ -366,14 +382,20 @@ public class CPU {
 	private void sir(short r, short immed)
 	{
 		mbr = immed;
-		if(this.r[r] - mbr < Short.MIN_VALUE)
+		if(this.r[r] - mbr>Short.MAX_VALUE)
 		{
-			
+			cc[0] = true;
+		}
+		else if(this.r[r] - mbr < Short.MIN_VALUE)
+		{
+			cc[1] = true;
 		}
 		else
 			this.r[r] -=mbr;
 	}
 	
+	
+	//string buffer will not be string, need revision
 	private void mlt(short rx, short ry) {
 		if(rx == 1 || rx == 3 || ry == 1 || ry == 3) {
 			System.out.println("Rx and Ry must be 0 or 2!");
@@ -418,6 +440,7 @@ public class CPU {
 		}
 	}
 	
+	// same here
 	private void dvd(short rx, short ry) {
 		if(rx == 1 || rx == 3 || ry == 1 || ry ==3) {
 			System.out.println("Rx and Ry must be 0 or 2!");
@@ -487,6 +510,7 @@ public class CPU {
 		}
 	}
 	
+	
 	private void trr(short rx, short ry) {
 		if (this.r[rx] == this.r[ry]) {
 			cc[3] = true;
@@ -496,19 +520,7 @@ public class CPU {
 	}
 	
 	private void and(short rx, short ry) {
-		String r1 = Short.toString(r[rx]);
-		String r2 = Short.toString(r[ry]);
-		String temp = "";
-		for (int i = 0; i < 16; i++) {
-			int aleft = Integer.parseInt(Character.toString(r1.charAt(i)));
-			int aright = Integer.parseInt(Character.toString(r2.charAt(i)));
-			if((aleft & aright) == 1) {
-				temp = temp + '1';
-			} else if ((aleft & aright) == 0) {
-				temp = temp + '0';
-			}
-		}
-		setRx(rx,temp);
+		setRx(rx,short(rx&ry));
 	}
 	
 	private void orr(short rx, short ry) {
