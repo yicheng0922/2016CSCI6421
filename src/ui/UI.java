@@ -34,8 +34,11 @@ public class UI extends JFrame {
 	
 	private JPanel contentPane;
 	private JTextField Data_txt;
-	private JTextField Ins_txt;
+	private JTextField Ins_txt;	
+	private JTextField Enter_txt;
+	private JTextArea Readtxt;
 	private CPU cpu;
+	private int clock = 0;
 	
 	private JRadioButton R0[] = new JRadioButton[16];
 	private JRadioButton R1[] = new JRadioButton[16];
@@ -56,7 +59,6 @@ public class UI extends JFrame {
 	private JRadioButton Data_R3;
 	private JRadioButton Data_Mem;
 	private JRadioButton Data_PC;
-	private JRadioButton Data_Key;
 
 	/**
 	 * Launch the application.
@@ -1244,28 +1246,90 @@ public class UI extends JFrame {
 		Data_PC.setBounds(876, 747, 62, 23);
 		contentPane.add(Data_PC);
 		
-		Data_Key = new JRadioButton("Keyboard Input");   //enter button - keyboard input
-		buttonGroup.add(Data_Key);
-		Data_Key.setBounds(952, 699, 114, 23);
-		contentPane.add(Data_Key);
-		
 		JButton Clean = new JButton("Clean");           //clean button
 		Clean.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		Clean.setBounds(928, 841, 93, 32);
 		contentPane.add(Clean);
+		Clean.addActionListener(new CleanListener());
 		
-		JTextArea textArea = new JTextArea();     //consoles outputs
-		textArea.setEnabled(false);
-		textArea.setBounds(162, 432, 325, 158);
-		contentPane.add(textArea);
+		
+		JTextArea con_out = new JTextArea();     //consoles outputs
+		con_out.setEnabled(false);
+		con_out.setBounds(162, 432, 325, 158);
+		contentPane.add(con_out);
 		
 		JLabel lblConso = new JLabel("Consoles Output");  //consoles output text
 		lblConso.setHorizontalAlignment(SwingConstants.CENTER);
 		lblConso.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblConso.setBounds(5, 496, 145, 19);
 		contentPane.add(lblConso);
-		Clean.addActionListener(new CleanListener());
+		
+		JLabel lblKeyboardRead = new JLabel("Keyboard Read");
+		lblKeyboardRead.setHorizontalAlignment(SwingConstants.CENTER);
+		lblKeyboardRead.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblKeyboardRead.setBounds(0, 793, 145, 19);
+		contentPane.add(lblKeyboardRead);
+		
+		Enter_txt = new JTextField();
+		Enter_txt.setColumns(10);
+		Enter_txt.setBounds(162, 790, 325, 22);
+		contentPane.add(Enter_txt);
+		
+		JButton Enter_OK = new JButton("OK");
+		Enter_OK.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		Enter_OK.setBounds(162, 841, 93, 32);
+		Enter_OK.addActionListener(new OKListener());
+		contentPane.add(Enter_OK);
+		
+		Readtxt = new JTextArea();
+		Readtxt.setText("Please enter 20 integers (from 0 to 65535), a comma should between two integers.");
+		Readtxt.setBounds(162, 723, 325, 45);
+		contentPane.add(Readtxt);
+		Readtxt.setEditable(false);
+		Readtxt.setLineWrap(true);
+		Readtxt.setWrapStyleWord(true);
+
 		ShowData();
+	}
+	
+	//Add OK button Listener
+	public class OKListener implements ActionListener{
+		public void actionPerformed(ActionEvent e){
+			if (clock == 0) {
+				//Read 20 integers
+				String text = Enter_txt.getText();
+				try {
+					String[] numbers = text.split(",");
+				    if (numbers.length < 20) {
+				    	Readtxt.setText("Your input is less than 20 integers!");
+				    } else if (numbers.length > 20) {
+					    Readtxt.setText("Your input is larger than 20 integers!");
+				    } else {
+				    	//put numbers into CPU
+					    //
+					    //
+					    //
+					    Enter_txt.setText("");
+					    Readtxt.setText("Please enter 1 integer you want to search for");
+					    clock = 1;
+				    }
+				} catch (NumberFormatException n) {
+					System.out.println("Your input are not integers!");
+			    }
+			} else if (clock == 1) {
+				//Read 1 numbers
+				String text = Enter_txt.getText();
+				try {
+					int number = Integer.parseInt(text);
+					//put number into CPU
+					//
+					//
+					//
+				} catch (NumberFormatException n) {
+					System.out.println("Your input is not a integer!");
+				}
+			}			
+		}
 	}
 
 	//Add load button Listener
@@ -1378,9 +1442,7 @@ public class UI extends JFrame {
 				CleanScr();
 				cpu.setPc(SData);
 				ShowData();
-			} else if (Data_Key.isSelected()) {
-				
-			}
+			} 
 		}
 	}
 	
