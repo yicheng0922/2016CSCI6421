@@ -452,43 +452,55 @@ public class CPU {
 	}
 	
 	private void and(short rx, short ry) {
-		this.r[rx] = (short) (rx&ry);
+		short r1 = r[rx];
+		short r2 = r[ry];
+		this.r[rx] = (short) (r1&r2);
 	}
 	
 	private void orr(short rx, short ry) {
-		this.r[rx] = (short) (rx|ry);
+		short r1 = r[rx];
+		short r2 = r[ry];
+		this.r[rx] = (short) (r1|r2);
 	}
 	
 	private void not(short rx) {
-		this.r[rx] = (short) (~rx);
+		short r1 = r[rx];
+		this.r[rx] = (short) (~r1);
 	}
 	
 	private void src(short ri, short count, short lr, short al) {
+		short rx = r[ri];
 		if(lr == 1 && al == 0) {
 			//left,arithmetical
-			
+			this.r[ri] = (short) (rx << count);
 		} else if (lr == 1 && al == 1) {
 			//left,logical
-			
+			this.r[ri] = (short) (rx << count);
 		} else if (lr == 0 && al == 0){
 			//right,arithmetical
-			
+			this.r[ri] = (short) (rx >> count);
 		} else if (lr == 0 && al == 1) {
 			//right,logical
-			
+			this.r[ri] = (short) (rx >>> count);
 		} else {
 			//error
-			
+			System.out.println("SRC: Wrong instruction!");
+		}
+		if (this.r[ri] % Math.pow(2, 16) == 0) {
+			cc[1] = false;
+		} else {
+			cc[1] = true;
 		}
 	}
 	
 	private void rrc(short ri, short count, short lr, short al) {
+		short rx = r[ri];
 		if(lr == 1 && al == 1) {
 			//left,logical
-			
+			this.r[ri] = (short) (rx >>> (16 - count) | rx >> count);
 		} else if (lr == 0 && al == 1) {
 			//right,logical
-			
+			this.r[ri] = (short) (rx >>> count | rx << (16 - count));
 		}
 	}
 	
