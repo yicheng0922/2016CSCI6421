@@ -25,6 +25,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Queue;
+import java.util.Vector;
 
 import cpu.CPU;
 import javax.swing.ButtonGroup;
@@ -59,6 +61,8 @@ public class UI extends JFrame {
 	private JRadioButton Data_R3;
 	private JRadioButton Data_Mem;
 	private JRadioButton Data_PC;
+	private short[] devin;
+	private Vector<Short> keyboard_data;
 
 	/**
 	 * Launch the application.
@@ -80,7 +84,8 @@ public class UI extends JFrame {
 	 * Create the frame.
 	 */
 	public UI() {
-		cpu = new CPU();
+		keyboard_data= new Vector<Short>();
+		cpu = new CPU(devin);
 		cpu.setPc((short)6);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1125, 950);
@@ -1305,10 +1310,11 @@ public class UI extends JFrame {
 				    } else if (numbers.length > 20) {
 					    Readtxt.setText("Your input is larger than 20 integers!");
 				    } else {
-				    	//put numbers into CPU
-					    //
-					    //
-					    //
+				    	for(int i = 0; i < 20; i++){
+				    		short nShort = Short.parseShort(numbers[i]);
+				    		keyboard_data.add(nShort);
+				    		
+				    	}
 					    Enter_txt.setText("");
 					    Readtxt.setText("Please enter 1 integer you want to search for");
 					    clock = 1;
@@ -1320,11 +1326,10 @@ public class UI extends JFrame {
 				//Read 1 numbers
 				String text = Enter_txt.getText();
 				try {
-					int number = Integer.parseInt(text);
-					//put number into CPU
-					//
-					//
-					//
+					short number = Short.parseShort(text);
+					keyboard_data.add(number);
+		    		
+					
 				} catch (NumberFormatException n) {
 					System.out.println("Your input is not a integer!");
 				}
@@ -1385,6 +1390,7 @@ public class UI extends JFrame {
 			ShowData();
 		}
 	}
+	
 	
 	//Add Run button Listener
 	public class RunListener implements ActionListener{

@@ -1,30 +1,86 @@
 package cpu;
 
+import java.util.Queue;
+import java.util.Vector;
+
+
+class CacheLine{
+	public short address;
+	public short content;
+	
+	public CacheLine(short address, short content){
+		this.address = address;
+		this.content = content;
+	}
+
+}
+
+class Cache{
+	public Vector<CacheLine> cacheLines;
+	private int size;
+	public Cache(int size){
+		this.cacheLines = new Vector<CacheLine>();
+		this.size = size;
+	}
+	
+	public void add(short address, short content){
+		
+		
+		
+		CacheLine nCL = find(address);
+		if(nCL != null){
+			nCL.content = content;
+			return;
+		}
+		
+		nCL = new CacheLine(address, content);
+		cacheLines.add(nCL);
+		if (cacheLines.size() > this.size){
+			cacheLines.remove(0);
+		}	
+	}
+	
+	public CacheLine find(short address){
+		CacheLine result = null;
+		for(CacheLine cl : this.cacheLines){
+			if (cl.address == address){
+				result = cl;
+			}
+		}
+		
+		return result;
+	}
+	
+}
+
 public class CPU {
 	
 	//registers, limit will be put on for register that are smaller than 16 bits. 
 	private boolean[] cc;
 	private short[] r,x;
-	private short rx,ry;
-	private short ri,count,lr,al;
+	private short[] devin;
+	private short[] devout;
 	private short ir;
 	private short pc;
 	private short mar;
 	private short mbr;
 	private short msr;
 	private short mfr;
-	
+	private Cache cache;
 	//memory
 	private short mem[];
 	
 	// constructor, the register and memory are initiated here
-	public CPU()
+	public CPU(short[] devin)
 	{
 		ir=pc=mar=mbr=msr=mfr=0;
 		cc = new boolean[4];
 		r = new short[4];
 		x = new short[3];
 		mem=new short[2048];
+		cache = new Cache(16);
+		this.devin=devin;
+		this.devout = new short[32];
 		for (int i=0;i<cc.length;i++)
 		{
 			cc[i]=false;
@@ -54,6 +110,7 @@ public class CPU {
 		}
 		else
 		{
+			cache.add((short)index, content);
 			mem[index] = content;
 		}
 	}
@@ -71,6 +128,10 @@ public class CPU {
 		}
 		else
 		{
+			CacheLine c= cache.find(address);
+			if(c != null){
+				return c.content;
+			}
 			return mem[address];
 		}
 	}
@@ -95,6 +156,9 @@ public class CPU {
 		}
 		short optcode = Short.parseShort(instruction.substring(0, 6),2);
 		short r,x,i,address;
+		short rx,ry;
+		short ri,count,lr,al;
+		short tempcc,devid;
 
 		//check op code and switch to the function it is corresponding to
 		switch (optcode)
@@ -146,93 +210,94 @@ public class CPU {
 				address = Short.parseShort(instruction.substring(11,16),2);
 				sir(r,address);
 				break;
-			case 10: //jz
+			case 8: //jz
 				r = Short.parseShort(instruction.substring(6,8),2);
 				x = Short.parseShort(instruction.substring(8,10),2);
 				i = Short.parseShort(instruction.substring(10,11),2);
 				address = Short.parseShort(instruction.substring(11,16),2);
 				jz(r,x,address,i);
 				break;
-			case 11: //jne
+			case 9: //jne
 				r = Short.parseShort(instruction.substring(6,8),2);
 				x = Short.parseShort(instruction.substring(8,10),2);
 				i = Short.parseShort(instruction.substring(10,11),2);
 				address = Short.parseShort(instruction.substring(11,16),2);
 				jne(r,x,address,i);
 				break;
-			case 12: //jcc
+			case 10: //jcc
+				tempcc = Short.parseShort(instruction.substring(6,8),2);
 				x = Short.parseShort(instruction.substring(8,10),2);
 				i = Short.parseShort(instruction.substring(10,11),2);
 				address = Short.parseShort(instruction.substring(11,16),2);
-				jcc(x,address,i);
+				jcc(tempcc,x,address,i);
 				break;
-			case 13: //jma
+			case 11: //jma
 				x = Short.parseShort(instruction.substring(8,10),2);
 				i = Short.parseShort(instruction.substring(10,11),2);
 				address = Short.parseShort(instruction.substring(11,16),2);
 				jma(x,address,i);
 				break;
-			case 14: //jsr
+			case 12: //jsr
 				x = Short.parseShort(instruction.substring(8,10),2);
 				i = Short.parseShort(instruction.substring(10,11),2);
 				address = Short.parseShort(instruction.substring(11,16),2);
 				jsr(x,address,i);
 				break;
-			case 15: //rfs
+			case 13: //rfs
 				address = Short.parseShort(instruction.substring(11,16),2);
 				rfs(address);
 				break;
-			case 16: //sob
+			case 14: //sob
 				r = Short.parseShort(instruction.substring(6,8),2);
 				x = Short.parseShort(instruction.substring(8,10),2);
 				i = Short.parseShort(instruction.substring(10,11),2);
 				address = Short.parseShort(instruction.substring(11,16),2);
 				sob(r,x,address,i);
 				break;
-			case 17: //jge
+			case 15: //jge
 				r = Short.parseShort(instruction.substring(6,8),2);
 				x = Short.parseShort(instruction.substring(8,10),2);
 				i = Short.parseShort(instruction.substring(10,11),2);
 				address = Short.parseShort(instruction.substring(11,16),2);
 				jge(r,x,address,i);
 				break;
-			case 20: //mlt
+			case 16: //mlt
 				rx = Short.parseShort(instruction.substring(6,8),2);
 				ry = Short.parseShort(instruction.substring(8,10),2);				
 				mlt(rx,ry);
 				break;
-			case 21: //dvd
+			case 17: //dvd
 				rx = Short.parseShort(instruction.substring(6,8),2);
 				ry = Short.parseShort(instruction.substring(8,10),2);				
 				dvd(rx,ry);
 				break;
-			case 22: //trr
+			case 18: //trr
 				rx = Short.parseShort(instruction.substring(6,8),2);
 				ry = Short.parseShort(instruction.substring(8,10),2);				
 				trr(rx,ry);
 				break;
-			case 23: //and
+			case 19: //and
 				rx = Short.parseShort(instruction.substring(6,8),2);
 				ry = Short.parseShort(instruction.substring(8,10),2);				
 				and(rx,ry);
 				break;
-			case 24: //orr
+			case 20: //orr
 				rx = Short.parseShort(instruction.substring(6,8),2);
 				ry = Short.parseShort(instruction.substring(8,10),2);				
 				orr(rx,ry);
 				break;
-			case 25: //not
+			case 21: //not
 				rx = Short.parseShort(instruction.substring(6,8),2);				
 				not(rx);
 				break;
-			case 31: //src
+			case 25: //src
 				ri = Short.parseShort(instruction.substring(6,8),2);
 				count = Short.parseShort(instruction.substring(12,16),2);
 				lr = Short.parseShort(instruction.substring(9,10),2);
 				al = Short.parseShort(instruction.substring(8,9),2);
 				src(ri,count,lr,al);
 				break;
-			case 32: //rrc
+			case 26: //rrc
 				ri = Short.parseShort(instruction.substring(6,8),2);
 				count = Short.parseShort(instruction.substring(12,16),2);
 				lr = Short.parseShort(instruction.substring(9,10),2);
@@ -251,6 +316,18 @@ public class CPU {
 				address = Short.parseShort(instruction.substring(11,16),2);
 				stx(x,address,i);
 				break;
+			
+			case 49: //in
+				r = Short.parseShort(instruction.substring(6,8),2);
+				devid = Short.parseShort(instruction.substring(11,16),2);
+				in(r,devid);
+				return 32+devid;// signal saying that input needs to be updated
+			case 50: //out
+				r = Short.parseShort(instruction.substring(6,8),2);
+				devid = Short.parseShort(instruction.substring(11,16),2);
+				out(r,devid);
+				return 64+devid;
+				// signal saying that there is new output.
 				
 		}
 		
@@ -264,6 +341,15 @@ public class CPU {
 		return 0;
 	}
 	
+
+	private void out(short r, short devid) {
+		devout[devid] = this.r[r];// TODO Auto-generated method stub
+	}
+
+	private void in(short r, short devid) {
+		this.r[r] = devin[devid];// TODO Auto-generated method stub
+		
+	}
 
 	// calculate effective address
 	private short calcEA(short x,short address,short i)
@@ -395,7 +481,6 @@ public class CPU {
 	}
 	
 	
-	//string buffer will not be string, need revision
 	private void mlt(short rx, short ry) {
 		if(rx == 1 || rx == 3 || ry == 1 || ry == 3) {
 			System.out.println("Rx and Ry must be 0 or 2!");
@@ -419,7 +504,6 @@ public class CPU {
 		}
 	}
 	
-	// same here
 	private void dvd(short rx, short ry) {
 		if(rx == 1 || rx == 3 || ry == 1 || ry ==3) {
 			System.out.println("Rx and Ry must be 0 or 2!");
@@ -530,10 +614,11 @@ public class CPU {
 		}	
 	}
 	
-	private void jcc(short x, short address, short indirect)
+	// need modification
+	private void jcc(short cc,short x, short address, short indirect)
 	{
 		short EA = calcEA(x,address,indirect);
-		if(cc[1]==true)
+		if(this.cc[cc]==true)
 		{
 			pc = EA;
 		}
@@ -553,6 +638,7 @@ public class CPU {
 	{
 		short EA = calcEA(x,address,indirect);
 		this.r[3] = (short) (pc+1);
+		this.r[0] = (short) 2020;
 		pc = EA;
 	}
 	
