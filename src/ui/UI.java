@@ -1313,7 +1313,9 @@ public class UI extends JFrame {
 				    	for(int i = 0; i < 20; i++){
 				    		short nShort = Short.parseShort(numbers[i]);
 				    		keyboard_data.add(nShort);
-				    		
+				    		if(i == 1){
+				    			devin[i] = nShort;
+				    		}
 				    	}
 					    Enter_txt.setText("");
 					    Readtxt.setText("Please enter 1 integer you want to search for");
@@ -1385,7 +1387,12 @@ public class UI extends JFrame {
 			//Clean the screen first
 			CleanScr();
 			//Execute the data which function is in CPU
-			cpu.executeNext();
+			int result = cpu.executeNext();
+			if(result >63){
+				update_output(result-64);
+			}else if(result > 31){
+				update_input(result-32);
+			}
 			//Show the data on screen
 			ShowData();
 		}
@@ -1401,10 +1408,17 @@ public class UI extends JFrame {
 			//When the data is run out, break the execution
 			while(true)
 			{
-				if(cpu.executeNext()==-1)
+				int result = cpu.executeNext();
+				if(result == -1)
 				{
 					break;
 				}
+				else if(result >63){
+					update_output(result-64);
+				}else if(result > 31){
+					update_input(result-32);
+				}
+				
 			
 			}
 			//Show the data on screen
@@ -1481,6 +1495,34 @@ public class UI extends JFrame {
 		while (b < 12) {
 			PC[b].setSelected(false);
 			b++;
+		}
+	}
+	
+	public void update_input(int devid){
+		if(devid == 0)
+		{
+			short data = keyboard_data.remove(0);
+			devin[devid] = data;
+		}
+		else
+		{
+			System.err.println("device not available");
+		}
+			
+	}
+	
+	public void update_output(int devid){
+		if(devid == 0)
+		{
+			if(!Readtxt.getText().equals(""))
+			{
+				Readtxt.append(",");
+			}
+			Readtxt.append(""+cpu.devout[devid]);
+		}
+		else
+		{
+			System.err.println("device not available");
 		}
 	}
 	

@@ -59,7 +59,7 @@ public class CPU {
 	private boolean[] cc;
 	private short[] r,x;
 	private short[] devin;
-	private short[] devout;
+	public short[] devout;
 	private short ir;
 	private short pc;
 	private short mar;
