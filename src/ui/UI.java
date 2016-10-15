@@ -25,6 +25,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Queue;
+import java.util.Vector;
 
 import cpu.CPU;
 import javax.swing.ButtonGroup;
@@ -59,6 +61,8 @@ public class UI extends JFrame {
 	private JRadioButton Data_R3;
 	private JRadioButton Data_Mem;
 	private JRadioButton Data_PC;
+	private short[] devin;
+	private Vector<Short> keyboard_data;
 
 	/**
 	 * Launch the application.
@@ -80,7 +84,8 @@ public class UI extends JFrame {
 	 * Create the frame.
 	 */
 	public UI() {
-		cpu = new CPU();
+		keyboard_data= new Vector<Short>();
+		cpu = new CPU(devin);
 		cpu.setPc((short)6);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1125, 950);
@@ -1305,10 +1310,13 @@ public class UI extends JFrame {
 				    } else if (numbers.length > 20) {
 					    Readtxt.setText("Your input is larger than 20 integers!");
 				    } else {
-				    	//put numbers into CPU
-					    //
-					    //
-					    //
+				    	for(int i = 0; i < 20; i++){
+				    		short nShort = Short.parseShort(numbers[i]);
+				    		keyboard_data.add(nShort);
+				    		if(i == 1){
+				    			devin[i] = nShort;
+				    		}
+				    	}
 					    Enter_txt.setText("");
 					    Readtxt.setText("Please enter 1 integer you want to search for");
 					    clock = 1;
@@ -1320,11 +1328,10 @@ public class UI extends JFrame {
 				//Read 1 numbers
 				String text = Enter_txt.getText();
 				try {
-					int number = Integer.parseInt(text);
-					//put number into CPU
-					//
-					//
-					//
+					short number = Short.parseShort(text);
+					keyboard_data.add(number);
+		    		
+					
 				} catch (NumberFormatException n) {
 					System.out.println("Your input is not a integer!");
 				}
@@ -1380,11 +1387,17 @@ public class UI extends JFrame {
 			//Clean the screen first
 			CleanScr();
 			//Execute the data which function is in CPU
-			cpu.executeNext();
+			int result = cpu.executeNext();
+			if(result >63){
+				update_output(result-64);
+			}else if(result > 31){
+				update_input(result-32);
+			}
 			//Show the data on screen
 			ShowData();
 		}
 	}
+	
 	
 	//Add Run button Listener
 	public class RunListener implements ActionListener{
@@ -1395,10 +1408,17 @@ public class UI extends JFrame {
 			//When the data is run out, break the execution
 			while(true)
 			{
-				if(cpu.executeNext()==-1)
+				int result = cpu.executeNext();
+				if(result == -1)
 				{
 					break;
 				}
+				else if(result >63){
+					update_output(result-64);
+				}else if(result > 31){
+					update_input(result-32);
+				}
+				
 			
 			}
 			//Show the data on screen
@@ -1475,6 +1495,34 @@ public class UI extends JFrame {
 		while (b < 12) {
 			PC[b].setSelected(false);
 			b++;
+		}
+	}
+	
+	public void update_input(int devid){
+		if(devid == 0)
+		{
+			short data = keyboard_data.remove(0);
+			devin[devid] = data;
+		}
+		else
+		{
+			System.err.println("device not available");
+		}
+			
+	}
+	
+	public void update_output(int devid){
+		if(devid == 0)
+		{
+			if(!Readtxt.getText().equals(""))
+			{
+				Readtxt.append(",");
+			}
+			Readtxt.append(""+cpu.devout[devid]);
+		}
+		else
+		{
+			System.err.println("device not available");
 		}
 	}
 	
