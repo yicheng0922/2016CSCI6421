@@ -53,6 +53,7 @@ public class UI extends JFrame {
 	private JRadioButton MBR[] = new JRadioButton[16];
 	private JRadioButton IR[] = new JRadioButton[16];
 	private JRadioButton PC[] = new JRadioButton[12];
+	private JTextArea con_out;
 	//private JRadioButton Mem[] = new JRadioButton[16];
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private JRadioButton Data_R0;
@@ -85,6 +86,7 @@ public class UI extends JFrame {
 	 */
 	public UI() {
 		keyboard_data= new Vector<Short>();
+		devin = new short[32];
 		cpu = new CPU(devin);
 		cpu.setPc((short)6);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -1258,7 +1260,7 @@ public class UI extends JFrame {
 		Clean.addActionListener(new CleanListener());
 		
 		
-		JTextArea con_out = new JTextArea();     //consoles outputs
+		con_out = new JTextArea();     //consoles outputs
 		con_out.setEnabled(false);
 		con_out.setBounds(162, 432, 325, 158);
 		contentPane.add(con_out);
@@ -1312,10 +1314,12 @@ public class UI extends JFrame {
 				    } else {
 				    	for(int i = 0; i < 20; i++){
 				    		short nShort = Short.parseShort(numbers[i]);
-				    		keyboard_data.add(nShort);
-				    		if(i == 1){
+				    		
+				    		if(i == 0){
 				    			devin[i] = nShort;
+				    			continue;
 				    		}
+				    		keyboard_data.add(nShort);
 				    	}
 					    Enter_txt.setText("");
 					    Readtxt.setText("Please enter 1 integer you want to search for");
@@ -1330,12 +1334,15 @@ public class UI extends JFrame {
 				try {
 					short number = Short.parseShort(text);
 					keyboard_data.add(number);
-		    		
-					
+		    		Readtxt.setText("Please see the output on the console.");
+		    		clock = 2;
 				} catch (NumberFormatException n) {
 					System.out.println("Your input is not a integer!");
 				}
-			}			
+			} else if (clock == 2) {
+				Readtxt.setText("Please click OK button to a new program.");
+				clock = 0;
+			}
 		}
 	}
 
@@ -1409,6 +1416,7 @@ public class UI extends JFrame {
 			while(true)
 			{
 				int result = cpu.executeNext();
+
 				if(result == -1)
 				{
 					break;
@@ -1418,7 +1426,7 @@ public class UI extends JFrame {
 				}else if(result > 31){
 					update_input(result-32);
 				}
-				
+				System.out.println(cpu);
 			
 			}
 			//Show the data on screen
@@ -1501,8 +1509,12 @@ public class UI extends JFrame {
 	public void update_input(int devid){
 		if(devid == 0)
 		{
-			short data = keyboard_data.remove(0);
-			devin[devid] = data;
+			if(keyboard_data.size()>0){
+				short data = keyboard_data.remove(0);
+				devin[devid] = data;
+			}else
+				devin[devid]=0;
+			
 		}
 		else
 		{
@@ -1512,13 +1524,13 @@ public class UI extends JFrame {
 	}
 	
 	public void update_output(int devid){
-		if(devid == 0)
+		if(devid == 1)
 		{
 			if(!Readtxt.getText().equals(""))
 			{
-				Readtxt.append(",");
+				con_out.append(",");
 			}
-			Readtxt.append(""+cpu.devout[devid]);
+			con_out.append(""+cpu.devout[devid]);
 		}
 		else
 		{

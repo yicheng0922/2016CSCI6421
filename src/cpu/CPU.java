@@ -1,5 +1,6 @@
 package cpu;
 
+import java.util.Arrays;
 import java.util.Queue;
 import java.util.Vector;
 
@@ -55,10 +56,21 @@ class Cache{
 
 public class CPU {
 	
+	@Override
+	public String toString() {
+		return "CPU [cc=" + Arrays.toString(cc) + ", r=" + Arrays.toString(r) +", mem" +Arrays.toString(Arrays.copyOfRange(mem, 1500, 1550))+ ", x=" + Arrays.toString(x) + ", devin="
+				+ Arrays.toString(devin) + ", devout=" + Arrays.toString(devout) + ", ir=" + ir + ", pc=" + pc
+				+ ", mar=" + mar + ", mbr=" + mbr + ", msr=" + msr + ", mfr=" + mfr + "]";
+	}
+
+
+	
+
+
 	//registers, limit will be put on for register that are smaller than 16 bits. 
 	private boolean[] cc;
 	private short[] r,x;
-	private short[] devin;
+	public short[] devin;
 	public short[] devout;
 	private short ir;
 	private short pc;
@@ -159,7 +171,8 @@ public class CPU {
 		short rx,ry;
 		short ri,count,lr,al;
 		short tempcc,devid;
-
+		System.out.println("pc: "+ pc+ ". op: "+optcode);
+		
 		//check op code and switch to the function it is corresponding to
 		switch (optcode)
 		{
@@ -321,11 +334,14 @@ public class CPU {
 				r = Short.parseShort(instruction.substring(6,8),2);
 				devid = Short.parseShort(instruction.substring(11,16),2);
 				in(r,devid);
+				System.out.println(devid);
+				pc++;
 				return 32+devid;// signal saying that input needs to be updated
 			case 50: //out
 				r = Short.parseShort(instruction.substring(6,8),2);
 				devid = Short.parseShort(instruction.substring(11,16),2);
 				out(r,devid);
+				pc++;
 				return 64+devid;
 				// signal saying that there is new output.
 				
@@ -406,14 +422,16 @@ public class CPU {
 	private void ldx(short x, short address, short indirect)
 	{
 		short EA = calcEA( (short) 0,address,indirect);
-		this.x[x] = EA;
+		mar = EA;
+		mbr = fetchFromMemory(mar);
+		this.x[x-1] = mbr;
 	}
 	
 	private void stx(short x, short address, short indirect)
 	{
 		short EA = calcEA( (short) 0,address,indirect);
 		mar = EA;
-		mbr = this.x[x];
+		mbr = this.x[x-1];
 		setMem(mbr,mar);
 	}
 	
@@ -594,10 +612,7 @@ public class CPU {
 		if(this.r[r]==0)
 		{
 			pc = EA;
-		}
-		else
-		{
-			pc++;
+			pc--;
 		}	
 	}
 
@@ -607,10 +622,7 @@ public class CPU {
 		if(this.r[r]!=0)
 		{
 			pc = EA;
-		}
-		else
-		{
-			pc++;
+			pc--;
 		}	
 	}
 	
@@ -621,10 +633,7 @@ public class CPU {
 		if(this.cc[cc]==true)
 		{
 			pc = EA;
-		}
-		else
-		{
-			pc++;
+			pc--;
 		}
 	}
 	
@@ -632,6 +641,7 @@ public class CPU {
 	{
 		short EA = calcEA(x,address,indirect);
 		pc = EA;
+		pc--;
 	}
 	
 	private void jsr(short x, short address, short indirect)
@@ -640,12 +650,14 @@ public class CPU {
 		this.r[3] = (short) (pc+1);
 		this.r[0] = (short) 2020;
 		pc = EA;
+		pc --;
 	}
 	
 	private void rfs(short immed)
 	{
 		this.r[0] = immed;
 		pc = this.r[3];
+		pc--;
 	}
 	
 	private void sob(short r, short x, short address, short indirect)
@@ -655,10 +667,7 @@ public class CPU {
 		if(this.r[r]>0)
 		{
 			pc = EA;
-		}
-		else
-		{
-			pc++;
+			pc--;
 		}	
 	}
 	
@@ -668,10 +677,7 @@ public class CPU {
 		if(this.r[r]>=0)
 		{
 			pc = EA;
-		}
-		else
-		{
-			pc++;
+			pc--;
 		}	
 	}
 	
