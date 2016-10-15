@@ -58,7 +58,7 @@ public class CPU {
 	
 	@Override
 	public String toString() {
-		return "CPU [cc=" + Arrays.toString(cc) + ", r=" + Arrays.toString(r) +", mem" +Arrays.toString(Arrays.copyOfRange(mem, 1500, 1550))+ ", x=" + Arrays.toString(x) + ", devin="
+		return "CPU [cc=" + Arrays.toString(cc) + ", r=" + Arrays.toString(r) +", mem" +Arrays.toString(Arrays.copyOfRange(mem, 1500, 1542))+ ", x=" + Arrays.toString(x) + ", devin="
 				+ Arrays.toString(devin) + ", devout=" + Arrays.toString(devout) + ", ir=" + ir + ", pc=" + pc
 				+ ", mar=" + mar + ", mbr=" + mbr + ", msr=" + msr + ", mfr=" + mfr + "]";
 	}

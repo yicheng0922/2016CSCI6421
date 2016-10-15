@@ -1289,7 +1289,7 @@ public class UI extends JFrame {
 		contentPane.add(Enter_OK);
 		
 		Readtxt = new JTextArea();
-		Readtxt.setText("Please enter 20 integers (from 0 to 65535), a comma should between two integers.");
+		Readtxt.setText("Please enter 20 integers (from -32768 to 32767), use comma to separate numbers.");
 		Readtxt.setBounds(162, 723, 325, 45);
 		contentPane.add(Readtxt);
 		Readtxt.setEditable(false);
@@ -1322,11 +1322,11 @@ public class UI extends JFrame {
 				    		keyboard_data.add(nShort);
 				    	}
 					    Enter_txt.setText("");
-					    Readtxt.setText("Please enter 1 integer you want to search for");
+					    Readtxt.setText("Please enter 1 integer you want to compare with");
 					    clock = 1;
 				    }
 				} catch (NumberFormatException n) {
-					System.out.println("Your input are not integers!");
+					System.out.println("Your inputs are not integers!");
 			    }
 			} else if (clock == 1) {
 				//Read 1 numbers
@@ -1334,7 +1334,7 @@ public class UI extends JFrame {
 				try {
 					short number = Short.parseShort(text);
 					keyboard_data.add(number);
-		    		Readtxt.setText("Please see the output on the console.");
+		    		Readtxt.setText("Please load and run the program for output.");
 		    		clock = 2;
 				} catch (NumberFormatException n) {
 					System.out.println("Your input is not a integer!");
