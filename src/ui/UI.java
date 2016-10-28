@@ -64,6 +64,7 @@ public class UI extends JFrame {
 	private JRadioButton Data_PC;
 	private short[] devin;
 	private Vector<Short> keyboard_data;
+	private JTextField textField;
 
 	/**
 	 * Launch the application.
@@ -90,7 +91,7 @@ public class UI extends JFrame {
 		cpu = new CPU(devin);
 		cpu.setPc((short)6);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1125, 950);
+		setBounds(100, 100, 1125, 1100);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -1295,6 +1296,44 @@ public class UI extends JFrame {
 		Readtxt.setEditable(false);
 		Readtxt.setLineWrap(true);
 		Readtxt.setWrapStyleWord(true);
+		
+		JLabel label_8 = new JLabel("Keyboard Read");
+		label_8.setHorizontalAlignment(SwingConstants.CENTER);
+		label_8.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		label_8.setBounds(0, 948, 145, 19);
+		contentPane.add(label_8);
+		
+		JLabel lblProgram = new JLabel("Program 1");
+		lblProgram.setBounds(40, 747, 60, 16);
+		contentPane.add(lblProgram);
+		
+		JLabel lblProgram_1 = new JLabel("Program 2");
+		lblProgram_1.setBounds(40, 918, 60, 16);
+		contentPane.add(lblProgram_1);
+		
+		textField = new JTextField();      //program 2. The place to enter the word for search
+		textField.setColumns(10);
+		textField.setBounds(162, 947, 325, 22);
+		contentPane.add(textField);
+		
+		JButton btnLoadP = new JButton("Load Text");  //Load six sentences
+		btnLoadP.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnLoadP.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnLoadP.setBounds(149, 1000, 106, 32);
+		contentPane.add(btnLoadP);
+		
+		JButton button_1 = new JButton("OK");     //load the word for search
+		button_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		button_1.setBounds(289, 1000, 93, 32);
+		contentPane.add(button_1);
+		
+		JButton btnLoadP_1 = new JButton("Load P2");  // load program 2
+		btnLoadP_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnLoadP_1.setBounds(415, 1000, 93, 32);
+		contentPane.add(btnLoadP_1);
 
 		ShowData();
 	}
