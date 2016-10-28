@@ -91,7 +91,7 @@ public class UI extends JFrame {
 		cpu = new CPU(devin);
 		cpu.setPc((short)6);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1125, 1100);
+		setBounds(100, 100, 1620, 950);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -1101,7 +1101,7 @@ public class UI extends JFrame {
 		contentPane.add(lblX_2);
 		
 		Data_txt = new JTextField();                //enter the data
-		Data_txt.setBounds(783, 670, 286, 22);
+		Data_txt.setBounds(1299, 670, 286, 22);
 		contentPane.add(Data_txt);
 		Data_txt.setColumns(10);
 		
@@ -1203,65 +1203,66 @@ public class UI extends JFrame {
 		
 		Ins_txt = new JTextField();                  //enter memory address
 		Ins_txt.setColumns(10);
-		Ins_txt.setBounds(783, 790, 286, 22);
+		Ins_txt.setBounds(1299, 790, 286, 22);
 		contentPane.add(Ins_txt);
 		
 		JLabel lblEnterData = new JLabel("Enter Data");
 		lblEnterData.setHorizontalAlignment(SwingConstants.CENTER);
 		lblEnterData.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblEnterData.setBounds(628, 670, 145, 19);
+		lblEnterData.setBounds(1144, 670, 145, 19);
 		contentPane.add(lblEnterData);
 		
 		JLabel lblEnterIndex = new JLabel("Enter Memory Address");
 		lblEnterIndex.setHorizontalAlignment(SwingConstants.CENTER);
 		lblEnterIndex.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblEnterIndex.setBounds(548, 790, 216, 19);
+		lblEnterIndex.setBounds(1064, 790, 216, 19);
 		contentPane.add(lblEnterIndex);
 		
 		JButton Save = new JButton("Save");         // save button
 		Save.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		Save.setBounds(783, 841, 93, 32);
+		Save.setBounds(1299, 841, 93, 32);
 		contentPane.add(Save);
 		Save.addActionListener(new SaveListener());
 		
 		Data_R0 = new JRadioButton("R0");           //enter button - R0
 		buttonGroup.add(Data_R0);
-		Data_R0.setBounds(783, 698, 56, 23);
+		Data_R0.setBounds(1299, 698, 56, 23);
 		contentPane.add(Data_R0);
 		
 		Data_R1 = new JRadioButton("R1");           //enter button - R1
 		buttonGroup.add(Data_R1);
-		Data_R1.setBounds(783, 723, 56, 23);
+		Data_R1.setBounds(1299, 723, 56, 23);
 		contentPane.add(Data_R1);
 		
 		Data_R2 = new JRadioButton("R2");           //enter button - R2
 		buttonGroup.add(Data_R2);
-		Data_R2.setBounds(876, 699, 62, 23);
+		Data_R2.setBounds(1392, 699, 62, 23);
 		contentPane.add(Data_R2);
 		
 		Data_R3 = new JRadioButton("R3");           //enter button - R3
 		buttonGroup.add(Data_R3);
-		Data_R3.setBounds(876, 724, 62, 23);
+		Data_R3.setBounds(1392, 724, 62, 23);
 		contentPane.add(Data_R3);
 		
 		Data_Mem = new JRadioButton("Memory");      //enter button - memory
 		buttonGroup.add(Data_Mem);
-		Data_Mem.setBounds(783, 747, 74, 23);
+		Data_Mem.setBounds(1299, 747, 74, 23);
 		contentPane.add(Data_Mem);
 		
 		Data_PC = new JRadioButton("PC");           //enter button - PC
 		buttonGroup.add(Data_PC);
-		Data_PC.setBounds(876, 747, 62, 23);
+		Data_PC.setBounds(1392, 747, 62, 23);
 		contentPane.add(Data_PC);
 		
 		JButton Clean = new JButton("Clean");           //clean button
 		Clean.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		Clean.setBounds(928, 841, 93, 32);
+		Clean.setBounds(1444, 841, 93, 32);
 		contentPane.add(Clean);
 		Clean.addActionListener(new CleanListener());
 		
 		
 		con_out = new JTextArea();     //consoles outputs
+		con_out.setLineWrap(true);
 		con_out.setEnabled(false);
 		con_out.setBounds(162, 432, 325, 158);
 		contentPane.add(con_out);
@@ -1300,7 +1301,7 @@ public class UI extends JFrame {
 		JLabel label_8 = new JLabel("Keyboard Read");
 		label_8.setHorizontalAlignment(SwingConstants.CENTER);
 		label_8.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		label_8.setBounds(0, 948, 145, 19);
+		label_8.setBounds(534, 789, 145, 19);
 		contentPane.add(label_8);
 		
 		JLabel lblProgram = new JLabel("Program 1");
@@ -1308,12 +1309,12 @@ public class UI extends JFrame {
 		contentPane.add(lblProgram);
 		
 		JLabel lblProgram_1 = new JLabel("Program 2");
-		lblProgram_1.setBounds(40, 918, 60, 16);
+		lblProgram_1.setBounds(574, 759, 60, 16);
 		contentPane.add(lblProgram_1);
 		
 		textField = new JTextField();      //program 2. The place to enter the word for search
 		textField.setColumns(10);
-		textField.setBounds(162, 947, 325, 22);
+		textField.setBounds(696, 788, 325, 22);
 		contentPane.add(textField);
 		
 		JButton btnLoadP = new JButton("Load Text");  //Load six sentences
@@ -1322,18 +1323,28 @@ public class UI extends JFrame {
 			}
 		});
 		btnLoadP.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnLoadP.setBounds(149, 1000, 106, 32);
+		btnLoadP.setBounds(683, 841, 106, 32);
 		contentPane.add(btnLoadP);
 		
 		JButton button_1 = new JButton("OK");     //load the word for search
 		button_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		button_1.setBounds(289, 1000, 93, 32);
+		button_1.setBounds(823, 841, 93, 32);
 		contentPane.add(button_1);
 		
 		JButton btnLoadP_1 = new JButton("Load P2");  // load program 2
 		btnLoadP_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnLoadP_1.setBounds(415, 1000, 93, 32);
+		btnLoadP_1.setBounds(949, 841, 93, 32);
 		contentPane.add(btnLoadP_1);
+		
+		JSeparator separator_9 = new JSeparator();
+		separator_9.setOrientation(SwingConstants.VERTICAL);
+		separator_9.setBounds(531, 670, 2, 203);
+		contentPane.add(separator_9);
+		
+		JSeparator separator_10 = new JSeparator();
+		separator_10.setOrientation(SwingConstants.VERTICAL);
+		separator_10.setBounds(1074, 670, 2, 203);
+		contentPane.add(separator_10);
 
 		ShowData();
 	}
