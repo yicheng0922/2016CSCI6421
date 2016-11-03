@@ -18,11 +18,14 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Vector;
+import java.io.Reader;
 
 import cpu.CPU;
 import javax.swing.ButtonGroup;
@@ -1359,18 +1362,34 @@ public class UI extends JFrame {
 			//Read 1 word
 			String word = txt_p2.getText();
 			//´Ó50¿ªÊ¼
-			
+			int i = 0;
+			while (i < word.length()){
+				//System.out.println(i+500);
+				//System.out.print(word.substring(i,i+1));
+				cpu.setMem(Short.parseShort(word.substring(i,i+1)), i+500);
+				i++;
+			}			
 		}		
 	}
 	
 	//Add load text button Listener for P2
 	public class loadtxtListener implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
+			InputStream file = getClass().getResourceAsStream("/p2.txt");
+			BufferedReader reader = null;
 			try {
-				InputStream is = new FileInputStream("/p2.txt");
-				short a = (short)(is.read());
-				System.out.println(a);
-			} catch(IOException e1) {
+				reader = new BufferedReader(new InputStreamReader(file));
+				int tempchar;
+				int i = 1000;
+				while((tempchar = reader.read()) != -1) {
+					if(((char)tempchar) != '\r') {
+						//System.out.println(i);
+						//System.out.println((char)tempchar);
+						cpu.setMem((short)tempchar, i);
+						i++;
+					}
+				}
+			} catch (Exception e1) {
 				e1.printStackTrace();
 			}
 		}
