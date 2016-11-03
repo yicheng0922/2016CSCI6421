@@ -88,7 +88,7 @@ public class UI extends JFrame {
 		cpu = new CPU(devin);
 		cpu.setPc((short)6);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1620, 950);
+		setBounds(100, 100, 1620, 1000);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -1344,11 +1344,16 @@ public class UI extends JFrame {
 		
 		Readtxt_p2 = new JTextArea();
 		Readtxt_p2.setWrapStyleWord(true);
-		Readtxt_p2.setText("Please use the 'Load Text' button to load the file first.");
+		Readtxt_p2.setText("Please use the 'Load Text' button to load the file first. Or you can type the sentences here and use 'Load Input' button to load the sentences. ");
 		Readtxt_p2.setLineWrap(true);
 		Readtxt_p2.setEditable(false);
-		Readtxt_p2.setBounds(696, 723, 325, 45);
+		Readtxt_p2.setBounds(696, 686, 325, 82);
 		contentPane.add(Readtxt_p2);
+		
+		JButton btnLoadInput = new JButton("Load Input"); // load the input sentences
+		btnLoadInput.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnLoadInput.setBounds(683, 886, 122, 32);
+		contentPane.add(btnLoadInput);
 
 		ShowData();
 	}
