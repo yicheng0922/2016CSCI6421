@@ -1353,12 +1353,33 @@ public class UI extends JFrame {
 		Readtxt_p2.setBounds(696, 686, 325, 82);
 		contentPane.add(Readtxt_p2);
 		
-		JButton btnLoadInput = new JButton("Load Input"); // load the input sentences
-		btnLoadInput.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnLoadInput.setBounds(683, 886, 122, 32);
-		contentPane.add(btnLoadInput);
+		JButton loadsentence = new JButton("Load Input"); // load the input sentences
+		loadsentence.addActionListener(new loadsentenceListener());
+		loadsentence.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		loadsentence.setBounds(683, 886, 122, 32);
+		contentPane.add(loadsentence);
 
 		ShowData();
+	}
+	
+	//Add load sentence listener for P2
+	public class loadsentenceListener implements ActionListener{
+		public void actionPerformed(ActionEvent e) {
+			String sentences = txt_p2.getText();
+			String test = txt_p2.getText();
+			String test1 = test.replaceAll("[.!?]", "");
+			if(test1.length() == 6) {
+				int i = 0;
+				char sen[] = sentences.toCharArray();
+				while (i < sentences.length()) {
+					cpu.setMem((short)sen[i], i+1000);
+				}
+			} else if (test1.length() < 6) {
+				Readtxt_p2.setText("Your sentences is less than 6, please try again!");
+			} else {
+				Readtxt_p2.setText("Your sentences if longer than 6, please try again!");
+			}
+		}
 	}
 	
 	//Add OK button Listener for P2
