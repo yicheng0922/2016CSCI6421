@@ -11,21 +11,17 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JSeparator;
-import javax.swing.AbstractAction;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.Action;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.Queue;
 import java.util.Vector;
 
 import cpu.CPU;
@@ -37,8 +33,10 @@ public class UI extends JFrame {
 	private JPanel contentPane;
 	private JTextField Data_txt;
 	private JTextField Ins_txt;	
-	private JTextField Enter_txt;
-	private JTextArea Readtxt;
+	private JTextField txt_p1;
+	private JTextField txt_p2;
+	private JTextArea Readtxt_p1;
+	private JTextArea Readtxt_p2;
 	private CPU cpu;
 	private int clock = 0;
 	
@@ -64,7 +62,6 @@ public class UI extends JFrame {
 	private JRadioButton Data_PC;
 	private short[] devin;
 	private Vector<Short> keyboard_data;
-	private JTextField textField;
 
 	/**
 	 * Launch the application.
@@ -1279,24 +1276,24 @@ public class UI extends JFrame {
 		lblKeyboardRead.setBounds(0, 793, 145, 19);
 		contentPane.add(lblKeyboardRead);
 		
-		Enter_txt = new JTextField();
-		Enter_txt.setColumns(10);
-		Enter_txt.setBounds(162, 790, 325, 22);
-		contentPane.add(Enter_txt);
+		txt_p1 = new JTextField();
+		txt_p1.setColumns(10);
+		txt_p1.setBounds(162, 790, 325, 22);
+		contentPane.add(txt_p1);
 		
-		JButton Enter_OK = new JButton("OK");
-		Enter_OK.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		Enter_OK.setBounds(162, 841, 93, 32);
-		Enter_OK.addActionListener(new OKListener());
-		contentPane.add(Enter_OK);
+		JButton OK_p1 = new JButton("OK");
+		OK_p1.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		OK_p1.setBounds(162, 841, 93, 32);
+		OK_p1.addActionListener(new OKp1Listener());
+		contentPane.add(OK_p1);
 		
-		Readtxt = new JTextArea();
-		Readtxt.setText("Please enter 20 integers (from -32768 to 32767), use comma to separate numbers.");
-		Readtxt.setBounds(162, 723, 325, 45);
-		contentPane.add(Readtxt);
-		Readtxt.setEditable(false);
-		Readtxt.setLineWrap(true);
-		Readtxt.setWrapStyleWord(true);
+		Readtxt_p1 = new JTextArea();
+		Readtxt_p1.setText("Please enter 20 integers (from -32768 to 32767), use comma to separate numbers.");
+		Readtxt_p1.setBounds(162, 723, 325, 45);
+		contentPane.add(Readtxt_p1);
+		Readtxt_p1.setEditable(false);
+		Readtxt_p1.setLineWrap(true);
+		Readtxt_p1.setWrapStyleWord(true);
 		
 		JLabel label_8 = new JLabel("Keyboard Read");
 		label_8.setHorizontalAlignment(SwingConstants.CENTER);
@@ -1312,29 +1309,28 @@ public class UI extends JFrame {
 		lblProgram_1.setBounds(574, 759, 60, 16);
 		contentPane.add(lblProgram_1);
 		
-		textField = new JTextField();      //program 2. The place to enter the word for search
-		textField.setColumns(10);
-		textField.setBounds(696, 788, 325, 22);
-		contentPane.add(textField);
+		txt_p2 = new JTextField();      //program 2. The place to enter the word for search
+		txt_p2.setColumns(10);
+		txt_p2.setBounds(696, 788, 325, 22);
+		contentPane.add(txt_p2);
 		
-		JButton btnLoadP = new JButton("Load Text");  //Load six sentences
-		btnLoadP.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnLoadP.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnLoadP.setBounds(683, 841, 106, 32);
-		contentPane.add(btnLoadP);
+		JButton loadtxt = new JButton("Load Text");  //Load six sentences
+		loadtxt.addActionListener(new loadtxtListener());
+		loadtxt.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		loadtxt.setBounds(683, 841, 106, 32);
+		contentPane.add(loadtxt);
 		
-		JButton button_1 = new JButton("OK");     //load the word for search
-		button_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		button_1.setBounds(823, 841, 93, 32);
-		contentPane.add(button_1);
+		JButton OK_p2 = new JButton("OK");     //load the word for search
+		OK_p2.addActionListener(new OKp2Listener());
+		OK_p2.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		OK_p2.setBounds(823, 841, 93, 32);
+		contentPane.add(OK_p2);
 		
-		JButton btnLoadP_1 = new JButton("Load P2");  // load program 2
-		btnLoadP_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnLoadP_1.setBounds(949, 841, 93, 32);
-		contentPane.add(btnLoadP_1);
+		JButton load_p2 = new JButton("Load P2");  // load program 2
+		load_p2.addActionListener(new loadp2Listener());
+		load_p2.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		load_p2.setBounds(949, 841, 93, 32);
+		contentPane.add(load_p2);
 		
 		JSeparator separator_9 = new JSeparator();
 		separator_9.setOrientation(SwingConstants.VERTICAL);
@@ -1345,22 +1341,95 @@ public class UI extends JFrame {
 		separator_10.setOrientation(SwingConstants.VERTICAL);
 		separator_10.setBounds(1074, 670, 2, 203);
 		contentPane.add(separator_10);
+		
+		Readtxt_p2 = new JTextArea();
+		Readtxt_p2.setWrapStyleWord(true);
+		Readtxt_p2.setText("Please use the 'Load Text' button to load the file first.");
+		Readtxt_p2.setLineWrap(true);
+		Readtxt_p2.setEditable(false);
+		Readtxt_p2.setBounds(696, 723, 325, 45);
+		contentPane.add(Readtxt_p2);
 
 		ShowData();
 	}
 	
-	//Add OK button Listener
-	public class OKListener implements ActionListener{
+	//Add OK button Listener for P2
+	public class OKp2Listener implements ActionListener{
+		public void actionPerformed(ActionEvent e) {
+			//Read 1 word
+			String word = txt_p2.getText();
+			//´Ó50¿ªÊ¼
+			
+		}		
+	}
+	
+	//Add load text button Listener for P2
+	public class loadtxtListener implements ActionListener{
+		public void actionPerformed(ActionEvent e) {
+			try {
+				InputStream is = new FileInputStream("/p2.txt");
+				short a = (short)(is.read());
+				System.out.println(a);
+			} catch(IOException e1) {
+				e1.printStackTrace();
+			}
+		}
+	}
+	
+	//Add load button Listener for P2
+	public class loadp2Listener implements ActionListener{
+		public void actionPerformed(ActionEvent e) {
+			//Read the file "LoadTXT" which include some instruments
+			InputStream f = getClass().getResourceAsStream("HERE SHOULD BE REPLACED BY THE FILE NAME!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+			boolean isFirst = true;
+			BufferedReader reader = null;
+			try {
+				reader = new BufferedReader(new InputStreamReader(f));
+				String Ins = null;
+				int line = 1;
+				//Read the file line by line and split the line into two parts by symbol ","
+				while ((Ins = reader.readLine()) != null) {
+					String[] str = Ins.split(",");
+					int index = Integer.parseInt(str[0]);					
+					Short con = Integer.valueOf(str[1],2).shortValue();
+					if(isFirst){
+						cpu.setPc((short) index);
+						isFirst=false;
+					}
+					cpu.setMem(con, index);					
+					line++;
+				}
+				reader.close();
+			} catch (IOException ex) {
+				ex.printStackTrace();
+			} finally {
+				if (reader != null) {
+					try {
+						reader.close();
+					} catch (IOException e1) {
+						
+					}
+				}
+			}
+			System.out.println("The PC value is: ");
+			System.out.println(cpu.getPc());
+			//Call the function to show the data on the screen
+			ShowData();
+		}
+	}
+	
+	//Add OK button Listener for P1
+	public class OKp1Listener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
 			if (clock == 0) {
 				//Read 20 integers
-				String text = Enter_txt.getText();
+				String text = txt_p1.getText();
 				try {
 					String[] numbers = text.split(",");
 				    if (numbers.length < 20) {
-				    	Readtxt.setText("Your input is less than 20 integers!");
+				    	Readtxt_p1.setText("Your input is less than 20 integers!");
 				    } else if (numbers.length > 20) {
-					    Readtxt.setText("Your input is larger than 20 integers!");
+					    Readtxt_p1.setText("Your input is larger than 20 integers!");
 				    } else {
 				    	for(int i = 0; i < 20; i++){
 				    		short nShort = Short.parseShort(numbers[i]);
@@ -1371,8 +1440,8 @@ public class UI extends JFrame {
 				    		}
 				    		keyboard_data.add(nShort);
 				    	}
-					    Enter_txt.setText("");
-					    Readtxt.setText("Please enter 1 integer you want to compare with");
+					    txt_p1.setText("");
+					    Readtxt_p1.setText("Please enter 1 integer you want to compare with");
 					    clock = 1;
 				    }
 				} catch (NumberFormatException n) {
@@ -1380,17 +1449,17 @@ public class UI extends JFrame {
 			    }
 			} else if (clock == 1) {
 				//Read 1 numbers
-				String text = Enter_txt.getText();
+				String text = txt_p1.getText();
 				try {
 					short number = Short.parseShort(text);
 					keyboard_data.add(number);
-		    		Readtxt.setText("Please load and run the program for output.");
+		    		Readtxt_p1.setText("Please load and run the program for output.");
 		    		clock = 2;
 				} catch (NumberFormatException n) {
 					System.out.println("Your input is not a integer!");
 				}
 			} else if (clock == 2) {
-				Readtxt.setText("Please click OK button to a new program.");
+				Readtxt_p1.setText("Please click OK button to a new program.");
 				clock = 0;
 			}
 		}
@@ -1576,7 +1645,7 @@ public class UI extends JFrame {
 	public void update_output(int devid){
 		if(devid == 1)
 		{
-			if(!Readtxt.getText().equals(""))
+			if(!Readtxt_p1.getText().equals(""))
 			{
 				con_out.append(",");
 			}
