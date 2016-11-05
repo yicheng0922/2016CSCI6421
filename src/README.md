@@ -14,3 +14,8 @@ Computer simulator
 12. Click Load to save all the data.
 13. Click Run or SS to run all of the program 1 or step by step.
 14. The Consoles Output text area will show the output from the cpu.
+15. Please use the program 2 text field to run program 2.
+16. A existed file with 6 sentences will be loaded when users use Load Text button.
+17. When it asks users to enter a word for searching, users must enter a word in the text field and use OK to store the word.
+18. Load P2 button is used to load the instructions of program 2.
+19. When users already load a text file with 6 sentences, entered a word and load the program 2 instructions, then click run to see the result.
