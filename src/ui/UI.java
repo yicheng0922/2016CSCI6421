@@ -1438,7 +1438,8 @@ public class UI extends JFrame {
 				//Read the file line by line and split the line into two parts by symbol ","
 				while ((Ins = reader.readLine()) != null) {
 					String[] str = Ins.split(",");
-					int index = Integer.parseInt(str[0]);					
+					int index = Integer.parseInt(str[0]);
+					System.out.println(str[1].toString());
 					Short con = Integer.valueOf(str[1],2).shortValue();
 					if(isFirst){
 						cpu.setPc((short) index);
