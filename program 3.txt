@@ -2,103 +2,103 @@
 7,500
 
 *loop1
-LDR r1 x0 0
-JZ r1 *endloop1
-out r1 1
-jma loop1
+1500,LDR r1 x0 0
+1501,JZ r1 *endloop1
+1502,out r1 1
+1503,jma loop1
 *endloop1
 
 
-LDX x1 x0 6
-LDX x2 x0 8
+1504,LDX x1 x0 6
+1505,LDX x2 x0 8
 
 
-LDR r2 x1 0 *loop start
-JZ r2 X3 not found
+1506,LDR r2 x1 0 *loop start
+1507,JZ r2 X3 not found
 
 // check if need to check;
-LDR r2 x0 11
-JZ z2 ending loop
+1508,LDR r2 x0 11
+1509,JZ z2 ending loop
 
 // check if word end input
-LDR r2 x2 0
-JNE r2 check same char
+1510,LDR r2 x2 0
+1511,JNE r2 check same char
 
-LDR r2 x1 0
-LDR r2 x1 0
-SiR r2 32
-JZ r2 found
-SIR r2 14 
-JZ r2 found
-JMA word check failed
+1512,LDR r2 x1 0
+1513,LDR r2 x1 0
+1514,SiR r2 32
+1515,Z r2 found
+1516,SIR r2 14 
+1517,JZ r2 found
+1518,JMA word check failed
 
 // check same char 
-LDR r2 x1 0
-SMR r2 x2 0
-JNE r2 X3 word check failed
+1519,LDR r2 x1 0
+1520,SMR r2 x2 0
+1521,JNE r2 X3 word check failed
 
 
 // update cur_char
-STX x2 x0 9
-LDR r3 x0 9 
-SIR r3 1
-STR r3 x0 7
-JMA ending loop
+1522,STX x2 x0 9
+1523,LDR r3 x0 9 
+1524,SIR r3 1
+1525,STR r3 x0 7
+1526,JMA ending loop
 
 * word check failed
-LDR r2 x0 11
-AIR r2 1
-STR r2 x0 11
-JZ z2 ending loop
+1527,LDR r2 x0 11
+1528,AIR r2 1
+1529,STR r2 x0 11
+1530,JZ z2 ending loop
 
 
 *ending loop
 // check new word
-LDR r2 x1 0
-SiR r2 32
-JZ r2 new word
+1531,LDR r2 x1 0
+1532,SiR r2 32
+1533,JZ r2 new word
 //check new sentence
-SIR r2 14 
-JZ r2 new sentence
+1534,SIR r2 14 
+1535,JZ r2 new sentence
 
 *new sentence
-LDR r3 X0 12
-AIR r3 1
-STR r3 x0 12
-LDR r3 x0 13
-SMR r3 x0 13
-STR r3 x0 13
-JMA *update word
+1536,LDR r3 X0 12
+1537,AIR r3 1
+1538,STR r3 x0 12
+1539,LDR r3 x0 13
+1540,SMR r3 x0 13
+1541,STR r3 x0 13
+1542,JMA *update word
 
 *new word
-LDR r3 X0 13
-AIR r3 1 
-STR r3 X0 13
+1543,LDR r3 X0 13
+1544,AIR r3 1 
+1545,STR r3 X0 13
 
 *update char
-LDX x2 x0 8
+1546,LDX x2 x0 8
 
-LDR r2 x0 11
-SMR r2 x0 11
-STR r2 x0 11
+1547,LDR r2 x0 11
+1548,SMR r2 x0 11
+1549,STR r2 x0 11
 
-STX x1 x0 7
-LDR r3 x0 7 
-AIR r3 1
-STR r3 x0 7
+1550,STX x1 x0 7
+1551,LDR r3 x0 7 
+1552,AIR r3 1
+1553,STR r3 x0 7
 
-JMA loop start
+1554,JMA loop start
 
 // 
 
 *found
-LDR r3 X0 12
-out r3 1
+1555,LDR r3 X0 12
+1556,out r3 1
 
-LDR r3 x0 13
-out r3 1 
+1557,LDR r3 x0 13
+1558,out r3 1 
 
 
 
 *not found
-HLT
+1559,HLT
