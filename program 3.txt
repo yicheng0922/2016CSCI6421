@@ -1,0 +1,104 @@
+6,1000
+7,500
+
+*loop1
+LDR r1 x0 0
+JZ r1 *endloop1
+out r1 1
+jma loop1
+*endloop1
+
+
+LDX x1 x0 6
+LDX x2 x0 8
+
+
+LDR r2 x1 0 *loop start
+JZ r2 X3 not found
+
+// check if need to check;
+LDR r2 x0 11
+JZ z2 ending loop
+
+// check if word end input
+LDR r2 x2 0
+JNE r2 check same char
+
+LDR r2 x1 0
+LDR r2 x1 0
+SiR r2 32
+JZ r2 found
+SIR r2 14 
+JZ r2 found
+JMA word check failed
+
+// check same char 
+LDR r2 x1 0
+SMR r2 x2 0
+JNE r2 X3 word check failed
+
+
+// update cur_char
+STX x2 x0 9
+LDR r3 x0 9 
+SIR r3 1
+STR r3 x0 7
+JMA ending loop
+
+* word check failed
+LDR r2 x0 11
+AIR r2 1
+STR r2 x0 11
+JZ z2 ending loop
+
+
+*ending loop
+// check new word
+LDR r2 x1 0
+SiR r2 32
+JZ r2 new word
+//check new sentence
+SIR r2 14 
+JZ r2 new sentence
+
+*new sentence
+LDR r3 X0 12
+AIR r3 1
+STR r3 x0 12
+LDR r3 x0 13
+SMR r3 x0 13
+STR r3 x0 13
+JMA *update word
+
+*new word
+LDR r3 X0 13
+AIR r3 1 
+STR r3 X0 13
+
+*update char
+LDX x2 x0 8
+
+LDR r2 x0 11
+SMR r2 x0 11
+STR r2 x0 11
+
+STX x1 x0 7
+LDR r3 x0 7 
+AIR r3 1
+STR r3 x0 7
+
+JMA loop start
+
+// 
+
+*found
+LDR r3 X0 12
+out r3 1
+
+LDR r3 x0 13
+out r3 1 
+
+
+
+*not found
+HLT
