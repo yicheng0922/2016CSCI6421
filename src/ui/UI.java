@@ -1386,17 +1386,24 @@ public class UI extends JFrame {
 	//Add OK button Listener for P2
 	public class OKp2Listener implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
-			//Read 1 word
-			String word = txt_p2.getText();
-			//从50开始
-			int i = 0;
-			while (i < word.length()){
-				//System.out.println(i+500);
-				//System.out.print(word.substring(i,i+1));
-				cpu.setMem(Short.parseShort(word.substring(i,i+1)), i+500);
-				i++;
-			}
+			try {
+				//Read 1 word
+				String word = txt_p2.getText();
+				//从50开始
+				int i = 0;
+				char[] word_array = word.toCharArray();
+				while (i < word.length()){
+					//System.out.println(i+500);
+					//System.out.print(word.substring(i,i+1));
+					
+					short w = (short) word_array[i];
+					cpu.setMem(w, i+500);
+					i++;
+				}
 			Readtxt_p2.setText("Please use LoadP2 button to run program 2 and see the result on the console.");
+			} catch (Exception e1) {
+				System.out.println("Null enter.");
+			}
 		}		
 	}
 	
