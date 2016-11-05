@@ -1694,11 +1694,10 @@ public class UI extends JFrame {
 	public void update_output(int devid){
 		if(devid == 1)
 		{
-			if(!Readtxt_p1.getText().equals(""))
-			{
-				con_out.append(",");
-			}
-			con_out.append(""+cpu.devout[devid]);
+			if( cpu.devout[devid] >= 32)
+				con_out.append(""+((char) cpu.devout[devid]));
+			else
+				con_out.append(""+cpu.devout[devid]);
 		}
 		else
 		{
