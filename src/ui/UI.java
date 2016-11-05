@@ -1379,6 +1379,7 @@ public class UI extends JFrame {
 			} else {
 				Readtxt_p2.setText("Your sentences if longer than 6, please try again!");
 			}
+			Readtxt_p2.setText("Please enturn a word you want to search and click OK button.");
 		}
 	}
 	
@@ -1394,7 +1395,8 @@ public class UI extends JFrame {
 				//System.out.print(word.substring(i,i+1));
 				cpu.setMem(Short.parseShort(word.substring(i,i+1)), i+500);
 				i++;
-			}			
+			}
+			Readtxt_p2.setText("Please use LoadP2 button to run program 2 and see the result on the console.");
 		}		
 	}
 	
@@ -1418,6 +1420,7 @@ public class UI extends JFrame {
 			} catch (Exception e1) {
 				e1.printStackTrace();
 			}
+			Readtxt_p2.setText("Please enturn a word you want to search and click OK button.");
 		}
 	}
 	
@@ -1460,6 +1463,7 @@ public class UI extends JFrame {
 			System.out.println(cpu.getPc());
 			//Call the function to show the data on the screen
 			ShowData();
+			Readtxt_p2.setText("Now you can see the result on the console.");
 		}
 	}
 	
