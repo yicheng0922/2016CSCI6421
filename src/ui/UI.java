@@ -1425,7 +1425,7 @@ public class UI extends JFrame {
 	public class loadp2Listener implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			//Read the file "LoadTXT" which include some instruments
-			InputStream f = getClass().getResourceAsStream("HERE SHOULD BE REPLACED BY THE FILE NAME!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+			InputStream f = getClass().getResourceAsStream("/Loadp2.txt");
 			boolean isFirst = true;
 			BufferedReader reader = null;
 			try {
