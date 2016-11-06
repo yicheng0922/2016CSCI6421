@@ -1394,13 +1394,12 @@ public class UI extends JFrame {
 				char[] word_array = word.toCharArray();
 				while (i < word.length()){
 					//System.out.println(i+500);
-					//System.out.print(word.substring(i,i+1));
-					
+					//System.out.print(word.substring(i,i+1));					
 					short w = (short) word_array[i];
 					cpu.setMem(w, i+500);
 					i++;
 				}
-			Readtxt_p2.setText("Please use LoadP2 button to run program 2 and see the result on the console.");
+			Readtxt_p2.setText("Please use LoadP2 button to load instruction of program 2.");
 			} catch (Exception e1) {
 				System.out.println("Null enter.");
 			}
@@ -1435,6 +1434,7 @@ public class UI extends JFrame {
 	//Add load button Listener for P2
 	public class loadp2Listener implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
+			CleanScr();
 			//Read the file "LoadTXT" which include some instruments
 			InputStream f = getClass().getResourceAsStream("/Loadp2.txt");
 			boolean isFirst = true;
@@ -1472,7 +1472,7 @@ public class UI extends JFrame {
 			System.out.println(cpu.getPc());
 			//Call the function to show the data on the screen
 			ShowData();
-			Readtxt_p2.setText("Now you can see the result on the console.");
+			Readtxt_p2.setText("Please use Run button to run program 2 and the result will be on the console.");
 		}
 	}
 	
