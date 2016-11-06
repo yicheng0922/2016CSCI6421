@@ -39,7 +39,7 @@
 1512,LDR r2 x1 0
 1513,LDR r2 x1 0
 1514,SiR r2 32
-1515,Z r2 found
+1515,JZ r2 X0 24 i1found
 1516,SIR r2 14 
 1517,JZ r2 x0 24 i1//found
 1518,JMA x0 19 i1//word check failed

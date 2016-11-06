@@ -58,9 +58,9 @@ public class CPU {
 	
 	@Override
 	public String toString() {
-		return "CPU [cc=" + Arrays.toString(cc) + ", r=" + Arrays.toString(r) +", mem" +Arrays.toString(Arrays.copyOfRange(mem, 1500, 1542))+ ", x=" + Arrays.toString(x) + ", devin="
-				+ Arrays.toString(devin) + ", devout=" + Arrays.toString(devout) + ", ir=" + ir + ", pc=" + pc
-				+ ", mar=" + mar + ", mbr=" + mbr + ", msr=" + msr + ", mfr=" + mfr + "]";
+		return "CPU [cc=" + Arrays.toString(cc) + ", r=" + Arrays.toString(r) +", mem" +Arrays.toString(Arrays.copyOfRange(mem, 6, 30))+Arrays.toString(Arrays.copyOfRange(mem, 500,510))+Arrays.toString(Arrays.copyOfRange(mem, 1000,1150))
+		+ ", x=" + Arrays.toString(x)
+				+ ", ir=" + ir + ", pc=" + pc+ "]";
 	}
 
 
@@ -78,7 +78,7 @@ public class CPU {
 	private short mbr;
 	private short msr;
 	private short mfr;
-	private Cache cache;
+	//private Cache cache;
 	//memory
 	private short mem[];
 	
@@ -90,7 +90,7 @@ public class CPU {
 		r = new short[4];
 		x = new short[3];
 		mem=new short[2048];
-		cache = new Cache(16);
+//		cache = new Cache(16);
 		this.devin=devin;
 		this.devout = new short[32];
 		for (int i=0;i<cc.length;i++)
@@ -122,7 +122,7 @@ public class CPU {
 		}
 		else
 		{
-			cache.add((short)index, content);
+//			cache.add((short)index, content);
 			mem[index] = content;
 		}
 	}
@@ -140,10 +140,10 @@ public class CPU {
 		}
 		else
 		{
-			CacheLine c= cache.find(address);
-			if(c != null){
-				return c.content;
-			}
+//			CacheLine c= cache.find(address);
+//			if(c != null){
+//				return c.content;
+//			}
 			return mem[address];
 		}
 	}

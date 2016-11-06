@@ -1420,6 +1420,7 @@ public class UI extends JFrame {
 					if(((char)tempchar) != '\r') {
 						//System.out.println(i);
 						//System.out.println((char)tempchar);
+						System.out.print((char)tempchar);
 						cpu.setMem((short)tempchar, i);
 						i++;
 					}
@@ -1705,7 +1706,7 @@ public class UI extends JFrame {
 			if( cpu.devout[devid] >= 32)
 				con_out.append(""+((char) cpu.devout[devid]));
 			else
-				con_out.append(""+cpu.devout[devid]);
+				con_out.append(", "+cpu.devout[devid]);
 		}
 		else
 		{
