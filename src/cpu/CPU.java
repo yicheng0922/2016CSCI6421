@@ -78,6 +78,7 @@ public class CPU {
 	private short mbr;
 	private short msr;
 	private short mfr;
+	private short[] bpBits;
 	//private Cache cache;
 	//memory
 	private short mem[];
@@ -86,6 +87,7 @@ public class CPU {
 	public CPU(short[] devin)
 	{
 		ir=pc=mar=mbr=msr=mfr=0;
+		bpBits = new short[2];
 		cc = new boolean[4];
 		r = new short[4];
 		x = new short[3];
@@ -145,6 +147,31 @@ public class CPU {
 //				return c.content;
 //			}
 			return mem[address];
+		}
+	}
+	
+	public void predict(){
+		if(bpBits[0]==1){
+			System.out.println("Predict taken");
+		}
+		else{
+			System.out.println("Predict not taken");
+		}
+	}
+	
+	public void changePredictBit(boolean result){
+		if(result){
+			if(bpBits[1]==1){
+				bpBits[0]=1;
+			}else{
+				bpBits[1]=1;
+			}
+		}else{
+			if(bpBits[1]==0){
+				bpBits[0]=0;
+			}else{
+				bpBits[1]=0;
+			}
 		}
 	}
 	
@@ -608,33 +635,44 @@ public class CPU {
 	
 	private void jz(short r, short x, short address, short indirect)
 	{
+		predict();
 		short EA = calcEA(x,address,indirect);
 		if(this.r[r]==0)
 		{
+			changePredictBit(true);
 			pc = EA;
 			pc--;
-		}	
+			return;
+		}
+		changePredictBit(false);
 	}
 
 	private void jne(short r, short x, short address, short indirect)
 	{
+		predict();
 		short EA = calcEA(x,address,indirect);
 		if(this.r[r]!=0)
 		{
+			changePredictBit(true);
 			pc = EA;
 			pc--;
-		}	
+			return;
+		}
+		changePredictBit(false);
 	}
 	
-	// need modification
 	private void jcc(short cc,short x, short address, short indirect)
 	{
+		predict();
 		short EA = calcEA(x,address,indirect);
 		if(this.cc[cc]==true)
 		{
+			changePredictBit(true);
 			pc = EA;
 			pc--;
+			return;
 		}
+		changePredictBit(false);
 	}
 	
 	private void jma(short x, short address, short indirect)
@@ -662,23 +700,31 @@ public class CPU {
 	
 	private void sob(short r, short x, short address, short indirect)
 	{
+		predict();
 		short EA = calcEA(x,address,indirect);
 		this.r[r]=(short) (this.r[r]-1);
 		if(this.r[r]>0)
 		{
+			changePredictBit(true);
 			pc = EA;
 			pc--;
-		}	
+			return;
+		}
+		changePredictBit(false);
 	}
 	
 	private void jge(short r, short x, short address, short indirect)
 	{
+		predict();
 		short EA = calcEA(x,address,indirect);
 		if(this.r[r]>=0)
 		{
+			changePredictBit(true);
 			pc = EA;
 			pc--;
-		}	
+			return;
+		}
+		changePredictBit(false);
 	}
 	
 	
