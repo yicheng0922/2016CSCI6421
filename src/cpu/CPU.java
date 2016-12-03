@@ -113,6 +113,7 @@ public class CPU {
 		}
 	}
 	
+	
 	// function that is going to be used for setting memory.
 	// will also check for invalid read or write
 	public void setMem(short content, int index)
@@ -203,8 +204,8 @@ public class CPU {
 		//check op code and switch to the function it is corresponding to
 		switch (optcode)
 		{
-			case 0:
-				return -1;
+			case 0: //hlt
+				hlt();
 			case 1: // ldr
 				r = Short.parseShort(instruction.substring(6,8),2);
 				x = Short.parseShort(instruction.substring(8,10),2);
@@ -356,7 +357,10 @@ public class CPU {
 				address = Short.parseShort(instruction.substring(11,16),2);
 				stx(x,address,i);
 				break;
-			
+			case 36: //trapcode
+				x = Short.parseShort(instruction.substring(12,16),2);
+				trapcode(x);
+				break;
 			case 49: //in
 				r = Short.parseShort(instruction.substring(6,8),2);
 				devid = Short.parseShort(instruction.substring(11,16),2);
@@ -384,6 +388,10 @@ public class CPU {
 		return 0;
 	}
 	
+	private short hlt() {
+		return -1;
+	}
+	
 
 	private void out(short r, short devid) {
 		devout[devid] = this.r[r];// TODO Auto-generated method stub
@@ -392,6 +400,13 @@ public class CPU {
 	private void in(short r, short devid) {
 		this.r[r] = devin[devid];// TODO Auto-generated method stub
 		
+	}
+	
+	//trap the code
+	private void trapcode(short x) {
+		mem[0] = 1000;
+		mem[2] = (short)(pc + 1);
+		pc = (short)(mem[0] + x);
 	}
 
 	// calculate effective address
